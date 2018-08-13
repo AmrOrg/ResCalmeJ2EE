@@ -33,10 +33,10 @@ public class login extends HttpServlet {
             try {
                 if (_username != null && _password != null) {
 
-                    Class.forName("org.apache.derby.jdbc.ClientDriver");
-                    Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/DBAmr", "amr", "Secret");
+                    Class.forName("oracle.jdbc.OracleDriver");
+                    Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@144.217.163.57:1521:XE", "bd1team10", "anypw10");
                     System.out.println("Connected ");
-                    String Query = "select * from USERS where USERNAME = ? AND PASSWORD = ? ";
+                    String Query = "select * from LOGIN where IDENTIFIANT = ? AND MOTDEPASSE = ? ";
                     PreparedStatement psm = conn.prepareStatement(Query);
                     psm.setString(1, _username);
                     psm.setString(2, _password);

@@ -14,10 +14,9 @@
         <title>JSP Page</title>
     </head>
     <body class='container'>
-        <h1><img src="images/images.png" width="246" height="205" alt="images"/></h1>
-        <h2>Le séjour idéal</h2>
+        <%@include file="entete.jspf" %>
 
-
+<center>
 
         <table border="0" cellpadding='10' class='' >
 
@@ -25,9 +24,7 @@
 
                 <tr>
 
-                    <td> <a href="Login.jsp">Se connecter</a></td>
-                    <td> <a href="srv_Inscription">S'inscrire</a></td>
-                    <td>             <a href="Contacts.html">Contacts</a></td>
+               
                     <td><select name="Lang"> 
                             <option>English</option> 
                             <option>Français</option>
@@ -63,6 +60,6 @@
         </form>
 
 
-
+</center>
     </body>
 </html>

@@ -13,8 +13,10 @@
         <link href="css/css1.css" rel="stylesheet" type="text/css"/>
         <title>Login</title>
     </head>
-    <body>
-    <center><h1><u>Login Here</u></h1></center>
+    <body class="container">
+                <%@include file="entete.jspf" %>
+
+    <center><h1><u>Se Connecter</u></h1></center>
     <center>
         <div>
             <form action="login" method="POST">
@@ -23,11 +25,11 @@
 
                     <tr>
                         <td>User Name   </td>
-                        <td><input type="text" class="form-control" name="UserName"  size="30" placeholder="Username"/></td>
+                        <td><input type="text" class="form-control" name="UserName"  size="30" placeholder="Username" required/></td>
                     </tr>
                     <tr>
                         <td>Password    </td>
-                        <td><input type="password" class="form-control" name="PWD" placeholder="Password" size="30" /></td>
+                        <td><input type="password" class="form-control" name="PWD" placeholder="Password" size="30" required/></td>
                     </tr>
                         <tr>
                         <td>Language    </td>
