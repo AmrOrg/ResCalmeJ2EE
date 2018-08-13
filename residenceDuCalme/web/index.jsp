@@ -11,6 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <link href="Scripts/css.css" rel="stylesheet" type="text/css"/>
 
         <title>JSP Page</title>
     </head>
@@ -46,7 +47,7 @@
 
                 <c:forEach var="item" items="${ar}">
 
-                    <input  class="typeahead form-control"  type="text" value="${item}" autocomplete="on">
+                    <input  class="typeahead form-control" type="text" value="${item}" autocomplete="on">
 
                 </c:forEach>
             </c:if>

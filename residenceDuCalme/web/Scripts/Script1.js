@@ -2,7 +2,7 @@ var req;
 var province;
 
 function init() {
-    province = document.getElementById("div_ville");
+    province = document.getElementById("div_prov");
 
     if (req == null) {
 
@@ -42,7 +42,7 @@ function chercherProv(x) {
 function callBack() {
    
 
-       document.getElementById("div_prov").innerHTML = req.responseText;
+       province.innerHTML = req.responseText;
 
 
   
