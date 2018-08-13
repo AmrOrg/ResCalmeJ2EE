@@ -22,7 +22,7 @@ function chercherVille(x) {
     init();
     url = "srv_RechercheApp?ville=" + x;
     req.open("GET", url,true);
-   //req.onreadystatechange = callBack;
+   req.onreadystatechange = callBack;
     req.send(null);
 
 
@@ -33,7 +33,7 @@ function chercherProv(x) {
     init();
     url = "srv_RechercheApp?province=" + x;
     req.open("GET", url,true);
-   // req.onreadystatechange = callBack;
+    req.onreadystatechange = callBack;
     req.send(null);
 
 
@@ -42,7 +42,7 @@ function chercherProv(x) {
 function callBack() {
    
 
-      // document.getElementById("div_prov").innerHTML = req.responseText;
+       document.getElementById("div_prov").innerHTML = req.responseText;
 
 
   

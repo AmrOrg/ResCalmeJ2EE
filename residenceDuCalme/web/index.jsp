@@ -40,9 +40,17 @@
 
 
         <input size="30" type="search" name="prov" placeholder="Province" onkeyup="chercherProv(this.value)">
-        <jsp:include page="test.jsp" />
 
-     
+        <div id="div_prov">   
+            <c:if test="${ar.size() > 0}">
+
+                <c:forEach var="item" items="${ar}">
+
+                    <input  class="typeahead form-control"  type="text" value="${item}" autocomplete="on">
+
+                </c:forEach>
+            </c:if>
+        </div>
 
 
         <br><br>
