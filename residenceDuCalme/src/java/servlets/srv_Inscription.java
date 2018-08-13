@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controleur;
+package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author AMR
  */
-public class srv_RechercheApp extends HttpServlet {
+public class srv_Inscription extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,10 +35,10 @@ public class srv_RechercheApp extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet srv_RechercheApp</title>");            
+            out.println("<title>Servlet srv_Inscription</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet srv_RechercheApp at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet srv_Inscription at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

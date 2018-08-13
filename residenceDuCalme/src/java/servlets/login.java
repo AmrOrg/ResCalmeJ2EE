@@ -1,4 +1,4 @@
-package controleur;
+package servlets;
 
 
 import java.io.IOException;

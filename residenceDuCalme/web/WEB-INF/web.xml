@@ -2,19 +2,19 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>srv_Login</servlet-name>
-        <servlet-class>controleur.srv_Login</servlet-class>
+        <servlet-class>servlets.srv_Login</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>srv_Inscription</servlet-name>
-        <servlet-class>controleur.srv_Inscription</servlet-class>
+        <servlet-class>servlets.srv_Inscription</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>srv_RechercheApp</servlet-name>
-        <servlet-class>controleur.srv_RechercheApp</servlet-class>
+        <servlet-class>servlets.srv_RechercheApp</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>login</servlet-name>
-        <servlet-class>controleur.login</servlet-class>
+        <servlet-class>servlets.login</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>srv_Login</servlet-name>
