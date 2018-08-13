@@ -28,6 +28,8 @@ public class login extends HttpServlet {
             String _password = request.getParameter("PWD");
             String _l = request.getParameter("lang");
             String Destiation = "";
+            
+            
             try {
                 if (_username != null && _password != null) {
 
