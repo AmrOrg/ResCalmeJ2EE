@@ -36,6 +36,10 @@ INSERT INTO pays (
     'AR',
     'Argentina'
 );
+insert into province values('QC','CA','QUEBEC');
+insert into province values('QC','CA','Montréal');
+insert into province values('AB','CA','ALBERTA');
+insert into province values('BC','CA','COLOMBIE-BRITANNIQUE');
 -- Adresse Residence --1
 INSERT INTO adresse (
     adresse_id,

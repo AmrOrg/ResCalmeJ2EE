@@ -1,4 +1,5 @@
 -- Tables
+DROP TABLE province  CASCADE CONSTRAINTS;;
 DROP TABLE pays CASCADE CONSTRAINTS;
 DROP TABLE adresse CASCADE CONSTRAINTS;
 DROP TABLE residence CASCADE CONSTRAINTS;
@@ -26,6 +27,14 @@ CREATE TABLE pays (
 	pays_id    CHAR(2),
 	pays_nom   VARCHAR2(50) NOT NULL,
 	CONSTRAINT pays_id_pk PRIMARY KEY ( pays_id )
+);
+CREATE TABLE province (
+        prov_id CHAR(2),
+	pays_id    CHAR(2),
+	prov_nom   VARCHAR2(50) NOT NULL,
+constraint Prov_pay_id_pk primary key (prov_id,pays_id,prov_nom) ,
+	CONSTRAINT Province_id_pk Foreign KEY (pays_id) references pays( pays_id )
+
 );
 --2
 CREATE TABLE adresse (
@@ -261,7 +270,7 @@ CREATE OR REPLACE VIEW reparation_ca_view (
         rep.reparation_description
 WITH READ ONLY;
   
--- Fonction personnalisée
+-- Fonction personnalisï¿½e
 
 CREATE OR REPLACE FUNCTION formater_phone (
     p_phone IN VARCHAR2

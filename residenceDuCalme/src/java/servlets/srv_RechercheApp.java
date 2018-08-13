@@ -5,8 +5,13 @@
  */
 package servlets;
 
+import Utilitaire.Utils;
+import com.sun.corba.se.impl.javax.rmi.CORBA.Util;
+import com.sun.corba.se.spi.protocol.RequestDispatcherDefault;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +35,19 @@ public class srv_RechercheApp extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-    
+
+        String _province = request.getParameter("province").trim();
+        ArrayList ar = new ArrayList();
+
+        if (_province != null) {
+            ar = Utils.GetInstance().chercherProvince(_province);
+            request.setAttribute("ar", ar);
+            System.out.println(ar);
+            RequestDispatcher disp = request.getRequestDispatcher("index.jsp");
+            disp.forward(request, response);
+            
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

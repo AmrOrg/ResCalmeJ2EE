@@ -10,13 +10,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+        <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
         <title>JSP Page</title>
     </head>
     <body class='container'>
         <%@include file="entete.jspf" %>
 
-<center>
+    <center>
 
         <table border="0" cellpadding='10' class='' >
 
@@ -24,7 +25,7 @@
 
                 <tr>
 
-               
+
                     <td><select name="Lang"> 
                             <option>English</option> 
                             <option>Français</option>
@@ -35,31 +36,22 @@
             </tbody>
         </table>
 
-        <form name="srv_RechercheApp" action="srv_RechercheApp">
-            </br>
-            <div>
-
-                <input size="30" type="search" name="prov" placeholder="Province">
-                <div id="div_prov">   
-                    <%--  <input class="typeahead form-control"  type="text">
-                      <input class="typeahead form-control"  type="text">
-                      <input class="typeahead form-control"  type="text">	
-                    --%>
-                </div>
-
-                </br></br>
-            </div>
-            <input size="30" type="search" name="ville" placeholder="Ville">
-            <div id="div_ville">   
-                <%--  <input class="typeahead form-control"  type="text">
-                  <input class="typeahead form-control"  type="text">
-                  <input class="typeahead form-control"  type="text">	
-                --%>
-            </div>
-
-        </form>
+        </br>
 
 
-</center>
-    </body>
+        <input size="30" type="search" name="prov" placeholder="Province" onkeyup="chercherProv(this.value)">
+        <jsp:include page="test.jsp" />
+
+     
+
+
+        <br><br>
+        <input size="30" type="search" name="ville" placeholder="Ville" onkeyup="chercherVille(this.value)">
+        <div id="div_ville">  </div>
+
+
+
+    </center>
+    <script src="Scripts/Script1.js" type="text/javascript"></script>
+</body>
 </html>

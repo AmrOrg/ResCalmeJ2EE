@@ -1,6 +1,7 @@
 package servlets;
 
-
+import Utilitaire.Utils;
+import com.sun.corba.se.impl.javax.rmi.CORBA.Util;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -20,36 +21,27 @@ public class login extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-      
+        Connection conn = null;
 
         try (PrintWriter out = response.getWriter()) {
             String _username = request.getParameter("UserName");
             String _password = request.getParameter("PWD");
             String _l = request.getParameter("lang");
             String Destiation = "";
-            
-            
+
             try {
                 if (_username != null && _password != null) {
 
-                    Class.forName("oracle.jdbc.OracleDriver");
-                    Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@144.217.163.57:1521:XE", "bd1team10", "anypw10");
-                    System.out.println("Connected ");
-                    String Query = "select * from LOGIN where IDENTIFIANT = ? AND MOTDEPASSE = ? ";
-                    PreparedStatement psm = conn.prepareStatement(Query);
-                    psm.setString(1, _username);
-                    psm.setString(2, _password);
-                    ResultSet rs = psm.executeQuery();
+                    conn = Utils.GetInstance().getConnection();
+
+                    ResultSet rs = Utils.GetInstance().verifierConnection(conn, _username, _password);
 
                     if (rs.next()) {
 
                         HttpSession session = request.getSession();
                         session.setAttribute("_username", _username);
-                       
 
-                            Destiation = "index.jsp";
-
+                        Destiation = "index.jsp";
 
                         //when we use forwored we create object that in clude all request and response 
                         RequestDispatcher dispatch = request.getRequestDispatcher(Destiation);
@@ -73,6 +65,8 @@ public class login extends HttpServlet {
 
         }
     }
+
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
