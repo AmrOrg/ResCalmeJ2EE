@@ -44,9 +44,10 @@ function callBack() {
 
        province.innerHTML = req.responseText;
 
-
-  
-
-
-
+}
+function Mettre(x){
+    
+    document.getElementById("prov").value = x; 
+    province.innerHTML = "";
+    
 }
