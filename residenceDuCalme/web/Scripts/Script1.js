@@ -36,7 +36,6 @@ function chercherProv(x) {
     req.onreadystatechange = callBack;
     req.send(null);
 
-
 }
 
 function callBack() {
@@ -51,3 +50,4 @@ function Mettre(x){
     province.innerHTML = "";
     
 }
+

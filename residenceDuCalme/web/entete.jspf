@@ -3,7 +3,7 @@
 <img src="images/images.png" width="246" height="205" alt="images"/>
 <a style="margin-right: 40px" href="Login.jsp">Se connecter</a> 
 <a style="margin-right: 40px"  href="srv_Inscription">S'inscrire</a>
-<a href="Contacts.html">Contacts</a>
+<a href="Contacts.jsp">Contacts</a>
 <br>
         <h2>Le séjour idéal</h2>
 
