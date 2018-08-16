@@ -47,7 +47,7 @@
 
 
         <br><br>
-        <input size="30" type="search" id="ville" placeholder="Ville" onkeyup="chercherVille(this.value)">
+        <input  size="30" type="search" id="ville" placeholder="Ville" onkeyup="chercherVille(this.value)" >
         <div id="div_ville">  
         </div>
 

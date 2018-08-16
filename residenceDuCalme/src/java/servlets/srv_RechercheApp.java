@@ -53,10 +53,7 @@ public class srv_RechercheApp extends HttpServlet {
             String json = gson.toJson(PovinceMap);
             response.getWriter().write(json);
 
-            // request.setAttribute("ar", ar);
-            //System.out.println(ar);
-            //RequestDispatcher disp = request.getRequestDispatcher("index.jsp");
-            //disp.forward(request, response);
+         
 //        } else if(_ville !=null)  {
 //            ar = Utils.GetInstance().chercherVille(_ville);
 //            Map<String, ArrayList> VilleMap = new HashMap<String, ArrayList>();

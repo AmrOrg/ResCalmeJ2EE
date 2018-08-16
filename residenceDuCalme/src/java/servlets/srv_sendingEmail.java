@@ -35,7 +35,7 @@ public class srv_sendingEmail extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         Email email = new Email();
         try {
-            email.sendEmail("amrsoudy@hotmail.com", "any subject", "ant message");
+            email.sendEmail("amrsoudy@hotmail.com", "any subject", "any message");
             
             
         } catch (Exception ex) {
