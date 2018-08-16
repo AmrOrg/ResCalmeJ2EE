@@ -42,16 +42,7 @@
 
         <input size="30" type="search" id="prov" name="prov" placeholder="Province" onkeyup="chercherProv(this.value)">
 
-        <div id="div_prov">   
-            <c:if test="${ar.size() > 0}">
-
-                <c:forEach var="item" items="${ar}">
-
-                    <input  class="typeahead form-control" type="text" value="${item}" autocomplete="on" onclick="Mettre(this.value)">
-
-                </c:forEach>
-            </c:if>
-        </div>
+        <div id="div_prov"></div>
 
 
         <br><br>
@@ -61,6 +52,7 @@
 
 
     </center>
+    <a href="srv_sendingEmail">click to send email</a>
     <script src="Scripts/Script1.js" type="text/javascript"></script>
 </body>
 </html>

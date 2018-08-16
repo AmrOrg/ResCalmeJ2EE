@@ -5,27 +5,21 @@
  */
 package servlets;
 
-import Utilitaire.Utils;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.sun.corba.se.impl.javax.rmi.CORBA.Util;
-import com.sun.corba.se.spi.protocol.RequestDispatcherDefault;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import javax.servlet.RequestDispatcher;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modele.Email;
 
 /**
  *
  * @author AMR
  */
-public class srv_RechercheApp extends HttpServlet {
+public class srv_sendingEmail extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,36 +32,15 @@ public class srv_RechercheApp extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/json");
-
-        String _province = request.getParameter("province").trim();
-        String _ville = request.getParameter("Ville").trim();
-
-        ArrayList ar = new ArrayList();
-
-        if (_province != null) {
-            ar = Utils.GetInstance().chercherProvince(_province);
-            Map<String, ArrayList> PovinceMap = new HashMap<String, ArrayList>();
-            PovinceMap.put("province", ar);
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String json = gson.toJson(PovinceMap);
-            response.getWriter().write(json);
-
-            // request.setAttribute("ar", ar);
-            //System.out.println(ar);
-            //RequestDispatcher disp = request.getRequestDispatcher("index.jsp");
-            //disp.forward(request, response);
-        } else if(_ville !=null)  {
-            ar = Utils.GetInstance().chercherVille(_ville);
-            Map<String, ArrayList> VilleMap = new HashMap<String, ArrayList>();
-            VilleMap.put("ville", ar);
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String json = gson.toJson(VilleMap);
-            response.getWriter().write(json);
+        response.setContentType("text/html;charset=UTF-8");
+        Email email = new Email();
+        try {
+            email.sendEmail("amrsoudy@hotmail.com", "any subject", "ant message");
             
             
+        } catch (Exception ex) {
+            Logger.getLogger(srv_sendingEmail.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

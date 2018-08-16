@@ -43,9 +43,9 @@ public class Utils {
         PreparedStatement psm;
         try {
             psm = conn.prepareStatement(Query);
-           // psm.setString(1, _province);
+            // psm.setString(1, _province);
             ResultSet rs = psm.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 Ar_Province.add(rs.getString("PROV_NOM"));
 
             }
@@ -79,5 +79,26 @@ public class Utils {
         psm.setString(2, _password);
         ResultSet rs = psm.executeQuery();
         return rs;
+    }
+
+    public ArrayList chercherVille(String _ville) {
+        ArrayList Ar_Ville = new ArrayList();
+        Connection conn = getConnection();
+
+        String Query = "select PROV_NOM from VILLE ";
+        PreparedStatement psm;
+        try {
+            psm = conn.prepareStatement(Query);
+            // psm.setString(1, _province);
+            ResultSet rs = psm.executeQuery();
+            while (rs.next()) {
+                Ar_Ville.add(rs.getString("PROV_NOM"));
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Ar_Ville;
     }
 }
