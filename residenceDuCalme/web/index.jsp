@@ -13,7 +13,6 @@
         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <link href="Scripts/css.css" rel="stylesheet" type="text/css"/>
 
-        <title>JSP Page</title>
     </head>
     <body class='container'>
         <%@include file="entete.jspf" %>
@@ -42,12 +41,15 @@
 
         <input size="30" type="search" id="prov" name="prov" placeholder="Province" onkeyup="chercherProv(this.value)">
 
-        <div id="div_prov"></div>
+        <div id="div_prov">
+            
+        </div>
 
 
         <br><br>
-        <input size="30" type="search" name="ville" placeholder="Ville" onkeyup="chercherVille(this.value)">
-        <div id="div_ville">  </div>
+        <input size="30" type="search" id="ville" placeholder="Ville" onkeyup="chercherVille(this.value)">
+        <div id="div_ville">  
+        </div>
 
 
 

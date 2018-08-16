@@ -41,7 +41,7 @@ public class srv_RechercheApp extends HttpServlet {
         response.setContentType("application/json");
 
         String _province = request.getParameter("province").trim();
-        String _ville = request.getParameter("Ville").trim();
+      //  String _ville = request.getParameter("ville").trim();
 
         ArrayList ar = new ArrayList();
 
@@ -57,16 +57,16 @@ public class srv_RechercheApp extends HttpServlet {
             //System.out.println(ar);
             //RequestDispatcher disp = request.getRequestDispatcher("index.jsp");
             //disp.forward(request, response);
-        } else if(_ville !=null)  {
-            ar = Utils.GetInstance().chercherVille(_ville);
-            Map<String, ArrayList> VilleMap = new HashMap<String, ArrayList>();
-            VilleMap.put("ville", ar);
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String json = gson.toJson(VilleMap);
-            response.getWriter().write(json);
-            
-            
-        }
+//        } else if(_ville !=null)  {
+//            ar = Utils.GetInstance().chercherVille(_ville);
+//            Map<String, ArrayList> VilleMap = new HashMap<String, ArrayList>();
+//            VilleMap.put("ville", ar);
+//            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//            String json = gson.toJson(VilleMap);
+//            response.getWriter().write(json);
+//            
+//            
+      }
 
     }
 
