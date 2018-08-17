@@ -25,7 +25,7 @@ public class Email {
     public void sendEmail(String adress, String subject, String message) throws Exception {
 
         String from = "oracleamr@gmail.com";
-        String pass = "##Marwa010##";
+        String pass = "urpassword";
         String[] to = {adress};
         String host = "smtp.gmail.com";
 
@@ -34,7 +34,7 @@ public class Email {
         prob.put("mail.smtp.host", host);
         prob.put("mail.smtp.user", from);
         prob.put("mail.smtp.password", pass);
-        prob.put("mail.smtp.port", "587");
+        prob.put("smtp.googlemail.com", "25");
         prob.put("mail.smtp.auth", "true");
 
         Session session = Session.getDefaultInstance(prob,
