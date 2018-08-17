@@ -42,7 +42,9 @@ public class srv_sendingEmail extends HttpServlet {
         Email email = new Email();
         try {
             email.sendEmail("amrsoudy@hotmail.com", fname+" "+lname+" "+country+"  ", subject);
-            response.getWriter().write("Ton Email Envoyé");
+            request.setAttribute("msg","Ton Email Envoié");
+            
+            
                     
             
         } catch (Exception ex) {
