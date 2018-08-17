@@ -12,6 +12,7 @@
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <link href="Scripts/css.css" rel="stylesheet" type="text/css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     </head>
     <body class='container'>
@@ -54,7 +55,7 @@
 
 
     </center>
-    <a href="srv_sendingEmail">click to send email</a>
+    
     <script src="Scripts/Script1.js" type="text/javascript"></script>
 </body>
 </html>

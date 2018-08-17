@@ -33,10 +33,17 @@ public class srv_sendingEmail extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String fname = request.getParameter("fname");
+        String lname = request.getParameter("lname");
+        String country = request.getParameter("country");
+        String subject = request.getParameter("subject");
+        
+        
         Email email = new Email();
         try {
-            email.sendEmail("amrsoudy@hotmail.com", "any subject", "any message");
-            
+            email.sendEmail("amrsoudy@hotmail.com", fname+" "+lname+" "+country+"  ", subject);
+            response.getWriter().write("Ton Email Envoyé");
+                    
             
         } catch (Exception ex) {
             Logger.getLogger(srv_sendingEmail.class.getName()).log(Level.SEVERE, null, ex);

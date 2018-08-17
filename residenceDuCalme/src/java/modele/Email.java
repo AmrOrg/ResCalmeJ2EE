@@ -25,7 +25,7 @@ public class Email {
     public void sendEmail(String adress, String subject, String message) throws Exception {
 
         String from = "oracleamr@gmail.com";
-        String pass = "##Marwa010##";
+        String pass = "##AnyPassword##";
         String[] to = {adress};
         String host = "smtp.gmail.com";
 
