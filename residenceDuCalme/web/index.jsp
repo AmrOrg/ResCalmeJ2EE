@@ -36,7 +36,7 @@
             </div>
             <div id="div_type" class="col-sm-2">
 
-                <input style="height:50px" size="30" type="search" id="ville" placeholder="Ville" onkeyup="chercherVille(this.value)" >
+                <input style="height:50px" size="30" type="search" id="ville" placeholder="Ville" onkeyup="chercherVille(this.value)" ">
 
 
             </div>

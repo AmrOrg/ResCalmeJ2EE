@@ -40,11 +40,9 @@ public class srv_RechercheApp extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/json");
 
-         String _province = request.getParameter("province").trim();
-//          String _ville = request.getParameter("ville").trim();
-        //HashMap<String, HashMap<String, ArrayList<String>>> HashTotal = new HashMap<String, HashMap<String, ArrayList<String>>>();
-        HashMap<String, HashMap<String, ArrayList<String>>> HashTotal = Utils.GetInstance().createHashTotal();
-         if (_province != null) {
+
+        HashMap<String, HashMap<String, ArrayList<String>>> HashTotal = Utils.GetInstance().GetHashTotal();
+        
         
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -60,7 +58,7 @@ public class srv_RechercheApp extends HttpServlet {
 //            response.getWriter().write(json);
 //            
 //            
-    }
+    
 
      }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

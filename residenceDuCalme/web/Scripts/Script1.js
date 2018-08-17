@@ -1,17 +1,45 @@
 var req;
 var province;
+var HashTotal;
 
 function init() {
     //province = document.getElementById("div_prov");
 
-    if (req == null) {
 
-        req = new XMLHttpRequest();
 
+    if (HashTotal != null) {
+
+        return HashTotal;
 
     } else {
+        if (req == null) {
 
-        return req;
+            req = new XMLHttpRequest();
+
+
+        } else {
+
+            return req;
+        }
+
+        url = "srv_RechercheApp";
+        req.open("GET", url, true);
+        req.onreadystatechange = callBackHashTotal;
+        req.send(null);
+
+
+
+    }
+
+}
+
+function callBackHashTotal() {
+
+    if ((req.readyState == 4) && (req.status == 200)) {
+
+        HashTotal = JSON.parse(req.responseText);
+
+
     }
 
 }
@@ -20,27 +48,22 @@ function chercherVille(x) {
 
 
     init();
-    url = "srv_RechercheApp?ville=" + x;
-    req.open("GET", url, true);
-    req.onreadystatechange = callBackVille;
-    req.send(null);
+    callBackVille();
+
 
 
 }
 
 function chercherProv(x) {
-
     init();
-    url = "srv_RechercheApp?province=" + x;
-    req.open("GET", url, true);
-    req.onreadystatechange = callBackProv;
-    req.send(null);
+    callBackProv();
+   // document.getElementById("ville").value = "";
+
 
 }
 
 function callBackProv() {
-    if ((req.readyState == 4) && (req.status == 200)) {
-        var x = JSON.parse(req.responseText);
+        var x = HashTotal;
 
         for (var i = 0; i < x.province.prov_name.length; i++) {
 
@@ -52,26 +75,47 @@ function callBackProv() {
 
     }
 
-}
+
 
 function callBackVille() {
 
-    if ((req.readyState == 4) && (req.status == 200)) {
-        var x = JSON.parse(req.responseText);
+        var x = HashTotal;
 
-        for (var i = 0; i < x.prov_name.length; i++) {
+        if (document.getElementById("prov").value == "") { //Quebec
+            for (var i = 0; i < x.ville.ville_name.length; i++) {
 
-            document.getElementById("div_ville").innerHTML += "<input name='popup' class='typeahead form-control' value='" + x.ville[i] + "' type='text' onclick='MettreVille(this.value)'>";
+                document.getElementById("div_ville").innerHTML += "<input name='popup' class='typeahead form-control' value='" + x.ville.ville_name[i] + "' type='text' onclick='MettreVille(this.value)'>";
+            }
+        } else {
+            var prov = document.getElementById("prov").value;
+            var c;
+            for (var i = 0; i < x.province.prov_name.length; i++) {
+
+                if (x.province.prov_name[i] == prov) {
+
+                    c = x.province.prov_id[i];
+
+                }
+            }
+
+            for (var i = 0; i < x.ville.ville_name.length; i++) {
+
+                if (x.ville.prov_id[i] == c) { //qc  == Qc
+                    document.getElementById("div_ville").innerHTML += "<input name='popup' class='typeahead form-control' value='" + x.ville.ville_name[i] + "' type='text' onclick='MettreVille(this.value)'>";
+
+                }
+
+            }
+
 
         }
 
-
     }
 
-}
+
 function MettreProv(x) {
 
-    document.getElementById("prov").value = x;
+    document.getElementById("prov").value = x;//Quebec
     var d = document.getElementsByName("popup");
     for (var i = 0; i < d.length; i++) {
         d[i].setAttribute("type", "hidden");
@@ -80,13 +124,17 @@ function MettreProv(x) {
 
 
     }
-    RecupererVille();
+
 
 }
 function MettreVille(x) {
 
     document.getElementById("ville").value = x;
-    province.innerHTML = "";
+    var d = document.getElementsByName("popup");
+    for (var i = 0; i < d.length; i++) {
+        d[i].setAttribute("type", "hidden");
+
+    }
 
 
 }

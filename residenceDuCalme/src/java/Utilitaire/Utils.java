@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 public class Utils {
 
     private static Utils util;
+    private HashMap<String, HashMap<String, ArrayList<String>>> HashTotal;
 
     public static Utils GetInstance() {
 
@@ -108,7 +109,8 @@ public class Utils {
                 ar_PROV_ID.add(rs.getString("PROV_ID"));
 
             }
-            Hash_Ville.put("prov_name", ar_VILLE_NOM);
+            System.out.println(ar_VILLE_NOM);
+            Hash_Ville.put("ville_name", ar_VILLE_NOM);
             Hash_Ville.put("prov_id", ar_PROV_ID);
 
         } catch (SQLException ex) {
@@ -117,19 +119,25 @@ public class Utils {
         return Hash_Ville;
     }
 
-    public HashMap<String, HashMap<String, ArrayList<String>>> createHashTotal() {
+    public HashMap<String, HashMap<String, ArrayList<String>>> GetHashTotal() {
 
-        HashMap<String, HashMap<String, ArrayList<String>>> HashTotal = new HashMap<String, HashMap<String, ArrayList<String>>>();
+        if (HashTotal != null) {
 
-        HashMap<String, ArrayList<String>> HashProv = new HashMap<String, ArrayList<String>>();
-        HashMap<String, ArrayList<String>> HashVille = new HashMap<String, ArrayList<String>>();
-        HashProv = Utils.GetInstance().chercherProvince();
-        HashVille = Utils.GetInstance().chercherVille();
+            return HashTotal;
+        } else {
+            HashMap<String, HashMap<String, ArrayList<String>>> HashTotal = new HashMap<String, HashMap<String, ArrayList<String>>>();
 
-        HashTotal.put("province", HashProv);
-        HashTotal.put("ville", HashVille);
+            HashMap<String, ArrayList<String>> HashProv = new HashMap<String, ArrayList<String>>();
+            HashMap<String, ArrayList<String>> HashVille = new HashMap<String, ArrayList<String>>();
+            HashProv = Utils.GetInstance().chercherProvince();
+            HashVille = Utils.GetInstance().chercherVille();
 
-        return HashTotal;
+            HashTotal.put("province", HashProv);
+            HashTotal.put("ville", HashVille);
+
+            return HashTotal;
+
+        }
 
     }
 
