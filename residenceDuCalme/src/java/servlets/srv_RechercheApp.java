@@ -66,9 +66,9 @@ public class srv_RechercheApp extends HttpServlet {
 
                for(String s : ar){
                
-           for(String s  : HashTotal.get("ville").get("prov_name"))
-
                }
+            
+            
             }
         }
 
