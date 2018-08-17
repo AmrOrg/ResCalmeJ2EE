@@ -109,7 +109,6 @@ public class Utils {
                 ar_PROV_ID.add(rs.getString("PROV_ID"));
 
             }
-            System.out.println(ar_VILLE_NOM);
             Hash_Ville.put("ville_name", ar_VILLE_NOM);
             Hash_Ville.put("prov_id", ar_PROV_ID);
 

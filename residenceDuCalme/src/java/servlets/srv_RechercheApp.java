@@ -40,27 +40,43 @@ public class srv_RechercheApp extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/json");
 
-
         HashMap<String, HashMap<String, ArrayList<String>>> HashTotal = Utils.GetInstance().GetHashTotal();
+        ArrayList<String> ar = new ArrayList();
         
+        ArrayList<String> arville = new ArrayList();
+
+        String _province = request.getParameter("province").toUpperCase().trim();
         
+        String _ville = request.getParameter("ville").toUpperCase().trim();
+
+       
+        if (_province != null) {
+            int i = 0;
+            for (String s : HashTotal.get("province").get("prov_name")) {
+
+                if (s.startsWith(_province)) {
+                    ar.add(s);
+                  
+
+                }
+                i++;
+            }
+
+            if (_ville != null) {
+
+               for(String s : ar){
+               
+           for(String s  : HashTotal.get("ville").get("prov_name"))
+
+               }
+            }
+        }
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(HashTotal);
+        String json = gson.toJson(ar);
         response.getWriter().write(json);
+    }
 
-//        } else if(_ville !=null)  {
-//            ar = Utils.GetInstance().chercherVille(_ville);
-//            Map<String, ArrayList> VilleMap = new HashMap<String, ArrayList>();
-//            VilleMap.put("ville", ar);
-//            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//            String json = gson.toJson(VilleMap);
-//            response.getWriter().write(json);
-//            
-//            
-    
-
-     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
