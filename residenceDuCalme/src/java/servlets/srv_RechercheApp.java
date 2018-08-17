@@ -64,16 +64,18 @@ public class srv_RechercheApp extends HttpServlet {
 
             if (_ville != null) {
 
-               for(String s : ar){
-               
-               }
+            
+              
+              
+              
             
             
             }
         }
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(ar);
+        String json = gson.toJson(HashTotal);
+        System.out.println(json);
         response.getWriter().write(json);
     }
 
