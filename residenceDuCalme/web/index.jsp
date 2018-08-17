@@ -20,42 +20,46 @@
 
     <center>
 
-        <table border="0" cellpadding='10' class='' >
+      
 
-            <tbody>
-
-                <tr>
-
-
-                    <td><select name="Lang"> 
-                            <option>English</option> 
-                            <option>Français</option>
-                        </select></td>
+        <div class="row">
+            <div id="div_prov" class="col-sm-2">
+                <input style="height:50px  ; " size="30" type="search" id="prov" name="prov" placeholder="Province" onkeyup="chercherProv(this.value)">
 
 
-                </tr>
-            </tbody>
-        </table>
+            </div>
+            <div id="div_ville" class="col-sm-2">
 
-        </br>
-
-
-        <input size="30" type="search" id="prov" name="prov" placeholder="Province" onkeyup="chercherProv(this.value)">
-
-        <div id="div_prov">
-            
-        </div>
+                <input  style="height:50px ; " size="30" type="search" id="ville" placeholder="Ville" onkeyup="chercherVille(this.value)" >
 
 
-        <br><br>
-        <input  size="30" type="search" id="ville" placeholder="Ville" onkeyup="chercherVille(this.value)" >
-        <div id="div_ville">  
+            </div>
+            <div id="div_type" class="col-sm-2">
+
+                <input style="height:50px" size="30" type="search" id="ville" placeholder="Ville" onkeyup="chercherVille(this.value)" >
+
+
+            </div>
+            <div id="div_prix" class="col-sm-2">
+
+                <input style="height:50px" size="30" type="search" id="ville" placeholder="Ville" onkeyup="chercherVille(this.value)" >
+
+            </div>
+            <div id="div_prix" class="col-sm-2">
+
+                <input style="height:50px" size="30" type="search" id="ville" placeholder="Ville" onkeyup="chercherVille(this.value)" >
+
+            </div>
+            <div id="div_prix" class="col-sm-2">
+
+                <button class="btn"><img src="images/search-icon.png" width="50" height="38" alt="search-icon"/></button>
+            </div>
         </div>
 
 
 
     </center>
-    
+
     <script src="Scripts/Script1.js" type="text/javascript"></script>
 </body>
 </html>

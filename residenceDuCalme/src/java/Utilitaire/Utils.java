@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,25 +36,32 @@ public class Utils {
 
     }
 
-    public ArrayList chercherProvince(String _province) {
-        ArrayList Ar_Province = new ArrayList();
+    public HashMap<String, ArrayList<String>> chercherProvince() {
+        HashMap<String, ArrayList<String>> Hash_province = new HashMap();
+        //ArrayList Ar_Province = new ArrayList();
         Connection conn = getConnection();
+        ArrayList<String> ar_PROV_NOM = new ArrayList<>();
+        ArrayList<String> ar_PROV_id = new ArrayList<>();
 
-        String Query = "select PROV_NOM from PROVINCE ";
+        String Query = "select PROV_NOM ,PROV_ID from PROVINCE ";
         PreparedStatement psm;
+
         try {
             psm = conn.prepareStatement(Query);
             // psm.setString(1, _province);
             ResultSet rs = psm.executeQuery();
             while (rs.next()) {
-                Ar_Province.add(rs.getString("PROV_NOM"));
+                ar_PROV_NOM.add(rs.getString("PROV_NOM"));
+                ar_PROV_id.add(rs.getString("PROV_ID"));
 
             }
+            Hash_province.put("prov_name", ar_PROV_NOM);
+            Hash_province.put("prov_id", ar_PROV_id);
 
         } catch (SQLException ex) {
             Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return Ar_Province;
+        return Hash_province;
     }
 
     public Connection getConnection() {
@@ -81,24 +89,48 @@ public class Utils {
         return rs;
     }
 
-    public ArrayList chercherVille(String _ville) {
-        ArrayList Ar_Ville = new ArrayList();
+    public HashMap<String, ArrayList<String>> chercherVille() {
+        HashMap<String, ArrayList<String>> Hash_Ville = new HashMap();
+        //ArrayList Ar_Province = new ArrayList();
         Connection conn = getConnection();
+        ArrayList<String> ar_VILLE_NOM = new ArrayList<>();
+        ArrayList<String> ar_PROV_ID = new ArrayList<>();
 
-        String Query = "select PROV_NOM from VILLE ";
+        String Query = "select VILLE_NOM ,PROV_ID from VILLE ";
         PreparedStatement psm;
+
         try {
             psm = conn.prepareStatement(Query);
             // psm.setString(1, _province);
             ResultSet rs = psm.executeQuery();
             while (rs.next()) {
-                Ar_Ville.add(rs.getString("PROV_NOM"));
+                ar_VILLE_NOM.add(rs.getString("VILLE_NOM"));
+                ar_PROV_ID.add(rs.getString("PROV_ID"));
 
             }
+            Hash_Ville.put("prov_name", ar_VILLE_NOM);
+            Hash_Ville.put("prov_id", ar_PROV_ID);
 
         } catch (SQLException ex) {
             Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return Ar_Ville;
+        return Hash_Ville;
     }
+
+    public HashMap<String, HashMap<String, ArrayList<String>>> createHashTotal() {
+
+        HashMap<String, HashMap<String, ArrayList<String>>> HashTotal = new HashMap<String, HashMap<String, ArrayList<String>>>();
+
+        HashMap<String, ArrayList<String>> HashProv = new HashMap<String, ArrayList<String>>();
+        HashMap<String, ArrayList<String>> HashVille = new HashMap<String, ArrayList<String>>();
+        HashProv = Utils.GetInstance().chercherProvince();
+        HashVille = Utils.GetInstance().chercherVille();
+
+        HashTotal.put("province", HashProv);
+        HashTotal.put("ville", HashVille);
+
+        return HashTotal;
+
+    }
+
 }

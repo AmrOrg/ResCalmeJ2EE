@@ -2,7 +2,7 @@ var req;
 var province;
 
 function init() {
-    province = document.getElementById("div_prov");
+    //province = document.getElementById("div_prov");
 
     if (req == null) {
 
@@ -42,9 +42,11 @@ function callBackProv() {
     if ((req.readyState == 4) && (req.status == 200)) {
         var x = JSON.parse(req.responseText);
 
-        for (var i = 0; i < x.province.length; i++) {
+        for (var i = 0; i < x.province.prov_name.length; i++) {
 
-            document.getElementById("div_prov").innerHTML += "<input class='typeahead form-control' value='" + x.province[i] + "' type='text' onclick='MettreProv(this.value)'>";
+            document.getElementById("div_prov").innerHTML += "<input name='popup' id='input_prov' class='typeahead form-control' value='" + x.province.prov_name[i] + "' type='text' onclick='MettreProv(this.value)'>";
+
+
         }
 
 
@@ -57,9 +59,10 @@ function callBackVille() {
     if ((req.readyState == 4) && (req.status == 200)) {
         var x = JSON.parse(req.responseText);
 
-        for (var i = 0; i < x.ville.length; i++) {
+        for (var i = 0; i < x.prov_name.length; i++) {
 
-            document.getElementById("div_prov").innerHTML += "<input class='typeahead form-control' value='" + x.ville[i] + "' type='text' onclick='MettreVille(this.value)'>";
+            document.getElementById("div_ville").innerHTML += "<input name='popup' class='typeahead form-control' value='" + x.ville[i] + "' type='text' onclick='MettreVille(this.value)'>";
+
         }
 
 
@@ -69,7 +72,15 @@ function callBackVille() {
 function MettreProv(x) {
 
     document.getElementById("prov").value = x;
-    province.innerHTML = "";
+    var d = document.getElementsByName("popup");
+    for (var i = 0; i < d.length; i++) {
+        d[i].setAttribute("type", "hidden");
+
+
+
+
+    }
+    RecupererVille();
 
 }
 function MettreVille(x) {
@@ -80,3 +91,12 @@ function MettreVille(x) {
 
 }
 
+
+$(document).ready(function () {
+    $("input").focus(function () {
+        $(this).css("background-color", "#cccccc");
+    });
+    $("input").blur(function () {
+        $(this).css("background-color", "#ffffff");
+    });
+});
