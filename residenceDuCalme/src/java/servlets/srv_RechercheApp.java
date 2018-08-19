@@ -42,40 +42,30 @@ public class srv_RechercheApp extends HttpServlet {
 
         HashMap<String, HashMap<String, ArrayList<String>>> HashTotal = Utils.GetInstance().GetHashTotal();
         ArrayList<String> ar = new ArrayList();
-        
-        ArrayList<String> arville = new ArrayList();
+
+        ArrayList<String> arProvId = new ArrayList();
+        ArrayList<String> arVilleName = new ArrayList();
 
         String _province = request.getParameter("province").toUpperCase().trim();
-        
+
         String _ville = request.getParameter("ville").toUpperCase().trim();
 
-       
         if (_province != null) {
-            int i = 0;
-            for (String s : HashTotal.get("province").get("prov_name")) {
 
-                if (s.startsWith(_province)) {
-                    ar.add(s);
-                  
+            for (int d = 0; d < HashTotal.get("province").get("prov_name").size(); d++) {
+
+                if (HashTotal.get("province").get("prov_name").get(d).startsWith(_province)) {
+                    ar.add(HashTotal.get("province").get("prov_name").get(d));
+                    arProvId.add(HashTotal.get("province").get("prov_id").get(d));
 
                 }
-                i++;
             }
 
-            if (_ville != null) {
-
             
-              
-              
-              
-            
-            
-            }
         }
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(HashTotal);
-        System.out.println(json);
         response.getWriter().write(json);
     }
 
