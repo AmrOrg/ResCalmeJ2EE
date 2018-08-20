@@ -78,6 +78,9 @@ public class srv_RechercheApp extends HttpServlet {
 
                 }
 
+            }else{
+            
+            
             }
 
         }

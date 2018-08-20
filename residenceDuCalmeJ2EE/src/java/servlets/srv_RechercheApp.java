@@ -54,10 +54,23 @@ public class srv_RechercheApp extends HttpServlet {
                 }
                 i++;
             }
+            if (Utils.GetInstance().isProvComplete(_province)) {
 
-            if (_ville != null) {
+                if (_ville != null) {
+                    for (String s : arProvId) {
 
-            }
+                        for (int d = 0; d < HashTotal.get("ville").get("ville_name").size(); d++) {
+                            if (HashTotal.get("ville").get("prov_id").get(d).equals( s )){
+                            arVilleName.add( HashTotal.get("ville").get("ville_name").get(d));
+                            
+                            }
+                        }
+
+                    }
+
+                }
+
+            
         }
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
