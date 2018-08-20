@@ -120,15 +120,14 @@ public class Utils {
             return HashTotal;
         } else {
             HashTotal = new HashMap<String, HashMap<String, ArrayList<String>>>();
-            
-            
+
             HashMap<String, ArrayList<String>> HashProv = new HashMap<String, ArrayList<String>>();
             HashMap<String, ArrayList<String>> HashVille = new HashMap<String, ArrayList<String>>();
             HashMap<String, ArrayList<String>> HashAPP = new HashMap<String, ArrayList<String>>();
 
             HashProv = chercherProvince();
             HashVille = chercherVille();
-      
+
             HashTotal.put("province", HashProv);
             HashTotal.put("ville", HashVille);
 
@@ -157,43 +156,81 @@ public class Utils {
         return etat;
 
     }
+//LESS CA  MAINTENEANT IL N UTILISE PAS
+    public ArrayList<appartement> chercherApp() {
 
-  
-
-    public  ArrayList<appartement> chercherApp() {
-        
         Connection conn = getConnection();
 
-        appartement app =new appartement();
+        appartement app = new appartement();
         ArrayList<appartement> ar_app_objet = new ArrayList<>();
 
-        String Query = "SELECT APPARTEMENT_ID , APP_NUMERO, APP_STATUT_DISPONIBLE,RESIDENCE_ID  FROM VILLE NATURAL JOIN PROVINCE ";
+        String Query = "SELECT APPARTEMENT_ID , APP_NUMERO, APP_STATUT_DISPONIBLE,RESIDENCE_ID  FROM APPARTEMENT ";
         PreparedStatement psm;
         try {
             psm = conn.prepareStatement(Query);
             ResultSet rs = psm.executeQuery();
             while (rs.next()) {
-               
+
                 app.setApp_id(rs.getString("APPARTEMENT_ID"));
                 app.setApp_num("APP_NUMERO");
                 app.setApp_status("APP_STATUT_DISPONIBLE");
                 app.setApp_type("TYPE_APPARTEMENT_ID");
                 app.setRes_id("RESIDENCE_ID");
-                
+
                 ar_app_objet.add(app);
             }
-        
 
         } catch (SQLException ex) {
             Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                conn.close();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
         return ar_app_objet;
     }
 
     public ArrayList<String> getAppTypes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        Connection conn = getConnection();
 
-  
+        ArrayList<String> ar_app_type = new ArrayList<>();
+
+        String Query = "SELECT TYPE_APP_DESCRIPTION FROM TYPE_APPARTEMENT ";
+        PreparedStatement psm;
+        try {
+            psm = conn.prepareStatement(Query);
+            ResultSet rs = psm.executeQuery();
+            while (rs.next()) {
+
+                
+
+                ar_app_type.add(rs.getString("TYPE_APP_DESCRIPTION"));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                conn.close();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{
+            
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+        return ar_app_type;
+
+    }
 
 }

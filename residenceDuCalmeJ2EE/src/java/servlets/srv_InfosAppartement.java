@@ -37,16 +37,14 @@ public class srv_InfosAppartement extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
-        System.out.println(action);
         if (action.equals("chercherType")) {
-            System.out.println("here2");
-           ArrayList<appartement>  ar_app= Utils.GetInstance().chercherApp();
            
-            
+           ArrayList<String> ar_app_types = Utils.GetInstance().getAppTypes();
+           
+           
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            System.out.println(gson.toJson(ar_app));
-            String json = gson.toJson(ar_app);
-           System.out.println(json);
+            String json = gson.toJson(ar_app_types);
+            System.out.println(json);
             response.getWriter().write(json);
 
         }

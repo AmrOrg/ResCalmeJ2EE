@@ -44,7 +44,7 @@ function chercherProv(prov) {
 
 function callBackProv() {
     if ((req.readyState == 4) && (req.status == 200)) {
-        
+
         var JSONProv = JSON.parse(req.responseText);
         for (var i = 0; i < JSONProv.prov_filter.length; i++) {
             document.getElementById("div_prov").innerHTML += "<input name='popupprovince' id='input_prov' class='typeahead form-control' value='" + JSONProv.prov_filter[i] + "' type='text' onclick='MettreProv(this.value)'>";
@@ -55,40 +55,11 @@ function callBackProv() {
 function callBackVille() {
 
     if ((req.readyState == 4) && (req.status == 200)) {
-        //var x = JSON.parse(req.responseText);
-          var JSONProv = JSON.parse(req.responseText);
+        var JSONProv = JSON.parse(req.responseText);
         for (var i = 0; i < JSONProv.ville_filter.length; i++) {
-            document.getElementById("div_ville").innerHTML += "<input name='popupville' class='typeahead form-control' value='" + JSONProv.ville_filter[i]  + "' type='text' onclick='MettreVille(this.value)'>";
-           // document.getElementById("div_ville").innerHTML += "<input name='popupville' id='input_prov' class='typeahead form-control' value='" + JSONProv.ville_filter[i] + "' type='text' onclick='MettreProv(this.value)'>";
+            document.getElementById("div_ville").innerHTML += "<input name='popupville' class='typeahead form-control' value='" + JSONProv.ville_filter[i] + "' type='text' onclick='MettreVille(this.value)'>";
         }
 
-//        if (document.getElementById("prov").value == "") {
-//            for (var i = 0; i < x.ville.ville_name.length; i++) {
-//
-//                document.getElementById("div_ville").innerHTML += "<input name='popupville' class='typeahead form-control' value='" + x.ville.ville_name[i] + "' type='text' onclick='MettreVille(this.value)'>";
-//            }
-//        } else {
-//            var prov = document.getElementById("prov").value;
-//            var c;
-//            for (var i = 0; i < x.province.prov_name.length; i++) {
-//
-//                if (x.province.prov_name[i] == prov) {
-//
-//                    c = x.province.prov_id[i];
-//
-//                }
-//            }
-//            for (var i = 0; i < x.ville.ville_name.length; i++) {
-//
-//                if (x.ville.prov_id[i] == c) { //qc  == Qc
-//                    document.getElementById("div_ville").innerHTML += "<input name='popupville' class='typeahead form-control' value='" + x.ville.ville_name[i] + "' type='text' onclick='MettreVille(this.value)'>";
-//
-//                }
-//
-//            }
-//
-//
-//        }
 
     }
 
@@ -100,7 +71,7 @@ function MettreProv(x) {
         d[i].setAttribute("type", "hidden");
     }
 
-chercherVille(x) ;
+    chercherVille(x);
 }
 function MettreVille(x) {
 
@@ -110,7 +81,7 @@ function MettreVille(x) {
         d[i].setAttribute("type", "hidden");
 
     }
-    
+
 
 
 }
@@ -136,13 +107,28 @@ function afficherLesTypes() {
 
 }
 
-function callBackapptype(){
-    
-     if ((req.readyState == 4) && (req.status == 200)) {
-        //var x = JSON.parse(req.responseText);
-        
-        
+function callBackapptype() {
+
+    if ((req.readyState == 4) && (req.status == 200)) {
+        var x = JSON.parse(req.responseText);
+        for (var i = 0; i < x.length; i++) {
+            document.getElementById("div_type").innerHTML += "<input name='popuptype' class='typeahead form-control' value='" + x[i] + "' type='text' onclick='MettreType(this.value)'>";
+        }
+
+
     }
-    
-    
+
+
+}
+function MettreType(x) {
+
+    document.getElementById("typeApp").value = x;
+    var d = document.getElementsByName("popuptype");
+    for (var i = 0; i < d.length; i++) {
+        d[i].setAttribute("type", "hidden");
+
+    }
+
+
+
 }
