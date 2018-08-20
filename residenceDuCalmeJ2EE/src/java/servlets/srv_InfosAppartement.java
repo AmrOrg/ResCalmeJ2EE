@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modele.ServicesApp;
 import modele.appartement;
 
 /**
@@ -37,30 +38,40 @@ public class srv_InfosAppartement extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
-        if (action.equals("chercherType")) {
-           
-           ArrayList<String> ar_app_types = Utils.GetInstance().getAppTypes();
-           
-           
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String json = gson.toJson(ar_app_types);
-            System.out.println(json);
-            response.getWriter().write(json);
+        switch (action) {
+            case "chercherType": {
+                ArrayList<String> ar_app_types = Utils.GetInstance().getAppTypes();
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                String json = gson.toJson(ar_app_types);
+                response.getWriter().write(json);
+                break;
+            }
 
+            case "chercherServices": {
+                ArrayList<ServicesApp> ar_app_services = Utils.GetInstance().getAppServices();
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                String json = gson.toJson(ar_app_services);
+                System.out.println(json);
+                response.getWriter().write(json);
+                break;
+            }
+            default:
+                break;
         }
+
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+/**
+ * Handles the HTTP <code>GET</code> method.
+ *
+ * @param request servlet request
+ * @param response servlet response
+ * @throws ServletException if a servlet-specific error occurs
+ * @throws IOException if an I/O error occurs
+ */
+@Override
+        protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -74,7 +85,7 @@ public class srv_InfosAppartement extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -85,7 +96,7 @@ public class srv_InfosAppartement extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo() {
+        public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

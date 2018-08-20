@@ -38,7 +38,7 @@
                             </div>
                             <div id="div_type" class="col-sm-2">
 
-                                <input style="height:50px" size="30" type="search" id="typeApp" placeholder="Type appartement"  onclick="afficherLesTypes()"> 
+                                <input style="height:50px" size="30" type="search" id="typeApp" placeholder="Type appartement"  onclick="chercherTypes()"> 
 
 
                             </div>
@@ -47,9 +47,9 @@
                                 <input style="height:50px" size="30" type="search" id="prix" placeholder="Prix" onkeyup="chercherVille(this.value)" >
 
                             </div>
-                            <div id="div_prix" class="col-sm-2">
+                            <div id="div_services" class="col-sm-2">
 
-                                <input style="height:50px" size="30" type="search" id="services" placeholder="Choix des services" onkeyup="chercherVille(this.value)" >
+                                <input style="height:50px" size="30" type="search" id="servicesApp" placeholder="Choix des services" onclick="chercherServices(this.value)" >
 
                             </div>
                             <div id="div_prix" class="col-sm-2">

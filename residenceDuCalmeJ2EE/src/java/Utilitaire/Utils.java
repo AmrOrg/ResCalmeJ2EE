@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modele.ServicesApp;
 import modele.appartement;
 
 /**
@@ -157,6 +158,7 @@ public class Utils {
 
     }
 //LESS CA  MAINTENEANT IL N UTILISE PAS
+
     public ArrayList<appartement> chercherApp() {
 
         Connection conn = getConnection();
@@ -206,8 +208,6 @@ public class Utils {
             ResultSet rs = psm.executeQuery();
             while (rs.next()) {
 
-                
-
                 ar_app_type.add(rs.getString("TYPE_APP_DESCRIPTION"));
             }
 
@@ -219,8 +219,8 @@ public class Utils {
 
             } catch (SQLException ex) {
                 Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
-            }finally{
-            
+            } finally {
+
                 try {
                     conn.close();
                 } catch (SQLException ex) {
@@ -233,4 +233,38 @@ public class Utils {
 
     }
 
+    public ArrayList<ServicesApp> getAppServices() {
+        Connection conn = getConnection();
+
+        ArrayList<ServicesApp> ar_app_services = new ArrayList<ServicesApp>();
+
+        String Query = "SELECT SERVICE_ID, SERV_DESCRIPTION, SERV_PRIX FROM SERVICE";
+        PreparedStatement psm;
+        try {
+            psm = conn.prepareStatement(Query);
+            ResultSet rs = psm.executeQuery();
+            while (rs.next()) {
+                ar_app_services.add(new ServicesApp(rs.getInt("SERVICE_ID"), rs.getString("SERV_DESCRIPTION"), rs.getDouble("SERV_PRIX")));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                conn.close();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+        return ar_app_services;
+    }
 }
