@@ -5,6 +5,7 @@
  */
 package modele;
 
+import Utilitaire.Utils;
 import java.util.ArrayList;
 
 /**
@@ -16,7 +17,7 @@ public class ListeTypeApp extends ArrayList<String>{
     private ArrayList<String> listTypeApp ;
     
     
-    public ListeTypeApp getInstance(){
+    public ArrayList<String> getInstance(){
     
     if(listTypeApp !=null){
     
@@ -24,7 +25,10 @@ public class ListeTypeApp extends ArrayList<String>{
     return listTypeApp ;
     }else {
     
+    listTypeApp = new ListeTypeApp();
+    listTypeApp = Utils.GetInstance().getAppTypes();
     
+    return listTypeApp;
     
     }
     
