@@ -132,3 +132,15 @@ function MettreType(x) {
 
 
 }
+
+function mettrePrix() {
+
+    var textbox = document.getElementById("prix");
+
+    document.getElementById("div_prix").innerHTML =   
+  " <div data-role='rangeslider'><input type='range' name='price-min' id='price-min' value='200' min='0' max='1000'> <input type='range' name='price-max' id='price-max' value='800' min='0' max='10000'> </div> <div> <input type='submit' data-inline='true' value='Submit'></div>";
+
+
+
+
+}
