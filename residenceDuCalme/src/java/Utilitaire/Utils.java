@@ -133,11 +133,29 @@ public class Utils {
 
             HashTotal.put("province", HashProv);
             HashTotal.put("ville", HashVille);
-
             return HashTotal;
 
         }
 
+    }
+
+    public boolean isProvComplete(String _province) {
+
+        boolean etat = false;
+
+        for (String s : HashTotal.get("province").get("prov_name")) {
+            System.out.println(s);
+
+            if (_province.equals(s)) {
+                etat = true;
+
+            } else {
+                etat = false;
+            }
+
+        }
+
+        return etat;
     }
 
 }

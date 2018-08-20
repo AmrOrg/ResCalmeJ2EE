@@ -41,7 +41,9 @@ public class srv_RechercheApp extends HttpServlet {
         response.setContentType("application/json");
 
         HashMap<String, HashMap<String, ArrayList<String>>> HashTotal = Utils.GetInstance().GetHashTotal();
-        ArrayList<String> ar = new ArrayList();
+        System.out.println(HashTotal);
+        HashMap<String, HashMap<String, ArrayList<String>>> HashSp = new HashMap<>();
+        ArrayList<String> arProv = new ArrayList();
 
         ArrayList<String> arProvId = new ArrayList();
         ArrayList<String> arVilleName = new ArrayList();
@@ -55,17 +57,34 @@ public class srv_RechercheApp extends HttpServlet {
             for (int d = 0; d < HashTotal.get("province").get("prov_name").size(); d++) {
 
                 if (HashTotal.get("province").get("prov_name").get(d).startsWith(_province)) {
-                    ar.add(HashTotal.get("province").get("prov_name").get(d));
+                    arProv.add(HashTotal.get("province").get("prov_name").get(d));
                     arProvId.add(HashTotal.get("province").get("prov_id").get(d));
 
                 }
             }
+            if (Utils.GetInstance().isProvComplete(_province)) {
 
-            
+                if (_ville != null) {
+                    for (String s : arProvId) {
+
+                        for (int d = 0; d < HashTotal.get("ville").get("ville_name").size(); d++) {
+                            if (HashTotal.get("ville").get("prov_id").get(d).equals( s )){
+                            arVilleName.add( HashTotal.get("ville").get("ville_name").get(d));
+                            
+                            }
+                        }
+
+                    }
+
+                }
+
+            }
+
         }
 
+       
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(HashTotal);
+        String json = gson.toJson(arProv);
         response.getWriter().write(json);
     }
 
