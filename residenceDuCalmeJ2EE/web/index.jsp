@@ -49,7 +49,7 @@
                             </div>
                             <div id="div_prix" class="col-sm-2">
 
-                                <input style="height:50px" size="30" type="search" id="prix" placeholder="Prix" onclick="mettrePrix()" >
+                                <input style="height:50px" size="30" type="search" id="prix" placeholder="Prix" onclick="getPrix()" >
 
 
                             </div>
@@ -62,6 +62,8 @@
 
                                 <button class="btn"><img src="images/search-icon.png" width="50" height="38" alt="search-icon"/></button>
                             </div>
+                            
+                            
                         </div>
                     </div>
                 </div>
