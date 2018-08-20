@@ -190,6 +190,10 @@ public class Utils {
         return ar_app_objet;
     }
 
+    public ArrayList<String> getAppTypes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
   
 
 }
