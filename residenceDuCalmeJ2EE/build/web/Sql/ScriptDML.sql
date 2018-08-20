@@ -11,8 +11,7 @@ DELETE FROM locataire;
 DELETE FROM service;
 DELETE FROM bail;
 DELETE FROM bail_service;
-DELETE FROM paiement_commentaires;
-DELETE FROM paiement;
+
 
 --Pays
 INSERT INTO pays (
@@ -192,19 +191,33 @@ INSERT INTO type_appartement (
     1,
     1050
 );
+
+
 --APPARTEMENT
 INSERT INTO appartement (
     appartement_id,
     residence_id,
     type_appartement_id,
     app_numero,
-    app_statut_disponible
+    app_statut_disponible,
+    app_prix, 
+    app_image1, 
+    app_image2, 
+    app_image3, 
+    app_image4, 
+    app_image5
 ) VALUES (
     appartement_id_seq.NEXTVAL,
     1,
     1,
     1,
-    'N'
+    'N',
+    400,
+    'images/appartments/image1.jpg',
+    'images/appartments/image2.jpg',
+    'images/appartments/image3.jpg',
+    'images/appartments/image4.jpg',
+    'images/appartments/image5.jpg'
 );
 
 INSERT INTO appartement (
@@ -212,13 +225,25 @@ INSERT INTO appartement (
     residence_id,
     type_appartement_id,
     app_numero,
-    app_statut_disponible
+    app_statut_disponible,
+    app_prix, 
+    app_image1, 
+    app_image2, 
+    app_image3, 
+    app_image4, 
+    app_image5
 ) VALUES (
     appartement_id_seq.NEXTVAL,
     1,
     2,
     2,
-    'N'
+    'N',
+    850,
+    'images/appartments/image6.jpg',
+    'images/appartments/image7.jpg',
+    'images/appartments/image8.jpg',
+    'images/appartments/image9.jpg',
+    'images/appartments/image10.jpg'
 );
 
 INSERT INTO appartement (
@@ -226,13 +251,25 @@ INSERT INTO appartement (
     residence_id,
     type_appartement_id,
     app_numero,
-    app_statut_disponible
+    app_statut_disponible,
+    app_prix, 
+    app_image1, 
+    app_image2, 
+    app_image3, 
+    app_image4, 
+    app_image5
 ) VALUES (
     appartement_id_seq.NEXTVAL,
     1,
     2,
     3,
-    'O'
+    'O',
+    400,
+    'images/appartments/image11.jpg',
+    'images/appartments/image12.jpg',
+    'images/appartments/image13.jpg',
+    'images/appartments/image14.jpg',
+    'images/appartments/image15.jpg'
 );
 -- LOCATAIRE
 INSERT INTO locataire (
@@ -406,70 +443,6 @@ INSERT INTO bail_service (
     2,
     2,
     12
-);
-
--- PAIEMENT_COMMENTAIRES
-INSERT INTO paiement_commentaires(comentaire_desc) 
-VALUES('Paiement effectue a temps');
-INSERT INTO paiement_commentaires(comentaire_desc) 
-VALUES('Paiement effectue en retard');
-
---PAIEMENT
-
-INSERT INTO paiement (
-    bail_id,
-	commentaire_id,
-    paie_date,
-    paie_date_acquittee,
-    paie_montant
-) VALUES (
-    1,
-    1,
-    TO_DATE('2017-08-01','YYYY-MM-DD'),
-    TO_DATE('2017-07-01','YYYY-MM-DD'),
-    845
-);
-
-INSERT INTO paiement (
-    bail_id,
-	commentaire_id,
-    paie_date,
-    paie_date_acquittee,
-    paie_montant
-) VALUES (
-    1,
-    2,
-    TO_DATE('2017-09-05','YYYY-MM-DD'),
-    TO_DATE('2017-08-01','YYYY-MM-DD'),
-    845
-);
-
-INSERT INTO paiement (
-    bail_id,
-	commentaire_id,
-    paie_date,
-    paie_date_acquittee,
-    paie_montant
-) VALUES (
-    1,
-    1,
-    TO_DATE('2017-10-03','YYYY-MM-DD'),
-    TO_DATE('2017-09-01','YYYY-MM-DD'),
-    845
-);
-
-INSERT INTO paiement (
-    bail_id,
-	commentaire_id,
-    paie_date,
-    paie_date_acquittee,
-    paie_montant
-) VALUES (
-    2,
-    1,
-    TO_DATE('2017-07-01','YYYY-MM-DD'),
-    TO_DATE('2017-06-01','YYYY-MM-DD'),
-    870
 );
 
 COMMIT;
