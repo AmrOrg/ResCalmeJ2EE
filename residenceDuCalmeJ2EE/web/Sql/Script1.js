@@ -57,7 +57,7 @@ function callBackProv() {
         var x = JSON.parse(req.responseText);
         for (var i = 0; i < x.length; i++) {
 
-            document.getElementById("div_prov").innerHTML += "<input name='popupprovince' id='input_prov' class='typeahead form-control' value='" + x[i] + "' type='text' onclick='MettreProv(this.value)'>";
+            document.getElementById("div_prov").innerHTML += "<input name='popupprovince'  id='input_prov' class='typeahead form-control' value='" + x[i] + "' type='text' onclick='MettreProv(this.value)'>";
         }
 
 
@@ -132,3 +132,5 @@ $(document).ready(function () {
         $(this).css("background-color", "#ffffff");
     });
 });
+
+

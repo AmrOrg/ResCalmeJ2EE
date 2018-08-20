@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modele.appartement;
 
 /**
  *
@@ -115,18 +116,22 @@ public class Utils {
 
     public HashMap<String, HashMap<String, ArrayList<String>>> GetHashTotal() {
         if (HashTotal != null) {
-            
+
             return HashTotal;
         } else {
             HashTotal = new HashMap<String, HashMap<String, ArrayList<String>>>();
+            
+            
             HashMap<String, ArrayList<String>> HashProv = new HashMap<String, ArrayList<String>>();
             HashMap<String, ArrayList<String>> HashVille = new HashMap<String, ArrayList<String>>();
+            HashMap<String, ArrayList<String>> HashAPP = new HashMap<String, ArrayList<String>>();
+
             HashProv = chercherProvince();
             HashVille = chercherVille();
-
+      
             HashTotal.put("province", HashProv);
             HashTotal.put("ville", HashVille);
-            
+
             return HashTotal;
 
         }
@@ -134,7 +139,7 @@ public class Utils {
     }
 
     public boolean isProvComplete(String _province) {
-       // System.out.println(HashTotal);
+        // System.out.println(HashTotal);
         //System.out.println(HashTotal.get("province").get("prov_name"));
         boolean etat = false;
 
@@ -151,6 +156,38 @@ public class Utils {
 
         return etat;
 
+    }
+
+  
+
+    public  ArrayList<appartement> chercherApp() {
+        
+        Connection conn = getConnection();
+
+        appartement app =new appartement();
+        ArrayList<appartement> ar_app_objet = new ArrayList<>();
+
+        String Query = "SELECT APPARTEMENT_ID , APP_NUMERO, APP_STATUT_DISPONIBLE,RESIDENCE_ID  FROM VILLE NATURAL JOIN PROVINCE ";
+        PreparedStatement psm;
+        try {
+            psm = conn.prepareStatement(Query);
+            ResultSet rs = psm.executeQuery();
+            while (rs.next()) {
+               
+                app.setApp_id(rs.getString("APPARTEMENT_ID"));
+                app.setApp_num("APP_NUMERO");
+                app.setApp_status("APP_STATUT_DISPONIBLE");
+                app.setApp_type("TYPE_APPARTEMENT_ID");
+                app.setRes_id("RESIDENCE_ID");
+                
+                ar_app_objet.add(app);
+            }
+        
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ar_app_objet;
     }
 
 }

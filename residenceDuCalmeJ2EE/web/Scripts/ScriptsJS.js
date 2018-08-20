@@ -124,3 +124,25 @@ $(document).ready(function () {
         $(this).css("background-color", "#ffffff");
     });
 });
+
+function afficherLesTypes() {
+
+    init();
+    url = "srv_InfosAppartement?action=chercherType";
+    req.open("GET", url, true);
+    req.onreadystatechange = callBackapptype;
+    req.send(null);
+
+
+}
+
+function callBackapptype(){
+    
+     if ((req.readyState == 4) && (req.status == 200)) {
+        //var x = JSON.parse(req.responseText);
+        
+        
+    }
+    
+    
+}
