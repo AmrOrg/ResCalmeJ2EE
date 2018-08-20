@@ -132,3 +132,46 @@ $(document).ready(function () {
 });
 
 
+<<<<<<< HEAD
+=======
+}
+var count = 0;
+function getPrix() {
+
+
+    if (count === 0) {
+        document.getElementById("div_prix").innerHTML += "<input name='popupprixMin' id='popupprixMin' class='typeahead form-control' placeholder='prix Min'  value='' type='text' >";
+        document.getElementById("div_prix").innerHTML += "<input name='popupprixMin' id='popupprixMax' class='typeahead form-control' placeholder='prix Max' value='' type='text' >";
+        document.getElementById("div_prix").innerHTML += "<input type='submit' id='btnAppliquer' value='Appliquer' onclick=mettrePrix() />";
+
+        count++;
+    }
+
+}
+function mettrePrix(prixMin, prixMax) {
+
+    var prixMin = document.getElementById("popupprixMin").value;
+    var prixMax = document.getElementById("popupprixMax").value;
+    if ((prixMin == null) || (prixMin == "")) {
+
+        prixMin = 0;
+
+    }
+    if ((prixMax == null) || (prixMax == "")) {
+
+        prixMax = "à Tous ";
+    }
+
+    alert(prixMin);
+
+    document.getElementById("prix").value = prixMin + "  CAD  à " + prixMax + "  CAD";
+    document.getElementById("popupprixMin").setAttribute("type", "hidden");
+    document.getElementById("popupprixMax").setAttribute("type", "hidden");
+    document.getElementById("btnAppliquer").setAttribute("type", "hidden");
+   
+
+
+    count = 0;
+
+}
+>>>>>>> 186931ec53133b026440305ac055daa4b7d2d9f5
