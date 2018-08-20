@@ -115,17 +115,18 @@ public class Utils {
 
     public HashMap<String, HashMap<String, ArrayList<String>>> GetHashTotal() {
         if (HashTotal != null) {
+            
             return HashTotal;
         } else {
-            HashMap<String, HashMap<String, ArrayList<String>>> HashTotal = new HashMap<String, HashMap<String, ArrayList<String>>>();
+            HashTotal = new HashMap<String, HashMap<String, ArrayList<String>>>();
             HashMap<String, ArrayList<String>> HashProv = new HashMap<String, ArrayList<String>>();
             HashMap<String, ArrayList<String>> HashVille = new HashMap<String, ArrayList<String>>();
-            HashProv = Utils.GetInstance().chercherProvince();
-            HashVille = Utils.GetInstance().chercherVille();
+            HashProv = chercherProvince();
+            HashVille = chercherVille();
 
             HashTotal.put("province", HashProv);
             HashTotal.put("ville", HashVille);
-
+            
             return HashTotal;
 
         }
@@ -133,7 +134,23 @@ public class Utils {
     }
 
     public boolean isProvComplete(String _province) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       // System.out.println(HashTotal);
+        //System.out.println(HashTotal.get("province").get("prov_name"));
+        boolean etat = false;
+
+        for (String s : HashTotal.get("province").get("prov_name")) {
+
+            if (_province.equals(s)) {
+                etat = true;
+
+            } else {
+                etat = false;
+            }
+
+        }
+
+        return etat;
+
     }
 
 }

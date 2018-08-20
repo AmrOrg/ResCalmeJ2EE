@@ -15,6 +15,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -41,41 +43,57 @@ public class srv_RechercheApp extends HttpServlet {
         response.setContentType("application/json");
 
         HashMap<String, HashMap<String, ArrayList<String>>> HashTotal = Utils.GetInstance().GetHashTotal();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(srv_RechercheApp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        HashMap<String,ArrayList<String>> HashTotalFilter = new HashMap();
         ArrayList<String> ar = new ArrayList();
         ArrayList<String> arville = new ArrayList();
         String _province = request.getParameter("province").toUpperCase().trim();
         String _ville = request.getParameter("ville").toUpperCase().trim();
         if (_province != null) {
-            int i = 0;
+            if(Utils.GetInstance().isProvComplete(_province)){
+             
+               // for (String s : HashTotal.get("ville").get("prov_name")) { //Quebc
+                    for(int i= 0 ;i < HashTotal.get("ville").get("prov_name").size();i++){
+                        if(HashTotal.get("ville").get("prov_name").get(i).equals(_province)){
+                            
+                         arville.add(HashTotal.get("ville").get("ville_name").get(i));
+
+                        
+                        
+                      //  }
+                       
+                    }
+                    
+                }
+            
+                System.out.println(arville);
+            }else{
             for (String s : HashTotal.get("province").get("prov_name")) {
 
                 if (s.startsWith(_province)) {
                     ar.add(s);
                 }
-                i++;
             }
-            if (Utils.GetInstance().isProvComplete(_province)) {
+        
 
-                if (_ville != null) {
-                    for (String s : arProvId) {
-
-                        for (int d = 0; d < HashTotal.get("ville").get("ville_name").size(); d++) {
-                            if (HashTotal.get("ville").get("prov_id").get(d).equals( s )){
-                            arVilleName.add( HashTotal.get("ville").get("ville_name").get(d));
-                            
-                            }
-                        }
-
-                    }
-
-                }
-
-            
+//                if (_ville != null) {
+//         
+//
+//                }
+//                    }
+  
         }
+        }
+       
+          HashTotalFilter.put("prov_filter", ar);
+          HashTotalFilter.put("ville_filter",arville);
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(HashTotal);
-        System.out.println(json);
+        String json = gson.toJson(HashTotalFilter);
         response.getWriter().write(json);
     }
 
