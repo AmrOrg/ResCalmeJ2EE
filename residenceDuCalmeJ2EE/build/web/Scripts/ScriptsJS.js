@@ -52,6 +52,7 @@ function chercherTypes() {
 
 function chercherServices() {
     init();
+    alert("servicesApp");
     url = "srv_InfosAppartement?action=chercherServices";
     req.open("GET", url, true);
     req.onreadystatechange = callBackServices;
@@ -63,7 +64,7 @@ function callBackProv() {
     if ((req.readyState == 4) && (req.status == 200)) {
         var JSONProv = JSON.parse(req.responseText);
         for (var i = 0; i < JSONProv.prov_filter.length; i++) {
-            document.getElementById("div_prov").innerHTML += "<input name='popupprovince' id='input_prov' class='typeahead form-control' value='" + JSONProv.prov_filter[i] + "' type='text' onclick='MettreProv(this.value, prov)'>"
+            document.getElementById("div_prov").innerHTML += "<input name='popupprovince' id='input_prov' class='typeahead form-control' value='" + JSONProv.prov_filter[i] + "'type='text' onclick='AjouterElements(this.id, this.name, this.value)'>"
         }
     }
 }
@@ -72,7 +73,7 @@ function callBackVille() {
     if ((req.readyState == 4) && (req.status == 200)) {
         var JSONProv = JSON.parse(req.responseText);
         for (var i = 0; i < JSONProv.ville_filter.length; i++) {
-            document.getElementById("div_ville").innerHTML += "<input name='popupville' class='typeahead form-control' value='" + JSONProv.ville_filter[i] + "' type='text' onclick='AjouterElements(this.value, 'ville', 'popupville')'>";
+            document.getElementById("div_ville").innerHTML += "<input id='input_ville' name='popupville' class='typeahead form-control' value='" + JSONProv.ville_filter[i] + "' type='text' onclick='AjouterElements(this.id, this.name, this.value)'>";
         }
     }
 
@@ -82,7 +83,7 @@ function callBackapptype() {
     if ((req.readyState == 4) && (req.status == 200)) {
         var x = JSON.parse(req.responseText);
         for (var i = 0; i < x.length; i++) {
-            document.getElementById("div_type").innerHTML += "<input name='popuptype' class='typeahead form-control' value='" + x[i] + "' type='text' onclick='AjouterElements(this.value, 'typeApp', 'popuptype')'>";
+            document.getElementById("div_type").innerHTML += "<input id='input_type' name='popuptype' class='typeahead form-control' value='" + x[i] + "' type='text' onclick='AjouterElements(this.id, this.name, this.value)'>";
         }
     }
 }
@@ -92,35 +93,27 @@ function callBackServices() {
     if ((req.readyState == 4) && (req.status == 200)) {
         var x = JSON.parse(req.responseText);
         for (var i = 0; i < x.length; i++) {
-            document.getElementById("div_services").innerHTML += "<input name='popupservices' class='typeahead form-control' value='" + x[i].serv_description + "' type='text' onclick='AjouterElements(this.value, ''servicesApp'', ''popupservices'')'>";
+            document.getElementById("div_services").innerHTML += "<input id='input_service' name='popupservices' class='typeahead form-control' value='" + x[i].serv_description + "' type='text' onclick='AjouterElements(this.id, this.name, this.value)'>";
         }
     }
 }
 
 //FONCTIONS POUR AJOUTER UN ELEMENT POPUP
-function AjouterElements(valeur, idElement, popupElement) {
-    alert("valeur", +valeur);
-    alert("idElement", +idElement);
-    alert("popupElement", +popupElement);
+function AjouterElements(idElement, popupElement, valeur) {
+    if (idElement==="input_prov")idElement= 'prov';
+    if (idElement==="input_ville")idElement= 'ville';
+    if (idElement==="input_type")idElement= 'typeApp';
+    if (idElement==="input_prix")idElement= 'prix';
+    if (idElement==="input_service")idElement= 'servicesApp';
     document.getElementById(idElement).value = valeur;
     var varPopup = document.getElementsByName(popupElement);
     for (var i = 0; i < varPopup.length; i++) {
         varPopup[i].setAttribute("type", "hidden");
     }
-    if (idElement= 'prov'){
+    if (idElement === 'prov'){
         chercherVille(valeur);
     }
 }
-
-function MettreProv(x, y) {
-    alert(+y);
-    document.getElementById("prov").value = x;//Quebec
-    var d = document.getElementsByName("popupprovince");
-    for (var i = 0; i < d.length; i++) {
-        d[i].setAttribute("type", "hidden");
-    }
-}
-
 
 $(document).ready(function () {
     $("input").focus(function () {
@@ -130,48 +123,3 @@ $(document).ready(function () {
         $(this).css("background-color", "#ffffff");
     });
 });
-
-
-<<<<<<< HEAD
-=======
-}
-var count = 0;
-function getPrix() {
-
-
-    if (count === 0) {
-        document.getElementById("div_prix").innerHTML += "<input name='popupprixMin' id='popupprixMin' class='typeahead form-control' placeholder='prix Min'  value='' type='text' >";
-        document.getElementById("div_prix").innerHTML += "<input name='popupprixMin' id='popupprixMax' class='typeahead form-control' placeholder='prix Max' value='' type='text' >";
-        document.getElementById("div_prix").innerHTML += "<input type='submit' id='btnAppliquer' value='Appliquer' onclick=mettrePrix() />";
-
-        count++;
-    }
-
-}
-function mettrePrix(prixMin, prixMax) {
-
-    var prixMin = document.getElementById("popupprixMin").value;
-    var prixMax = document.getElementById("popupprixMax").value;
-    if ((prixMin == null) || (prixMin == "")) {
-
-        prixMin = 0;
-
-    }
-    if ((prixMax == null) || (prixMax == "")) {
-
-        prixMax = "à Tous ";
-    }
-
-    alert(prixMin);
-
-    document.getElementById("prix").value = prixMin + "  CAD  à " + prixMax + "  CAD";
-    document.getElementById("popupprixMin").setAttribute("type", "hidden");
-    document.getElementById("popupprixMax").setAttribute("type", "hidden");
-    document.getElementById("btnAppliquer").setAttribute("type", "hidden");
-   
-
-
-    count = 0;
-
-}
->>>>>>> 186931ec53133b026440305ac055daa4b7d2d9f5

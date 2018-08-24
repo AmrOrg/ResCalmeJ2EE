@@ -1,0 +1,25 @@
+create table USERS (
+USERNAME VARCHAR(20) PRIMARY KEY,
+PASSWORD VARCHAR(20) NOT NULL ,
+AGE VARCHAR(3),
+EMAIL VARCHAR(30)
+
+);
+
+CREATE TABLE PRODUCTS(
+PRODUCTNAME VARCHAR(30) ,
+PRICE DOUBLE,
+IMGPATH VARCHAR(30)
+
+);
+
+
+INSERT INTO USERS VALUES('amr','0000','30','aaaaa');
+
+insert INTO PRODUCTS VALUES ('product1',20.55,'Images/pic1.jpg');
+
+insert INTO PRODUCTS VALUES ('product2',30.55,'Images/pic2.jpg');
+insert INTO PRODUCTS VALUES ('product3',40.55,'Images/pic3.jpg');
+insert INTO PRODUCTS VALUES ('product4',50.55,'Images/pic4.jpg');
+insert INTO PRODUCTS VALUES ('product5',60.55,'Images/pic5.jpg');
+insert INTO PRODUCTS VALUES ('product6',70.55,'Images/pic6.jpg');

@@ -1,0 +1,7 @@
+.typeahead {
+   width: 140%;   
+}
+.tagline-content{display:table-cell;vertical-align:middle;}
+.banner--homepage{height:600px;}
+.tagline{display:table;width:100%;height:100%;position:relative;top:0;left:0;right:0;bottom:0;z-index:10;margin:auto;text-align:center;}
+.tagline__title{color:#FFF;font-size:4.25em;line-height:1.1;font-weight:700;text-transform:uppercase; center:center;}
