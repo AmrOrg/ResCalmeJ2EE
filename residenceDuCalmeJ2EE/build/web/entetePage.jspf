@@ -16,7 +16,7 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="index.jsp">Recherche</a></li>
       <li><a style="margin-right: 40px" href="Login.jsp">Se connecter</a></li>
-      <li><a style="margin-right: 40px" href="srv_Inscription">S'inscrire</a></li>
+      <li><a style="margin-right: 40px" href="Inscription.jsp">S'inscrire</a></li>
       <li><a style="margin-right: 40px" href="Contacts.jsp">Contacts</a></li>
     </ul>
   </div>

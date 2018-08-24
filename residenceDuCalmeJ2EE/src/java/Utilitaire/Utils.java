@@ -242,4 +242,91 @@ public class Utils {
         }
         return ar_app_services;
     }
+
+    public int AddLocataire(String _nom, String _prenom, String _username, String _password, String _email, String _tel) {
+        Connection conn = getConnection();
+
+        int x = 0;
+
+        String Query = "INSERT INTO LOCATAIRE VALUES(?,?,?,?,?,?)";
+        try {
+            PreparedStatement pstm = conn.prepareStatement(Query);
+            pstm.setString(1, _nom);
+            pstm.setString(2, _prenom);
+            pstm.setString(3, _username);
+            pstm.setString(4, _password);
+            pstm.setString(5, _email);
+            pstm.setString(6, _tel);
+
+            x = pstm.executeUpdate();
+            pstm.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        return x;
+    }
+
+    public boolean VerifiIsExist(String _username) {
+        Connection conn = getConnection();
+        boolean status = true;
+        int x = 0;
+        String Query = "SELECT  LOC_USERNAME from LOCATAIRE where LOC_USERNAME = ? ";
+        try {
+            PreparedStatement pstm = conn.prepareStatement(Query);
+            pstm.setString(1, _username);
+            ResultSet rs = pstm.executeQuery();
+
+            if (rs.next()) {
+                status = true;
+            } else {
+
+                status = false;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return status;
+    }
+
+    public int AddLogin(String _username, String _password) {
+
+        Connection conn = Utils.GetInstance().getConnection();
+        String Query = "INSERT INTO  LOGIN  VALUES (?,?)";
+        PreparedStatement pstm =null ;
+        int x = 0;
+        try {
+             pstm = conn.prepareStatement(Query);
+            pstm.setString(1, _username);
+            pstm.setString(2, _password);
+            
+             x  = pstm.executeUpdate();
+            
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+        
+            try {
+                pstm.close();
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        
+        }
+        
+        return x ;
+    }
+
 }

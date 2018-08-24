@@ -99,12 +99,19 @@ function callBackServices() {
 }
 
 //FONCTIONS POUR AJOUTER UN ELEMENT POPUP
+<<<<<<< HEAD
 function AjouterElements(idElement, popupElement, valeur) {
     if (idElement==="input_prov")idElement= 'prov';
     if (idElement==="input_ville")idElement= 'ville';
     if (idElement==="input_type")idElement= 'typeApp';
     if (idElement==="input_prix")idElement= 'prix';
     if (idElement==="input_service")idElement= 'servicesApp';
+=======
+function AjouterElements(valeur, idElement, popupElement) {
+    alert("valeur", valeur);
+    alert("idElement", +idElement);
+    alert("popupElement", +popupElement);
+>>>>>>> dc96a345d8432457ec25a055d1976c203e4bd9f7
     document.getElementById(idElement).value = valeur;
     var varPopup = document.getElementsByName(popupElement);
     for (var i = 0; i < varPopup.length; i++) {
@@ -115,6 +122,19 @@ function AjouterElements(idElement, popupElement, valeur) {
     }
 }
 
+<<<<<<< HEAD
+=======
+function MettreProv(x, y) {
+
+    document.getElementById("prov").value = x;//Quebec
+    var d = document.getElementsByName("popupprovince");
+    for (var i = 0; i < d.length; i++) {
+        d[i].setAttribute("type", "hidden");
+    }
+}
+
+
+>>>>>>> dc96a345d8432457ec25a055d1976c203e4bd9f7
 $(document).ready(function () {
     $("input").focus(function () {
         $(this).css("background-color", "#cccccc");
@@ -122,4 +142,52 @@ $(document).ready(function () {
     $("input").blur(function () {
         $(this).css("background-color", "#ffffff");
     });
+<<<<<<< HEAD
 });
+=======
+});
+
+
+
+
+var count = 0;
+function getPrix() {
+
+
+    if (count === 0) {
+        document.getElementById("div_prix").innerHTML += "<input name='popupprixMin' id='popupprixMin' class='typeahead form-control' placeholder='prix Min'  value='' type='text' >";
+        document.getElementById("div_prix").innerHTML += "<input name='popupprixMin' id='popupprixMax' class='typeahead form-control' placeholder='prix Max' value='' type='text' >";
+        document.getElementById("div_prix").innerHTML += "<input type='submit' id='btnAppliquer' value='Appliquer' onclick=mettrePrix() />";
+
+        count++;
+    }
+
+}
+function mettrePrix(prixMin, prixMax) {
+
+    var prixMin = document.getElementById("popupprixMin").value;
+    var prixMax = document.getElementById("popupprixMax").value;
+    if ((prixMin == null) || (prixMin == "")) {
+
+        prixMin = 0;
+
+    }
+    if ((prixMax == null) || (prixMax == "")) {
+
+        prixMax = "à Tous ";
+    }
+
+    alert(prixMin);
+
+    document.getElementById("prix").value = prixMin + "  CAD  à " + prixMax + "  CAD";
+    document.getElementById("popupprixMin").setAttribute("type", "hidden");
+    document.getElementById("popupprixMax").setAttribute("type", "hidden");
+    document.getElementById("btnAppliquer").setAttribute("type", "hidden");
+   
+
+
+    count = 0;
+
+}
+
+>>>>>>> dc96a345d8432457ec25a055d1976c203e4bd9f7

@@ -46,8 +46,14 @@
 
                                 <input style="height:50px" size="30" type="search" id="prix" placeholder="Prix" onkeyup="chercherVille(this.value)" >
 
+<<<<<<< HEAD
                             </div>
                             <div id="div_services" class="col-sm-2">
+=======
+
+                            <div id="div_service" class="col-sm-2">
+
+>>>>>>> dc96a345d8432457ec25a055d1976c203e4bd9f7
 
                                 <input style="height:50px" size="30" type="search" id="servicesApp" placeholder="Choix des services" onclick="chercherServices(this.value)" >
 
