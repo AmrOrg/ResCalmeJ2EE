@@ -65,6 +65,11 @@
                         <p> ${str}</p>
                         
                     </c:if>
+                        <c:if test="${msg !=null}">
+                            
+                             <p> ${msg}</p>
+                            
+                        </c:if>
                     
      
             </div>

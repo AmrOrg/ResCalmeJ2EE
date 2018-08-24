@@ -29,27 +29,36 @@ public class srv_Inscription extends HttpServlet {
         String _password = request.getParameter("PWD1");
         String _email = request.getParameter("email1");
         String _tel = request.getParameter("tel1");
-        int x = 0 ;
-        
+        int x = 0;
+
         boolean status = Utils.GetInstance().VerifiIsExist(_username);
         System.out.println(status);
-        
-        if(status == false){
-         x= Utils.GetInstance().AddLocataire(_nom,_prenom,_username,_password,_email,_tel);
-        request.setAttribute("x", x);
-        RequestDispatcher disp = request.getRequestDispatcher("Inscription.jsp");
-        disp.forward(request, response);
-        
-        }else{
-        String str = "Les USERNAME  deja La  Svp changer ";
-        request.setAttribute("str", str);
-        request.setAttribute("x", x);
-        RequestDispatcher disp = request.getRequestDispatcher("Inscription.jsp");
-        disp.forward(request, response);
-        
+
+        if (status == false) {
+            x = Utils.GetInstance().AddLocataire(_nom, _prenom, _username, _password, _email, _tel);
+            request.setAttribute("x", x);
+            if (x == 1) {
+               int m =  Utils.GetInstance().AddLogin(_username,_password);
+               if(m == 1){
+               
+               String msg ="login created " ;
+                           request.setAttribute("msg", msg);
+
+               }
+
+            }
+            
+            RequestDispatcher disp = request.getRequestDispatcher("Inscription.jsp");
+            disp.forward(request, response);
+
+        } else {
+            String str = "Les USERNAME  deja La  s.v.p CHANGER ";
+            request.setAttribute("str", str);
+            request.setAttribute("x", x);
+            RequestDispatcher disp = request.getRequestDispatcher("Inscription.jsp");
+            disp.forward(request, response);
+
         }
-        
-       
 
     }
 

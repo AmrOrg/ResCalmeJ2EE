@@ -303,10 +303,10 @@ public class Utils {
         Connection conn = getConnection();
         boolean status = true;
         int x = 0;
-        String Query = "select _username from LOCATAIRE where LOC_USERNAME = ? ";
+        String Query = "SELECT  LOC_USERNAME from LOCATAIRE where LOC_USERNAME = ? ";
         try {
             PreparedStatement pstm = conn.prepareStatement(Query);
-            pstm.setString(1, _username.toLowerCase());
+            pstm.setString(1, _username);
             ResultSet rs = pstm.executeQuery();
 
             if (rs.next()) {
@@ -321,6 +321,37 @@ public class Utils {
         }
 
         return status;
+    }
+
+    public int AddLogin(String _username, String _password) {
+
+        Connection conn = Utils.GetInstance().getConnection();
+        String Query = "INSERT INTO  LOGIN  VALUES (?,?)";
+        PreparedStatement pstm =null ;
+        int x = 0;
+        try {
+             pstm = conn.prepareStatement(Query);
+            pstm.setString(1, _username);
+            pstm.setString(2, _password);
+            
+             x  = pstm.executeUpdate();
+            
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+        
+            try {
+                pstm.close();
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        
+        }
+        
+        return x ;
     }
 
 }
