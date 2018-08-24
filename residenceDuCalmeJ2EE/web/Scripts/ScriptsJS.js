@@ -127,9 +127,6 @@ $(document).ready(function () {
     });
 
 
-
-
-
 var count = 0;
 function getPrix() {
 
@@ -167,5 +164,5 @@ function mettrePrix(prixMin, prixMax) {
 
 
     count = 0;
-
+    
 }
