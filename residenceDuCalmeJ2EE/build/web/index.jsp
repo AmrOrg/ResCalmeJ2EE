@@ -13,6 +13,7 @@
         <link href="css/css.css" rel="stylesheet" type="text/css"/>
         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <script src="Scripts/jquery-3.3.1.js" type="text/javascript"></script>
+        
     </head>
     <body>
         <%@include file="entetePage.jspf" %>
@@ -53,14 +54,17 @@
                                 <input style="height:50px" size="30" type="search" id="servicesApp" placeholder="Choix des services" onclick="chercherServices(this.value)" >
 
                             </div>
-                            <div id="div_prix" class="col-sm-2">
+                            <div id="div_btn" class="col-sm-2">
 
-                                <button class="btn"><img src="images/search-icon.png" width="50" height="38" alt="search-icon"/></button>
+                                <button  id="btn_recherche" class="btn"><img src="images/search-icon.png" width="50" height="38" alt="search-icon"/></button>
                             </div>
 
                         </div>
                     </div>
                 </div>
                 <script src="Scripts/ScriptsJS.js" type="text/javascript"></script>
+                <script src="Scripts/RechercheJS.js" type="text/javascript"></script>
                 </body>
                 </html>
+
+                

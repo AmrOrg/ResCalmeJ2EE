@@ -365,4 +365,16 @@ public class Utils {
         return x;
     }
 
+    public void rechercheListApp(String province, String ville, String type, String prixMin, String prixMax, String service) {
+        String requete= "SELECT ";
+        
+     
+       if(province == null || province.equals("")){
+       
+       
+       }
+        
+        
+    }
+
 }

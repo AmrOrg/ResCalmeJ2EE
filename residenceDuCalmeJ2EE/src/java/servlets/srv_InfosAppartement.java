@@ -25,15 +25,7 @@ import modele.appartement;
  */
 public class srv_InfosAppartement extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -53,6 +45,20 @@ public class srv_InfosAppartement extends HttpServlet {
                 String json = gson.toJson(ar_app_services);
                 response.getWriter().write(json);
                 break;
+            }
+            case "rechercheListeApp":{
+            
+                String province = request.getParameter("province");
+                                String ville = request.getParameter("ville");
+                String type = request.getParameter("type");
+                String prixMin = request.getParameter("prixMin");
+                String prixMax = request.getParameter("prixMax");
+                String service = request.getParameter("service");
+
+                System.out.println(province);
+                System.out.println(service);
+
+            
             }
             default:
                 break;
