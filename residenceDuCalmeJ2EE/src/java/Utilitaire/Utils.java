@@ -25,6 +25,7 @@ public class Utils {
 
     private static Utils util;
     private HashMap<String, HashMap<String, ArrayList<String>>> HashTotal;
+
     public static Utils GetInstance() {
 
         if (util == null) {
@@ -75,13 +76,40 @@ public class Utils {
         return conn;
     }
 
-    public ResultSet verifierConnection(Connection conn, String _username, String _password) throws SQLException {
-        String Query = "select * from LOGIN where IDENTIFIANT = ? AND MOTDEPASSE = ? ";
-        PreparedStatement psm = conn.prepareStatement(Query);
-        psm.setString(1, _username);
-        psm.setString(2, _password);
-        ResultSet rs = psm.executeQuery();
-        return rs;
+    public boolean verifierConnection(String _username, String _password) {
+        Connection conn = getConnection();
+        String Query = "select * from LOGIN where LOG_USERNAME = ? AND LOG_PASSWORD = ? ";
+        ResultSet rs = null;
+        PreparedStatement pstm = null;
+        boolean status = true;
+        try {
+            pstm = conn.prepareStatement(Query);
+            pstm.setString(1, _username);
+            pstm.setString(2, _password);
+            rs = pstm.executeQuery();
+        if (rs.next()) {
+                status = true;
+            } else {
+
+                status = false;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                pstm.close();
+                conn.close();
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+        
+        }
+
+        return status;
+
     }
 
     public HashMap<String, ArrayList<String>> chercherVille(Connection conn) {
@@ -277,9 +305,10 @@ public class Utils {
         Connection conn = getConnection();
         boolean status = true;
         int x = 0;
+        PreparedStatement pstm = null ;
         String Query = "SELECT  LOC_USERNAME from LOCATAIRE where LOC_USERNAME = ? ";
         try {
-            PreparedStatement pstm = conn.prepareStatement(Query);
+             pstm = conn.prepareStatement(Query);
             pstm.setString(1, _username);
             ResultSet rs = pstm.executeQuery();
 
@@ -292,6 +321,16 @@ public class Utils {
 
         } catch (SQLException ex) {
             Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                pstm.close();
+                conn.close();
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+        
         }
 
         return status;
@@ -301,31 +340,29 @@ public class Utils {
 
         Connection conn = Utils.GetInstance().getConnection();
         String Query = "INSERT INTO  LOGIN  VALUES (?,?)";
-        PreparedStatement pstm =null ;
+        PreparedStatement pstm = null;
         int x = 0;
         try {
-             pstm = conn.prepareStatement(Query);
+            pstm = conn.prepareStatement(Query);
             pstm.setString(1, _username);
             pstm.setString(2, _password);
-            
-             x  = pstm.executeUpdate();
-            
+
+            x = pstm.executeUpdate();
 
         } catch (SQLException ex) {
             Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-        
+        } finally {
+
             try {
                 pstm.close();
                 conn.close();
             } catch (SQLException ex) {
                 Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-        
+
         }
-        
-        return x ;
+
+        return x;
     }
 
 }

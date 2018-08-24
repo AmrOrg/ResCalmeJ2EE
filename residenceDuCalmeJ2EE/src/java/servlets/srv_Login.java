@@ -5,12 +5,16 @@
  */
 package servlets;
 
+import Utilitaire.Utils;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,7 +34,59 @@ public class srv_Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-  
+        Connection conn = null;
+
+        try (PrintWriter out = response.getWriter()) {
+            String _username = request.getParameter("UserName");
+            String _password = request.getParameter("PWD");
+            // String _l = request.getParameter("lang");
+            String logout = request.getParameter("logout");
+            System.out.println(logout);
+            HttpSession session = request.getSession();
+
+            String Destination = "";
+            if (logout.equals("true")) {
+                Destination = "index.jsp";
+                session.invalidate();
+                response.sendRedirect(Destination);
+                        
+
+            } else {
+
+                boolean status;
+
+                try {
+                    if (_username != null && _password != null) {
+
+                        status = Utils.GetInstance().verifierConnection(_username, _password);
+
+                        if (!status) {
+
+                            session.setAttribute("username", _username);
+
+                            Destination = "index.jsp";
+
+                            //when we use forwored we create object that in clude all request and response 
+                            RequestDispatcher dispatch = request.getRequestDispatcher(Destination);
+                            dispatch.forward(request, response);
+                        } else {
+                            RequestDispatcher dispatch = request.getRequestDispatcher("Faild.jsp");
+                            dispatch.forward(request, response);
+
+                        }
+
+                    } else {
+                        out.println("Empty UserName or Password");
+
+                    }
+                } catch (Exception ex) {
+                    out.print("Exception : " + ex.getMessage());
+                    ex.printStackTrace();
+
+                }
+
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

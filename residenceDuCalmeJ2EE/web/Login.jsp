@@ -12,13 +12,14 @@
         <link href="css/css1.css" rel="stylesheet" type="text/css"/>
         <title>Login</title>
     </head>
-    <body class="container">
-                <%@include file="entetePage.jspf" %>
+
+    <body >
+    <%@include file="entetePage.jspf" %>
 
     <center><h1><u>Se Connecter</u></h1></center>
     <center>
         <div>
-            <form action="login" method="POST">
+            <form action="srv_Login?logout=false" method="POST">
 
                 <table>
 
@@ -30,11 +31,11 @@
                         <td>Password    </td>
                         <td><input type="password" class="form-control" name="PWD" placeholder="Password" size="30" required/></td>
                     </tr>
-                        <tr>
+                    <tr>
                         <td>Language    </td>
                         <td><input type="radio" name="lang" value="Fr" checked="checked" />Francais <br>
                             <input type="radio" name="lang" value="En"  />English <br>
-                        
+
                         </td>
                     </tr>
                     <tr>
