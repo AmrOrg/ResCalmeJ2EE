@@ -51,7 +51,6 @@ public class srv_InfosAppartement extends HttpServlet {
                 ArrayList<ServicesApp> ar_app_services = Utils.GetInstance().getAppServices();
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
                 String json = gson.toJson(ar_app_services);
-                System.out.println(json);
                 response.getWriter().write(json);
                 break;
             }

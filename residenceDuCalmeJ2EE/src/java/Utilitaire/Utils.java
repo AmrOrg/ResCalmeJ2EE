@@ -25,7 +25,6 @@ public class Utils {
 
     private static Utils util;
     private HashMap<String, HashMap<String, ArrayList<String>>> HashTotal;
-
     public static Utils GetInstance() {
 
         if (util == null) {
