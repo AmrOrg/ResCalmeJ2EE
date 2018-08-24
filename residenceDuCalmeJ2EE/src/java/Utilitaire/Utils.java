@@ -87,7 +87,7 @@ public class Utils {
             pstm.setString(1, _username);
             pstm.setString(2, _password);
             rs = pstm.executeQuery();
-        if (rs.next()) {
+            if (rs.next()) {
                 status = true;
             } else {
 
@@ -96,16 +96,15 @@ public class Utils {
 
         } catch (SQLException ex) {
             Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
+        } finally {
             try {
                 pstm.close();
                 conn.close();
-                
+
             } catch (SQLException ex) {
                 Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
             }
-                
-        
+
         }
 
         return status;
@@ -305,10 +304,10 @@ public class Utils {
         Connection conn = getConnection();
         boolean status = true;
         int x = 0;
-        PreparedStatement pstm = null ;
+        PreparedStatement pstm = null;
         String Query = "SELECT  LOC_USERNAME from LOCATAIRE where LOC_USERNAME = ? ";
         try {
-             pstm = conn.prepareStatement(Query);
+            pstm = conn.prepareStatement(Query);
             pstm.setString(1, _username);
             ResultSet rs = pstm.executeQuery();
 
@@ -321,16 +320,15 @@ public class Utils {
 
         } catch (SQLException ex) {
             Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
+        } finally {
             try {
                 pstm.close();
                 conn.close();
-                
+
             } catch (SQLException ex) {
                 Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
             }
-                
-        
+
         }
 
         return status;
@@ -366,15 +364,9 @@ public class Utils {
     }
 
     public void rechercheListApp(String province, String ville, String type, String prixMin, String prixMax, String service) {
-        String requete= "SELECT ";
-        
-     
-       if(province == null || province.equals("")){
-       
-       
-       }
-        
-        
+
+    
+
     }
 
 }
