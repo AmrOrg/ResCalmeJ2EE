@@ -27,45 +27,36 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div id="div_prov" class="col-sm-2">
-                                <input style="height:50px  ; " size="30" type="search" id="prov" name="prov" placeholder="Province" onkeyup="chercherProv(this.value)">
+                            <form action="srv_InfosAppartement?action=recherche" name="Recherche" method="POST">
+                                <div id="div_prov" class="col-sm-2">
+                                    <input style="height:50px  ; " size="30" type="search" id="prov" name="nomProv" placeholder="Province" onkeyup="chercherProv(this.value)">
+                                </div>
 
-                            </div>
-                            <div id="div_ville" class="col-sm-2">
+                                <div id="div_ville" class="col-sm-2">
+                                    <input  style="height:50px ; " size="30" type="search" id="ville" name="nomVille" placeholder="Ville" onkeyup="chercherVille(this.value)" >
+                                </div>
 
-                                <input  style="height:50px ; " size="30" type="search" id="ville" placeholder="Ville" onkeyup="chercherVille(this.value)" >
+                                <div id="div_type" class="col-sm-2">
+                                    <input style="height:50px" size="30" type="search" id="typeApp" name="typeApp" placeholder="Type appartement"  onclick="chercherTypes()"> 
+                                </div>
 
-                            </div>
-                            <div id="div_type" class="col-sm-2">
-
-                                <input style="height:50px" size="30" type="search" id="typeApp" placeholder="Type appartement"  onclick="chercherTypes()"> 
-
-
-                            </div>
-                            <div id="div_prix" class="col-sm-2">
-
-                                <input style="height:50px" size="30" type="search" id="prix" placeholder="Prix" onkeyup="chercherVille(this.value)" >
-
-<<<<<<< HEAD
-                            </div>
-                            <div id="div_services" class="col-sm-2">
-=======
-
-                            <div id="div_service" class="col-sm-2">
-
->>>>>>> dc96a345d8432457ec25a055d1976c203e4bd9f7
-
-                                <input style="height:50px" size="30" type="search" id="servicesApp" placeholder="Choix des services" onclick="chercherServices(this.value)" >
-
-                            </div>
-                            <div id="div_prix" class="col-sm-2">
-
-                                <button class="btn"><img src="images/search-icon.png" width="50" height="38" alt="search-icon"/></button>
-                            </div>
+                                <div id="div_prix" class="col-sm-2">
+                                    <input style="height:25px" size="30" type="search" id="prixMIN" name = "prix" placeholder="Prix MIN">
+                                    <input style="height:25px" size="30" type="search" id="prixMAX" name = "prix" placeholder="Prix MAX">
+                                </div>
+                                
+                                <div id="div_services" class="col-sm-2">
+                                    <input style="height:50px" size="30" type="search" id="servicesApp" name = "serviceApp" placeholder="Choix des services" onclick="chercherServices(this.value)" >
+                                </div>
+                                
+                                <div id="div_recherche" class="col-sm-2">
+                                    <input class="btn" width="50" height="38" type="submit" value="Rechercher" name="recherche" />
+                                </div>
+                                
+                            </form>>
                         </div>
                     </div>
                 </div>
-            </div>
-            <script src="Scripts/ScriptsJS.js" type="text/javascript"></script>
-    </body>
-</html>
+                <script src="Scripts/ScriptsJS.js" type="text/javascript"></script>
+                </body>
+                </html>
