@@ -53,8 +53,7 @@ public class srv_InfosAppartement extends HttpServlet {
                 String prixMin = request.getParameter("prixMin");
                 String prixMax = request.getParameter("prixMax");
                 String service = request.getParameter("service");
-
-                Utils.GetInstance().rechercheListApp(province,ville,type,prixMin,prixMax,service);
+                Utils.GetInstance().rechercheListApp(province, ville, type, prixMin, prixMax, service);
 
             }
             default:
