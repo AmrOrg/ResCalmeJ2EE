@@ -52,12 +52,9 @@
                                 <input style="height:50px" size="30" type="search" id="prix" placeholder="Prix" onclick="getPrix()" >
 
 
-                            </div>
-<<<<<<< HEAD
-                            <div id="div_services" class="col-sm-2">
-=======
+
                             <div id="div_service" class="col-sm-2">
->>>>>>> 186931ec53133b026440305ac055daa4b7d2d9f5
+
 
                                 <input style="height:50px" size="30" type="search" id="servicesApp" placeholder="Choix des services" onclick="chercherServices(this.value)" >
 

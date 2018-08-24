@@ -1,0 +1,15 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+
+<img src="images/images.png" width="246" height="205" alt="images"/>
+<a style="margin-right: 40px" href="Login.jsp">Se connecter</a> 
+<a style="margin-right: 40px"  href="srv_Inscription">S'inscrire</a>
+<a style="margin-right: 40px" href="Contacts.jsp">Contacts</a>
+<select style="margin-right: 40px" name="Lang"> 
+    <option>English</option> 
+    <option>Français</option>
+</select>
+<br>
+<h2>Le séjour idéal</h2> 
+

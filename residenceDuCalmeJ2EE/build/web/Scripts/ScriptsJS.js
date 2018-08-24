@@ -99,7 +99,7 @@ function callBackServices() {
 
 //FONCTIONS POUR AJOUTER UN ELEMENT POPUP
 function AjouterElements(valeur, idElement, popupElement) {
-    alert("valeur", +valeur);
+    alert("valeur", valeur);
     alert("idElement", +idElement);
     alert("popupElement", +popupElement);
     document.getElementById(idElement).value = valeur;
@@ -113,7 +113,7 @@ function AjouterElements(valeur, idElement, popupElement) {
 }
 
 function MettreProv(x, y) {
-    alert(+y);
+
     document.getElementById("prov").value = x;//Quebec
     var d = document.getElementsByName("popupprovince");
     for (var i = 0; i < d.length; i++) {
@@ -132,9 +132,8 @@ $(document).ready(function () {
 });
 
 
-<<<<<<< HEAD
-=======
-}
+
+
 var count = 0;
 function getPrix() {
 
@@ -174,4 +173,4 @@ function mettrePrix(prixMin, prixMax) {
     count = 0;
 
 }
->>>>>>> 186931ec53133b026440305ac055daa4b7d2d9f5
+

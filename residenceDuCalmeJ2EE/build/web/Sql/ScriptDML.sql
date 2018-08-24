@@ -271,9 +271,10 @@ INSERT INTO appartement (
     'images/appartments/image14.jpg',
     'images/appartments/image15.jpg'
 );
+/*
 -- LOCATAIRE
 INSERT INTO locataire (
-    locataire_id,
+    
     loc_nom,
     loc_prenom,
     loc_email,
@@ -444,5 +445,5 @@ INSERT INTO bail_service (
     2,
     12
 );
-
+*/
 COMMIT;

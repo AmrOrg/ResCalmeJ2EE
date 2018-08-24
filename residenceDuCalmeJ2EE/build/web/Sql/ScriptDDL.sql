@@ -20,7 +20,26 @@ DROP SEQUENCE reparation_id_seq;
 DROP SEQUENCE locataire_id_seq;
 DROP SEQUENCE service_id_seq;
 DROP SEQUENCE bail_id_seq;
---1
+
+--1 Sequences
+
+CREATE SEQUENCE adresse_id_seq;
+
+CREATE SEQUENCE residence_id_seq;
+
+CREATE SEQUENCE type_appartement_id_seq;
+
+CREATE SEQUENCE appartement_id_seq;
+
+CREATE SEQUENCE reparation_id_seq;
+
+CREATE SEQUENCE locataire_id_seq;
+
+CREATE SEQUENCE service_id_seq;
+
+CREATE SEQUENCE bail_id_seq;
+
+--2
 CREATE TABLE pays (
 	pays_id    CHAR(2),
 	pays_nom   VARCHAR2(50) NOT NULL,
@@ -110,12 +129,13 @@ CREATE TABLE reparation (
 );
 --7
 CREATE TABLE locataire (
-    locataire_id    NUMBER(4),
-    loc_nom         VARCHAR2(30) NOT NULL,
+    loc_nom         VARCHAR(30) NOT NULL,
     loc_prenom      VARCHAR(50) NOT NULL,
-    loc_email       VARCHAR2(100),
-    loc_telephone   VARCHAR2(30) NOT NULL,
-    CONSTRAINT locataire_id_pk PRIMARY KEY ( locataire_id )
+    loc_username     VARCHAR(50) NOT NULL,
+    loc_password     VARCHAR(50) NOT NULL,
+    loc_email       VARCHAR(100),
+    loc_telephone   VARCHAR(30) NOT NULL,
+    CONSTRAINT locataire_username_pk PRIMARY KEY ( loc_username )
 );
 --8
 CREATE TABLE service (
@@ -127,16 +147,16 @@ CREATE TABLE service (
 --9
 CREATE TABLE bail (
     bail_id                NUMBER(4),
-    locataire_id           NUMBER(4),
-	appartement_id          NUMBER(4),
+    loc_username           VARCHAR(50),
+    appartement_id          NUMBER(4),
     bail_date              DATE DEFAULT SYSDATE,
     bail_date_debut        DATE NOT NULL,
     bail_date_fin          DATE NOT NULL,
     bail_montant           NUMBER(6,2) NOT NULL,
     bail_montant_service   NUMBER(6,2),
     CONSTRAINT bail_id_pk PRIMARY KEY ( bail_id ),
-    CONSTRAINT bail_loca_id_fk FOREIGN KEY ( locataire_id )
-        REFERENCES locataire ( locataire_id ),
+    CONSTRAINT bail_loca_id_fk FOREIGN KEY ( loc_username )
+        REFERENCES locataire ( loc_username ),
 	CONSTRAINT bail_app_id_fk FOREIGN KEY ( appartement_id )
         REFERENCES appartement ( appartement_id )
 );
@@ -152,24 +172,6 @@ CREATE TABLE bail_service (
     CONSTRAINT bailserv_service_id_fk FOREIGN KEY ( service_id )
         REFERENCES service ( service_id )
 );
-
---2 Sequences
-
-CREATE SEQUENCE adresse_id_seq;
-
-CREATE SEQUENCE residence_id_seq;
-
-CREATE SEQUENCE type_appartement_id_seq;
-
-CREATE SEQUENCE appartement_id_seq;
-
-CREATE SEQUENCE reparation_id_seq;
-
-CREATE SEQUENCE locataire_id_seq;
-
-CREATE SEQUENCE service_id_seq;
-
-CREATE SEQUENCE bail_id_seq;
 
 --3 Indexes
 
