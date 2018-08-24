@@ -125,10 +125,7 @@ $(document).ready(function () {
     $("input").blur(function () {
         $(this).css("background-color", "#ffffff");
     });
-
-
-
-
+    });
 
 var count = 0;
 function getPrix() {
@@ -151,7 +148,7 @@ function mettrePrix(prixMin, prixMax) {
 
         prixMin = 0;
 
-    }
+    };
     if ((prixMax == null) || (prixMax == "")) {
 
         prixMax = "à Tous ";
