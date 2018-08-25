@@ -63,8 +63,10 @@
                                 </div>
                             </div>
                         </form>
-
+                        <p align="center" style="color: red;font-size: 40px;"> ${msg} </p>
                     </div>
+                    
+                      
                     <script src="Scripts/ScriptsJS.js" type="text/javascript"></script>
                     </body>
                     </html>

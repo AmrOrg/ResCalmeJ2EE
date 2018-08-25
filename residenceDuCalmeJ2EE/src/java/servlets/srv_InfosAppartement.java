@@ -57,18 +57,25 @@ public class srv_InfosAppartement extends HttpServlet {
                 String prixMin = request.getParameter("prixMin");
                 String prixMax = request.getParameter("prixMax");
                 String service = request.getParameter("service");
-             
-                    ArrayList<appartement> listApps = new ArrayList();
-                   listApps= Utils.GetInstance().rechercheListApp(province, ville, type, prixMin, prixMax, service);
-                   // Utils.GetInstance().rechercheListApp(province, ville);
-                  
-               request.setAttribute("listApps",listApps);
-             //   System.out.println(listApps);
-                RequestDispatcher disp =  request.getRequestDispatcher("Produit.jsp");
-                disp.forward(request, response);
-                  
-                
-          
+
+                ArrayList<appartement> listApps = new ArrayList();
+                listApps = Utils.GetInstance().rechercheListApp(province, ville, type, prixMin, prixMax, service);
+                // Utils.GetInstance().rechercheListApp(province, ville);
+                if (listApps.size() > 0) {
+                    request.setAttribute("listApps", listApps);
+                    //   System.out.println(listApps);
+                    RequestDispatcher disp = request.getRequestDispatcher("Produit.jsp");
+                    disp.forward(request, response);
+
+                } else {
+
+                    String msg = "Auqune Data cherecher Autre Fois SVP";
+                      request.setAttribute("msg", msg);
+                    //   System.out.println(listApps);
+                    RequestDispatcher disp = request.getRequestDispatcher("index.jsp");
+                    disp.forward(request, response);
+                }
+
             }
 
             default:

@@ -19,37 +19,35 @@
         <table class="table table-hover" border="0" cellspacing="8" cellpadding="9">
 
             <tbody>
-
-                <c:forEach var="item" items="${listApps}" varStatus="loop">
-
-
+            
+            <c:forEach var="item" items="${listApps}" varStatus="loop">
 
 
-                    <tr>
-                        <td> <img src="${item.app_img1}" width="200" height="200" alt="a"/></td>
-                        <td> ${item.app_prix}</td>
-                        <td>${item.app_status}</td>
-                        <td> ${item.app_addr_id}</td>
+                <tr>
+                    <td> <img src="${item.app_img1}" width="200" height="200" alt="a"/></td>
+                    <td> ${item.app_prix}</td>
+                    <td>${item.app_status}</td>
+                    <td> ${item.app_addr_id}</td>
 
-                        <td>
-                            <form action="main_servelet" method="POST">
-                                <input type="hidden" name="Index" value="${loop.index}" />
-                                <input type="hidden" name="action" value="add" />
-                                <input type="submit"  style="color: red;"value="Add" name="add" />
+                    <td>
+                        <form action="main_servelet" method="POST">
+                            <input type="hidden" name="Index" value="${loop.index}" />
+                            <input type="hidden" name="action" value="add" />
+                            <input type="submit"  style="color: red;"value="Add" name="add" />
 
-                            </form>
-                        </td>  
+                        </form>
+                    </td>  
 
 
-                    </tr>
+                </tr>
 
-                </c:forEach>
+            </c:forEach>
 
 
 
 
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 
 
 
@@ -57,5 +55,5 @@
 
 
 
-    </body>
+</body>
 </html>
