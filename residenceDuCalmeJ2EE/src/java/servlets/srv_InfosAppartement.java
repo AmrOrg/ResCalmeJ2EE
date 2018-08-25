@@ -11,7 +11,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,17 +48,22 @@ public class srv_InfosAppartement extends HttpServlet {
                 response.getWriter().write(json);
                 break;
             }
-            case "rechercheListeApp": {
 
+            case "rechercheListeApp": {
                 String province = request.getParameter("province");
                 String ville = request.getParameter("ville");
                 String type = request.getParameter("type");
                 String prixMin = request.getParameter("prixMin");
                 String prixMax = request.getParameter("prixMax");
                 String service = request.getParameter("service");
-                Utils.GetInstance().rechercheListApp(province, ville, type, prixMin, prixMax, service);
-
+                try {
+                    //Utils.GetInstance().rechercheListApp(province, ville, type, prixMin, prixMax, service);
+                    Utils.GetInstance().rechercheListApp(province, ville);
+                } catch (SQLException ex) {
+                    Logger.getLogger(srv_InfosAppartement.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
+
             default:
                 break;
         }

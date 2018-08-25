@@ -5,11 +5,13 @@
  */
 package Utilitaire;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -365,8 +367,46 @@ public class Utils {
 
     public void rechercheListApp(String province, String ville, String type, String prixMin, String prixMax, String service) {
 
-    
+    }
 
+    public void rechercheListApp(String province, String ville) throws SQLException {
+        System.out.println("Province= " + province);
+        System.out.println("Ville= " + ville);
+        Connection connection = getConnection();
+        CallableStatement statement = null;
+
+        String sql = "{call nombreAbonnes(?)}";
+        statement = connection.prepareCall(sql);
+//enregistrement du paramètre de sortie en fonction de son type et de son nom 
+        statement.registerOutParameter("nb", java.sql.Types.INTEGER);
+//enregistrement du paramètre de sortie en fonction de son type et de son index 
+
+//statement.registerOutParameter(1, java.sql.Types.INTEGER); 
+        statement.execute();
+//récupération du résultat en fonction de l'index 
+        int resultat = statement.getInt(1);
+//récupération du résultat en fonction du nom du paramètre 
+
+//int resultat = statement.getInt("nb"); 
+        System.out.println("Nombre d'abonnés = " + resultat);
+
+//        stm = conn.prepareCall("{call nombreProvince} ");
+//        stm.setString(1, province);//Province
+//        stm.setString(2, ville);//Ville
+//        if (stm.execute()) {
+//            System.out.println("EXECUTE");
+//            //récupération des ResultSet 
+//            //ResultSet resultat1 = stm.getResultSet();
+//            //System.out.println("******************* "+ resultat1);
+////            //traitement des informations 
+////            while (resultat1.next()) {
+////                for (int i = 0; i < resultat1.getMetaData().getColumnCount(); i++) {
+////                    System.out.print(resultat1.getObject(i + 1) + ", ");
+////                }
+////                System.out.println("");
+////            }
+//            //resultat1.close();
+//        }
     }
 
 }
