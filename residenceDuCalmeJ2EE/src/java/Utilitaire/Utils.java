@@ -365,8 +365,36 @@ public class Utils {
         return x;
     }
 
-    public void rechercheListApp(String province, String ville, String type, String prixMin, String prixMax, String service) {
+    public ArrayList<appartement> rechercheListApp(String province, String ville, String type, String prixMin, String prixMax, String service) {
+        ArrayList<appartement> listApps = new ArrayList<>();
+        Connection conn = getConnection();
+        String Query = "select APPARTEMENT_ID,APP_NUMERO ,ADRESSE_ID,APP_STATUT_DISPONIBLE,APP_PRIX,APP_IMAGE1,APP_IMAGE2,APP_IMAGE3,APP_IMAGE4,APP_IMAGE5 from APPARTEMENT";
+        PreparedStatement pstm;
+        try {
+            pstm = conn.prepareStatement(Query);
+            ResultSet res = pstm.executeQuery();
+            while (res.next()) {
 
+                appartement ap = new appartement();
+                ap.setApp_id(res.getString("APPARTEMENT_ID"));
+                ap.setApp_num(res.getString("APP_NUMERO"));
+                ap.setApp_addr_id(res.getString("ADRESSE_ID"));
+                ap.setApp_status(res.getString("APP_STATUT_DISPONIBLE"));
+                ap.setApp_prix(Double.parseDouble(res.getString("APP_PRIX")));
+                ap.setApp_img1(res.getString("APP_IMAGE1"));
+                ap.setApp_img2(res.getString("APP_IMAGE2"));
+                ap.setApp_img3(res.getString("APP_IMAGE3"));
+                ap.setApp_img4(res.getString("APP_IMAGE4"));
+                ap.setApp_img5(res.getString("APP_IMAGE5"));
+
+                listApps.add(ap);
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listApps;
     }
 
     public void rechercheListApp(String province, String ville) throws SQLException {

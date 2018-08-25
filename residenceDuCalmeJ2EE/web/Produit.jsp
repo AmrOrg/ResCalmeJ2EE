@@ -19,7 +19,7 @@
             <div class="col-sm-6">
 
                 <table class="table table-hover" border="0" cellspacing="8" cellpadding="9">
-                    <thead>
+                   <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col"> Photo</th>
@@ -30,15 +30,16 @@
 
                         </tr>
                     </thead>
+                 
                     <tbody>
 
                         <c:forEach var="item" items="${listApps}" varStatus="loop">
                         <th scope="row">${loop.index}</th>
-                        <tr>
-                            <td> <img src="${item.image1}" width="100" height="200" alt="a"/></td>
-                            <td> ${item.prix}</td>
-                            <td>${item.Description}</td>
-                            <td> ${item.prix}</td>
+                        <tr >
+                            <td scope="col"> <img src="${item.app_img1}" width="100" height="200" alt="a"/></td>
+                            <td scope="col"> ${item.app_prix}</td>
+                            <td scope="col">${item.app_status}</td>
+                            <td scope="col"> ${item.app_addr_id}</td>
 
                         </tr>
                     

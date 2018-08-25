@@ -17,6 +17,20 @@ public class appartement {
     private String app_num;
     private String app_status;
     private double app_prix;
+    private String app_addr_id;
+
+    @Override
+    public String toString() {
+        return "appartement{" + "app_id=" + app_id + ", Res_id=" + Res_id + ", app_type=" + app_type + ", app_num=" + app_num + ", app_status=" + app_status + ", app_prix=" + app_prix + ", app_addr_id=" + app_addr_id + ", app_img1=" + app_img1 + ", app_img2=" + app_img2 + ", app_img3=" + app_img3 + ", app_img4=" + app_img4 + ", app_img5=" + app_img5 + ", app_img6=" + app_img6 + ", app_img7=" + app_img7 + ", app_img8=" + app_img8 + ", app_img9=" + app_img9 + ", app_img10=" + app_img10 + '}';
+    }
+
+    public String getApp_addr_id() {
+        return app_addr_id;
+    }
+
+    public void setApp_addr_id(String app_addr_id) {
+        this.app_addr_id = app_addr_id;
+    }
     
     private String app_img1;
     private String app_img2;

@@ -13,12 +13,10 @@
         <link href="css/cssPageContact.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+        <%@include file="entetePage.jspf" %>
 
 
-        <h2>Responsive Contact Section</h2>
-        <p>Resize the browser window to see the effect.</p>
-
-        <div class="container">
+        <div>
             <div style="text-align:center">
                 <h2>Contact Us</h2>
                 <p>Swing by for a cup of coffee, or leave us a message:</p>

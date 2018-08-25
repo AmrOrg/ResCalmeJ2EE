@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -56,12 +57,18 @@ public class srv_InfosAppartement extends HttpServlet {
                 String prixMin = request.getParameter("prixMin");
                 String prixMax = request.getParameter("prixMax");
                 String service = request.getParameter("service");
-                try {
-                    //Utils.GetInstance().rechercheListApp(province, ville, type, prixMin, prixMax, service);
-                    Utils.GetInstance().rechercheListApp(province, ville);
-                } catch (SQLException ex) {
-                    Logger.getLogger(srv_InfosAppartement.class.getName()).log(Level.SEVERE, null, ex);
-                }
+             
+                    ArrayList<appartement> listApps = new ArrayList();
+                   listApps= Utils.GetInstance().rechercheListApp(province, ville, type, prixMin, prixMax, service);
+                   // Utils.GetInstance().rechercheListApp(province, ville);
+                  
+               request.setAttribute("listApps",listApps);
+             //   System.out.println(listApps);
+                RequestDispatcher disp =  request.getRequestDispatcher("Produit.jsp");
+                disp.forward(request, response);
+                  
+                
+          
             }
 
             default:

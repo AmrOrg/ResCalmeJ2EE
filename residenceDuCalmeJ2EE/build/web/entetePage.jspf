@@ -31,6 +31,7 @@
                 <li><a style="margin-right: 80px ;color: darkred; font: bold; font-size: 20px;" href="srv_Login?logout=true">Se déconnecter </a></li>
 
             </c:if>
+            <li><a style="margin-right: 40px;" href="Produit.jsp">Produits</a></li>
             <li><a style="margin-right: 40px;" href="Contacts.jsp">Contacts</a></li>
 
         </ul>
