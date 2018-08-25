@@ -15,45 +15,45 @@
     <body>
         <%@include file="entetePage.jspf" %>
 
- <form action="srv_checkout" method="POST">
-        <table class="table table-hover" border="0" cellspacing="8" cellpadding="9">
+        <form action="srv_checkout" method="POST">
+            <table class="table table-hover" border="0" cellspacing="8" cellpadding="9">
 
-            <tbody>
-            
-            <c:forEach var="item" items="${listApps}" varStatus="loop">
+                <tbody>
 
-
-                <tr>
-                    <td> <img src="${item.app_img1}" width="200" height="200" alt="a"/></td>
-                    <td> ${item.app_prix}</td>
-                    <td>${item.app_status}</td>
-                    <td> ${item.app_addr_id}</td>
-
-                    <td>
-                       
-                            <input type="hidden" name="Index" value="${loop.index}" />
-                            <input type="hidden" name="action" value="add" />
-                            <input type="submit"  style="color: red;"value="Add" name="add" />
-
-                      
-                    </td>  
+                    <c:forEach var="item" items="${listApps}" varStatus="loop">
 
 
-                </tr>
+                        <tr>
+                            <td> <img src="${item.app_img1}" width="200" height="200" alt="a"/></td>
+                            <td> ${item.app_prix}</td>
+                            <td>${item.app_status}</td>
+                            <td> ${item.app_addr_id}</td>
 
-            </c:forEach>
+                            <td>
+
+                                <input type="hidden" name="Index" value="${loop.index}" />
+                                <input type="hidden" name="action" value="add" />
+                                <input type="submit"  style="color: red;"value="Add" name="add" />
 
 
+                            </td>  
 
 
-        </tbody>
-    </table>
+                        </tr>
 
-  </form>
+                    </c:forEach>
 
 
 
 
+                </tbody>
+            </table>
 
-</body>
+        </form>
+
+
+
+
+
+    </body>
 </html>
