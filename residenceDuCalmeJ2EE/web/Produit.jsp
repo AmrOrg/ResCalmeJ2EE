@@ -15,7 +15,7 @@
     <body>
         <%@include file="entetePage.jspf" %>
 
-
+ <form action="srv_checkout" method="POST">
         <table class="table table-hover" border="0" cellspacing="8" cellpadding="9">
 
             <tbody>
@@ -30,12 +30,12 @@
                     <td> ${item.app_addr_id}</td>
 
                     <td>
-                        <form action="main_servelet" method="POST">
+                       
                             <input type="hidden" name="Index" value="${loop.index}" />
                             <input type="hidden" name="action" value="add" />
                             <input type="submit"  style="color: red;"value="Add" name="add" />
 
-                        </form>
+                      
                     </td>  
 
 
@@ -49,7 +49,7 @@
         </tbody>
     </table>
 
-
+  </form>
 
 
 
