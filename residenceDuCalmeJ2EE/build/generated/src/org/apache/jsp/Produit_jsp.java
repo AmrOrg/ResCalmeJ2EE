@@ -117,7 +117,7 @@ public final class Produit_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <div class=\"col-sm-6\">\r\n");
       out.write("\r\n");
       out.write("                <table class=\"table table-hover\" border=\"0\" cellspacing=\"8\" cellpadding=\"9\">\r\n");
-      out.write("                   <thead>\r\n");
+      out.write("                    <thead>\r\n");
       out.write("                        <tr>\r\n");
       out.write("                            <th scope=\"col\">#</th>\r\n");
       out.write("                            <th scope=\"col\"> Photo</th>\r\n");
@@ -128,16 +128,17 @@ public final class Produit_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("                        </tr>\r\n");
       out.write("                    </thead>\r\n");
-      out.write("                 \r\n");
-      out.write("                    <tbody>\r\n");
       out.write("\r\n");
-      out.write("                        ");
+      out.write("                    <tbody>\r\n");
+      out.write("                    <div class=\"split left\">\r\n");
+      out.write("                        <div class=\"centered\">\r\n");
+      out.write("                            ");
       if (_jspx_meth_c_forEach_0(_jspx_page_context))
         return;
       out.write("\r\n");
+      out.write("                        </div>\r\n");
       out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
+      out.write("                    </div>\r\n");
       out.write("\r\n");
       out.write("                    </tbody>\r\n");
       out.write("                </table>\r\n");
@@ -247,26 +248,27 @@ public final class Produit_jsp extends org.apache.jasper.runtime.HttpJspBase
       if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("\r\n");
-          out.write("                        <th scope=\"row\">");
+          out.write("\r\n");
+          out.write("                                <th scope=\"row\">");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${loop.index}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</th>\r\n");
-          out.write("                        <tr>\r\n");
-          out.write("                            <td> <img src=\"");
+          out.write("                                <tr >\r\n");
+          out.write("                                    <td scope=\"col\"> <img src=\"");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.app_img1}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("\" width=\"100\" height=\"200\" alt=\"a\"/></td>\r\n");
-          out.write("                            <td> ");
+          out.write("\" width=\"300\" height=\"500\" alt=\"a\"/></td>\r\n");
+          out.write("                                    <td scope=\"col\"> ");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.app_prix}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</td>\r\n");
-          out.write("                            <td>");
+          out.write("                                    <td scope=\"col\">");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.app_status}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</td>\r\n");
-          out.write("                            <td> ");
+          out.write("                                    <td scope=\"col\"> ");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.app_addr_id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("</td>\r\n");
           out.write("\r\n");
-          out.write("                        </tr>\r\n");
-          out.write("                    \r\n");
-          out.write("                    ");
+          out.write("                                </tr>\r\n");
+          out.write("\r\n");
+          out.write("                            ");
           int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;
