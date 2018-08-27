@@ -53,12 +53,12 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
-      out.write("        <link href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css\" rel=\"stylesheet\">\r\n");
       out.write("        <link href=\"css/css1.css\" rel=\"stylesheet\" type=\"text/css\"/>\r\n");
       out.write("        <title>Login</title>\r\n");
       out.write("    </head>\r\n");
-      out.write("    <body class=\"container\">\r\n");
-      out.write("                ");
+      out.write("\r\n");
+      out.write("    <body >\r\n");
+      out.write("    ");
       out.write("\r\n");
       out.write("\r\n");
       out.write("<head>\r\n");
@@ -79,6 +79,7 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("      <li><a style=\"margin-right: 40px\" href=\"Login.jsp\">Se connecter</a></li>\r\n");
       out.write("      <li><a style=\"margin-right: 40px\" href=\"Inscription.jsp\">S'inscrire</a></li>\r\n");
       out.write("      <li><a style=\"margin-right: 40px\" href=\"Contacts.jsp\">Contacts</a></li>\r\n");
+      out.write("   \r\n");
       out.write("    </ul>\r\n");
       out.write("  </div>\r\n");
       out.write("</nav>\r\n");
@@ -104,11 +105,11 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <td>Password    </td>\r\n");
       out.write("                        <td><input type=\"password\" class=\"form-control\" name=\"PWD\" placeholder=\"Password\" size=\"30\" required/></td>\r\n");
       out.write("                    </tr>\r\n");
-      out.write("                        <tr>\r\n");
+      out.write("                    <tr>\r\n");
       out.write("                        <td>Language    </td>\r\n");
       out.write("                        <td><input type=\"radio\" name=\"lang\" value=\"Fr\" checked=\"checked\" />Francais <br>\r\n");
       out.write("                            <input type=\"radio\" name=\"lang\" value=\"En\"  />English <br>\r\n");
-      out.write("                        \r\n");
+      out.write("\r\n");
       out.write("                        </td>\r\n");
       out.write("                    </tr>\r\n");
       out.write("                    <tr>\r\n");

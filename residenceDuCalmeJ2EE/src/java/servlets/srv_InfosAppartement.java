@@ -11,7 +11,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,15 +29,6 @@ import modele.appartement;
  */
 public class srv_InfosAppartement extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -51,10 +46,38 @@ public class srv_InfosAppartement extends HttpServlet {
                 ArrayList<ServicesApp> ar_app_services = Utils.GetInstance().getAppServices();
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
                 String json = gson.toJson(ar_app_services);
-                System.out.println(json);
                 response.getWriter().write(json);
                 break;
             }
+
+            case "rechercheListeApp": {
+                String province = request.getParameter("province");
+                String ville = request.getParameter("ville");
+                String type = request.getParameter("type");
+                String prixMin = request.getParameter("prixMin");
+                String prixMax = request.getParameter("prixMax");
+                String service = request.getParameter("service");
+
+                ArrayList<appartement> listApps = new ArrayList();
+                listApps = Utils.GetInstance().rechercheListApp(province, ville, type, prixMin, prixMax, service);
+                // Utils.GetInstance().rechercheListApp(province, ville);
+                if (listApps.size() > 0) {
+                    request.setAttribute("listApps", listApps);
+                    //   System.out.println(listApps);
+                    RequestDispatcher disp = request.getRequestDispatcher("Produit.jsp");
+                    disp.forward(request, response);
+
+                } else {
+
+                    String msg = "Auqune Data cherecher Autre Fois SVP";
+                      request.setAttribute("msg", msg);
+                    //   System.out.println(listApps);
+                    RequestDispatcher disp = request.getRequestDispatcher("index.jsp");
+                    disp.forward(request, response);
+                }
+
+            }
+
             default:
                 break;
         }
@@ -62,16 +85,16 @@ public class srv_InfosAppartement extends HttpServlet {
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-/**
- * Handles the HTTP <code>GET</code> method.
- *
- * @param request servlet request
- * @param response servlet response
- * @throws ServletException if a servlet-specific error occurs
- * @throws IOException if an I/O error occurs
- */
-@Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -85,7 +108,7 @@ public class srv_InfosAppartement extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -96,7 +119,7 @@ public class srv_InfosAppartement extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-        public String getServletInfo() {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

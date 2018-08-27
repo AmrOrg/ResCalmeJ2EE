@@ -52,7 +52,6 @@ function chercherTypes() {
 
 function chercherServices() {
     init();
-    alert("servicesApp");
     url = "srv_InfosAppartement?action=chercherServices";
     req.open("GET", url, true);
     req.onreadystatechange = callBackServices;
@@ -99,14 +98,12 @@ function callBackServices() {
 }
 
 //FONCTIONS POUR AJOUTER UN ELEMENT POPUP
-
 function AjouterElements(idElement, popupElement, valeur) {
     if (idElement==="input_prov")idElement= 'prov';
     if (idElement==="input_ville")idElement= 'ville';
     if (idElement==="input_type")idElement= 'typeApp';
     if (idElement==="input_prix")idElement= 'prix';
     if (idElement==="input_service")idElement= 'servicesApp';
-
     document.getElementById(idElement).value = valeur;
     var varPopup = document.getElementsByName(popupElement);
     for (var i = 0; i < varPopup.length; i++) {
@@ -117,7 +114,6 @@ function AjouterElements(idElement, popupElement, valeur) {
     }
 }
 
-
 $(document).ready(function () {
     $("input").focus(function () {
         $(this).css("background-color", "#cccccc");
@@ -126,6 +122,10 @@ $(document).ready(function () {
         $(this).css("background-color", "#ffffff");
     });
 
+<<<<<<< HEAD
+=======
+    });
+>>>>>>> 55d6386ac3bd03e402517a72999d037eff1327a5
 
 var count = 0;
 function getPrix() {
@@ -148,7 +148,7 @@ function mettrePrix(prixMin, prixMax) {
 
         prixMin = 0;
 
-    }
+    };
     if ((prixMax == null) || (prixMax == "")) {
 
         prixMax = "à Tous ";
@@ -164,5 +164,11 @@ function mettrePrix(prixMin, prixMax) {
 
 
     count = 0;
+<<<<<<< HEAD
     
 }
+=======
+
+}
+
+>>>>>>> 55d6386ac3bd03e402517a72999d037eff1327a5

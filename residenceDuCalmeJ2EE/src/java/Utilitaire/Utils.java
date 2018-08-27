@@ -5,11 +5,13 @@
  */
 package Utilitaire;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -76,13 +78,39 @@ public class Utils {
         return conn;
     }
 
-    public ResultSet verifierConnection(Connection conn, String _username, String _password) throws SQLException {
-        String Query = "select * from LOGIN where IDENTIFIANT = ? AND MOTDEPASSE = ? ";
-        PreparedStatement psm = conn.prepareStatement(Query);
-        psm.setString(1, _username);
-        psm.setString(2, _password);
-        ResultSet rs = psm.executeQuery();
-        return rs;
+    public boolean verifierConnection(String _username, String _password) {
+        Connection conn = getConnection();
+        String Query = "select * from LOGIN where LOG_USERNAME = ? AND LOG_PASSWORD = ? ";
+        ResultSet rs = null;
+        PreparedStatement pstm = null;
+        boolean status = true;
+        try {
+            pstm = conn.prepareStatement(Query);
+            pstm.setString(1, _username);
+            pstm.setString(2, _password);
+            rs = pstm.executeQuery();
+            if (rs.next()) {
+                status = true;
+            } else {
+
+                status = false;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstm.close();
+                conn.close();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+        return status;
+
     }
 
     public HashMap<String, ArrayList<String>> chercherVille(Connection conn) {
@@ -278,9 +306,10 @@ public class Utils {
         Connection conn = getConnection();
         boolean status = true;
         int x = 0;
+        PreparedStatement pstm = null;
         String Query = "SELECT  LOC_USERNAME from LOCATAIRE where LOC_USERNAME = ? ";
         try {
-            PreparedStatement pstm = conn.prepareStatement(Query);
+            pstm = conn.prepareStatement(Query);
             pstm.setString(1, _username);
             ResultSet rs = pstm.executeQuery();
 
@@ -293,6 +322,15 @@ public class Utils {
 
         } catch (SQLException ex) {
             Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstm.close();
+                conn.close();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
 
         return status;
@@ -302,31 +340,101 @@ public class Utils {
 
         Connection conn = Utils.GetInstance().getConnection();
         String Query = "INSERT INTO  LOGIN  VALUES (?,?)";
-        PreparedStatement pstm =null ;
+        PreparedStatement pstm = null;
         int x = 0;
         try {
-             pstm = conn.prepareStatement(Query);
+            pstm = conn.prepareStatement(Query);
             pstm.setString(1, _username);
             pstm.setString(2, _password);
-            
-             x  = pstm.executeUpdate();
-            
+
+            x = pstm.executeUpdate();
 
         } catch (SQLException ex) {
             Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-        
+        } finally {
+
             try {
                 pstm.close();
                 conn.close();
             } catch (SQLException ex) {
                 Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-        
+
         }
-        
-        return x ;
+
+        return x;
+    }
+
+    public ArrayList<appartement> rechercheListApp(String province, String ville, String type, String prixMin, String prixMax, String service) {
+        ArrayList<appartement> listApps = new ArrayList<>();
+        Connection conn = getConnection();
+        String Query = "select APPARTEMENT_ID,APP_NUMERO ,ADRESSE_ID,APP_STATUT_DISPONIBLE,APP_PRIX,APP_IMAGE1,APP_IMAGE2,APP_IMAGE3,APP_IMAGE4,APP_IMAGE5 from APPARTEMENT";
+        PreparedStatement pstm;
+        try {
+            pstm = conn.prepareStatement(Query);
+            ResultSet res = pstm.executeQuery();
+            while (res.next()) {
+
+                appartement ap = new appartement();
+                ap.setApp_id(res.getString("APPARTEMENT_ID"));
+                ap.setApp_num(res.getString("APP_NUMERO"));
+                ap.setApp_addr_id(res.getString("ADRESSE_ID"));
+                ap.setApp_status(res.getString("APP_STATUT_DISPONIBLE"));
+                ap.setApp_prix(Double.parseDouble(res.getString("APP_PRIX")));
+                ap.setApp_img1(res.getString("APP_IMAGE1"));
+                ap.setApp_img2(res.getString("APP_IMAGE2"));
+                ap.setApp_img3(res.getString("APP_IMAGE3"));
+                ap.setApp_img4(res.getString("APP_IMAGE4"));
+                ap.setApp_img5(res.getString("APP_IMAGE5"));
+
+                listApps.add(ap);
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listApps;
+    }
+
+    public void rechercheListApp(String province, String ville) throws SQLException {
+        System.out.println("Province= " + province);
+        System.out.println("Ville= " + ville);
+        Connection connection = getConnection();
+        CallableStatement statement = null;
+
+        String sql = "{call nombreAbonnes(?)}";
+        statement = connection.prepareCall(sql);
+//enregistrement du paramètre de sortie en fonction de son type et de son nom 
+        statement.registerOutParameter("nb", java.sql.Types.INTEGER);
+//enregistrement du paramètre de sortie en fonction de son type et de son index 
+
+//statement.registerOutParameter(1, java.sql.Types.INTEGER); 
+        statement.execute();
+//récupération du résultat en fonction de l'index 
+        int resultat = statement.getInt(1);
+//récupération du résultat en fonction du nom du paramètre 
+
+//int resultat = statement.getInt("nb"); 
+        System.out.println("Nombre d'abonnés = " + resultat);
+
+//        stm = conn.prepareCall("{call nombreProvince} ");
+//        stm.setString(1, province);//Province
+//        stm.setString(2, ville);//Ville
+//        if (stm.execute()) {
+//            System.out.println("EXECUTE");
+//            //récupération des ResultSet 
+//            //ResultSet resultat1 = stm.getResultSet();
+//            //System.out.println("******************* "+ resultat1);
+////            //traitement des informations 
+////            while (resultat1.next()) {
+////                for (int i = 0; i < resultat1.getMetaData().getColumnCount(); i++) {
+////                    System.out.print(resultat1.getObject(i + 1) + ", ");
+////                }
+////                System.out.println("");
+////            }
+//            //resultat1.close();
+//        }
     }
 
 }

@@ -13,6 +13,7 @@
         <link href="css/css.css" rel="stylesheet" type="text/css"/>
         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <script src="Scripts/jquery-3.3.1.js" type="text/javascript"></script>
+
     </head>
     <body>
         <%@include file="entetePage.jspf" %>
@@ -26,46 +27,47 @@
                                 <br> 
                             </div>
                         </div>
-                        <div class="row">
-                            <div id="div_prov" class="col-sm-2">
-                                <input style="height:50px  ; " size="30" type="search" id="prov" name="prov" placeholder="Province" onkeyup="chercherProv(this.value)">
+                        <form action="srv_InfosAppartement?action=rechercheListeApp" method="POST">
 
+                            <div class="row">
+
+                                <div id="div_prov" class="col-sm-2">
+                                    <input style="height:50px  ; " size="30" type="search" id="prov" name="prov" placeholder="Province" onkeyup="chercherProv(this.value)">
+
+                                </div>
+                                <div id="div_ville" class="col-sm-2">
+
+                                    <input  style="height:50px ; " size="30" type="search" id="ville" placeholder="Ville" onkeyup="chercherVille(this.value)" >
+
+                                </div>
+                                <div id="div_type" class="col-sm-2">
+
+                                    <input style="height:50px" size="30" type="search" id="typeApp" placeholder="Type appartement"  onclick="chercherTypes()"> 
+
+
+                                </div>
+                                <div id="div_prix" class="col-sm-2">
+
+                                    <input style="height:50px" size="30" type="search" id="prix" placeholder="Prix" onclick="getPrix()" >
+
+                                </div>
+                                <div id="div_services" class="col-sm-2">
+
+                                    <input style="height:50px" size="30" type="search" id="servicesApp" placeholder="Choix des services" onclick="chercherServices(this.value)" >
+
+                                </div>
+                                <div id="div_btn" class="col-sm-2">
+
+                                    <button  id="btn_recherche" class="btn"><img src="images/search-icon.png" width="50" height="38" alt="search-icon"/></button>
+
+                                </div>
                             </div>
-                            <div id="div_ville" class="col-sm-2">
-
-                                <input  style="height:50px ; " size="30" type="search" id="ville" placeholder="Ville" onkeyup="chercherVille(this.value)" >
-
-                            </div>
-                            <div id="div_type" class="col-sm-2">
-
-                                <input style="height:50px" size="30" type="search" id="typeApp" placeholder="Type appartement"  onclick="chercherTypes()"> 
-
-
-                            </div>
-                            <div id="div_prix" class="col-sm-2">
-
-                                <input style="height:50px" size="30" type="search" id="prix" placeholder="Prix" onkeyup="chercherVille(this.value)" >
-
-<<<<<<< HEAD
-                            </div>
-                            <div id="div_services" class="col-sm-2">
-=======
-
-                            <div id="div_service" class="col-sm-2">
-
->>>>>>> dc96a345d8432457ec25a055d1976c203e4bd9f7
-
-                                <input style="height:50px" size="30" type="search" id="servicesApp" placeholder="Choix des services" onclick="chercherServices(this.value)" >
-
-                            </div>
-                            <div id="div_prix" class="col-sm-2">
-
-                                <button class="btn"><img src="images/search-icon.png" width="50" height="38" alt="search-icon"/></button>
-                            </div>
-                        </div>
+                        </form>
+                        <p align="center" style="color: red;font-size: 40px;"> ${msg} </p>
                     </div>
-                </div>
-            </div>
-            <script src="Scripts/ScriptsJS.js" type="text/javascript"></script>
-    </body>
-</html>
+                    
+                      
+                    <script src="Scripts/ScriptsJS.js" type="text/javascript"></script>
+                    </body>
+                    </html>
+

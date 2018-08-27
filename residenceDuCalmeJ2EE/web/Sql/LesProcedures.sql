@@ -1,0 +1,9 @@
+CREATE OR REPLACE PROCEDURE RETOURNERLISTEAPP (
+    p_province IN   VARCHAR,
+    p_ville    IN VARCHAR,
+    p_resultat_refcur OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_resultat_refcur FOR SELECT PROV_NOM, PAYS_ID FROM PROVINCE WHERE PROV_NOM = p_province;
+END;
