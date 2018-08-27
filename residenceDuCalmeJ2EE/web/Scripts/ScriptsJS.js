@@ -121,11 +121,10 @@ $(document).ready(function () {
     $("input").blur(function () {
         $(this).css("background-color", "#ffffff");
     });
-
-<<<<<<< HEAD
-=======
     });
->>>>>>> 55d6386ac3bd03e402517a72999d037eff1327a5
+
+
+
 
 var count = 0;
 function getPrix() {
@@ -164,11 +163,6 @@ function mettrePrix(prixMin, prixMax) {
 
 
     count = 0;
-<<<<<<< HEAD
     
 }
-=======
 
-}
-
->>>>>>> 55d6386ac3bd03e402517a72999d037eff1327a5

@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modele.ServicesApp;
 import modele.appartement;
+import oracle.jdbc.OracleTypes;
 
 /**
  *
@@ -397,44 +398,48 @@ public class Utils {
         return listApps;
     }
 
-    public void rechercheListApp(String province, String ville) throws SQLException {
-        System.out.println("Province= " + province);
-        System.out.println("Ville= " + ville);
+    
+     public void rechercheListApp(String province, String ville, String type, double prixMin, double prixMax, String service) throws SQLException {
         Connection connection = getConnection();
-        CallableStatement statement = null;
-
-        String sql = "{call nombreAbonnes(?)}";
-        statement = connection.prepareCall(sql);
-//enregistrement du paramètre de sortie en fonction de son type et de son nom 
-        statement.registerOutParameter("nb", java.sql.Types.INTEGER);
-//enregistrement du paramètre de sortie en fonction de son type et de son index 
-
-//statement.registerOutParameter(1, java.sql.Types.INTEGER); 
-        statement.execute();
-//récupération du résultat en fonction de l'index 
-        int resultat = statement.getInt(1);
-//récupération du résultat en fonction du nom du paramètre 
-
-//int resultat = statement.getInt("nb"); 
-        System.out.println("Nombre d'abonnés = " + resultat);
-
-//        stm = conn.prepareCall("{call nombreProvince} ");
-//        stm.setString(1, province);//Province
-//        stm.setString(2, ville);//Ville
-//        if (stm.execute()) {
-//            System.out.println("EXECUTE");
-//            //récupération des ResultSet 
-//            //ResultSet resultat1 = stm.getResultSet();
-//            //System.out.println("******************* "+ resultat1);
-////            //traitement des informations 
-////            while (resultat1.next()) {
-////                for (int i = 0; i < resultat1.getMetaData().getColumnCount(); i++) {
-////                    System.out.print(resultat1.getObject(i + 1) + ", ");
-////                }
-////                System.out.println("");
-////            }
-//            //resultat1.close();
-//        }
+        String sql = "{call retournerListeApp(?, ?, ?,?, ?, ?, ?)}";
+        CallableStatement statement = connection.prepareCall(sql);
+        if (province== null|| province== ""){
+            province = "%";
+        } 
+        
+        statement.setString(1, province);//Province
+        statement.setString(2, ville);//Ville
+        statement.setString(3, type);//type
+        statement.setDouble(4, prixMin);//prixMin
+        statement.setDouble(5, prixMax);//prixMax
+        statement.setString(6, service);//service
+        statement.registerOutParameter(7, OracleTypes.CURSOR);
+        // execute getDBUSERCursor store procedure
+        statement.executeUpdate();
+        // get cursor and cast it to ResultSet
+        ResultSet rs = (ResultSet) statement.getObject(7);
+        // loop it like normal
+        while (rs.next()) {
+            String pays_nom = rs.getString("pays_nom");
+            String prov_nom = rs.getString("prov_nom");
+            String app_numero = rs.getString("app_numero");
+            String app_numero_civique = rs.getString("app_numero_civique");
+            String app_code_postal = rs.getString("app_code_postal");
+            String type_app_description = rs.getString("type_app_description");
+            String serv_description = rs.getString("serv_description");
+            String app_statut_disponible = rs.getString("app_statut_disponible");
+            double app_prix = rs.getDouble("app_prix");
+            String app_image1 = rs.getString("app_image1");
+            String app_image2 = rs.getString("app_image2");
+            String app_image3 = rs.getString("app_image3");
+            String app_image4 = rs.getString("app_image4");
+            String app_image5 = rs.getString("app_image5");
+            System.out.println("************************************************");
+            System.out.println(pays_nom+", "+prov_nom+", "+", "+app_numero+", "+", "+app_numero_civique+", "+", "+app_code_postal+", "
+            +type_app_description+", "+", "+serv_description+", "+", "+app_statut_disponible+", "+", "+app_prix+", ");
+        }
     }
+
+    
 
 }

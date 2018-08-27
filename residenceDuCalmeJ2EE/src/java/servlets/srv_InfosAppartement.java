@@ -49,7 +49,22 @@ public class srv_InfosAppartement extends HttpServlet {
                 response.getWriter().write(json);
                 break;
             }
-
+            
+//            case "rechercheListeApp": {
+//                try {
+//                    String province = request.getParameter("province");
+//                    String ville = request.getParameter("ville");
+//                    String type = request.getParameter("type");
+//                    double prixMin = Double.parseDouble(request.getParameter("prixMin"));
+//                    double prixMax = Double.parseDouble(request.getParameter("prixMax"));
+//                    String service = request.getParameter("service");
+//                    Utils.GetInstance().rechercheListApp(province, ville, type, prixMin, prixMax, service);
+//                    //Utils.GetInstance().rechercheListApp(province, ville);
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(srv_InfosAppartement.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+            
             case "rechercheListeApp": {
                 String province = request.getParameter("province");
                 String ville = request.getParameter("ville");
@@ -59,6 +74,7 @@ public class srv_InfosAppartement extends HttpServlet {
                 String service = request.getParameter("service");
 
                 ArrayList<appartement> listApps = new ArrayList();
+                
                 listApps = Utils.GetInstance().rechercheListApp(province, ville, type, prixMin, prixMax, service);
                 // Utils.GetInstance().rechercheListApp(province, ville);
                 if (listApps.size() > 0) {
