@@ -24,6 +24,10 @@
         <servlet-name>srv_checkout</servlet-name>
         <servlet-class>servlets.srv_checkout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>srv_ControlLang</servlet-name>
+        <servlet-class>servlets.srv_ControlLang</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>srv_Login</servlet-name>
         <url-pattern>/srv_Login</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>srv_checkout</servlet-name>
         <url-pattern>/srv_checkout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>srv_ControlLang</servlet-name>
+        <url-pattern>/srv_ControlLang</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
