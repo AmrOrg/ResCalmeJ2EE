@@ -9,7 +9,7 @@ package modele;
  *
  * @author 1795162
  */
-public class appartement {
+public class appartement_old {
 
     private String app_id;
     private String Res_id;

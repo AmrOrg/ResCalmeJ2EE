@@ -16,8 +16,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modele.Appartement;
+import modele.ListeAppartements;
 import modele.ServicesApp;
-import modele.appartement;
+import modele.appartement_old;
 import oracle.jdbc.OracleTypes;
 
 /**
@@ -168,12 +170,12 @@ public class Utils {
         return etat;
     }
 
-    public ArrayList<appartement> chercherApp() {
+    public ArrayList<appartement_old> chercherApp() {
 
         Connection conn = getConnection();
 
-        appartement app = new appartement();
-        ArrayList<appartement> ar_app_objet = new ArrayList<>();
+        appartement_old app = new appartement_old();
+        ArrayList<appartement_old> ar_app_objet = new ArrayList<>();
 
         String Query = "SELECT APPARTEMENT_ID , APP_NUMERO, APP_STATUT_DISPONIBLE,RESIDENCE_ID  FROM APPARTEMENT ";
         PreparedStatement psm;
@@ -244,13 +246,13 @@ public class Utils {
     public ArrayList<ServicesApp> getAppServices() {
         Connection conn = getConnection();
         ArrayList<ServicesApp> ar_app_services = new ArrayList<ServicesApp>();
-        String Query = "SELECT SERVICE_ID, SERV_DESCRIPTION, SERV_PRIX FROM SERVICE";
+        String Query = "SELECT TYPE_SERV_ID, SERV_DESCRIPTION, SERV_PRIX FROM TYPE_SERVICE";
         PreparedStatement psm;
         try {
             psm = conn.prepareStatement(Query);
             ResultSet rs = psm.executeQuery();
             while (rs.next()) {
-                ar_app_services.add(new ServicesApp(rs.getInt("SERVICE_ID"), rs.getString("SERV_DESCRIPTION"), rs.getDouble("SERV_PRIX")));
+                ar_app_services.add(new ServicesApp(rs.getInt("TYPE_SERV_ID"), rs.getString("SERV_DESCRIPTION"), rs.getDouble("SERV_PRIX")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
@@ -366,47 +368,29 @@ public class Utils {
         return x;
     }
 
-    public ArrayList<appartement> rechercheListApp(String province, String ville, String type, String prixMin, String prixMax, String service) {
-        ArrayList<appartement> listApps = new ArrayList<>();
-        Connection conn = getConnection();
-        String Query = "select APPARTEMENT_ID,APP_NUMERO ,ADRESSE_ID,APP_STATUT_DISPONIBLE,APP_PRIX,APP_IMAGE1,APP_IMAGE2,APP_IMAGE3,APP_IMAGE4,APP_IMAGE5 from APPARTEMENT";
-        PreparedStatement pstm;
-        try {
-            pstm = conn.prepareStatement(Query);
-            ResultSet res = pstm.executeQuery();
-            while (res.next()) {
-
-                appartement ap = new appartement();
-                ap.setApp_id(res.getString("APPARTEMENT_ID"));
-                ap.setApp_num(res.getString("APP_NUMERO"));
-                ap.setApp_addr_id(res.getString("ADRESSE_ID"));
-                ap.setApp_status(res.getString("APP_STATUT_DISPONIBLE"));
-                ap.setApp_prix(Double.parseDouble(res.getString("APP_PRIX")));
-                ap.setApp_img1(res.getString("APP_IMAGE1"));
-                ap.setApp_img2(res.getString("APP_IMAGE2"));
-                ap.setApp_img3(res.getString("APP_IMAGE3"));
-                ap.setApp_img4(res.getString("APP_IMAGE4"));
-                ap.setApp_img5(res.getString("APP_IMAGE5"));
-
-                listApps.add(ap);
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return listApps;
-    }
-
-    
-     public void rechercheListApp(String province, String ville, String type, double prixMin, double prixMax, String service) throws SQLException {
-        Connection connection = getConnection();
+    public ListeAppartements rechercheListApp(String province, String ville, String type,  double prixMin, double prixMax, String service) throws SQLException {
+         ListeAppartements registreApp= new ListeAppartements();
+         Connection connection = getConnection();
         String sql = "{call retournerListeApp(?, ?, ?,?, ?, ?, ?)}";
         CallableStatement statement = connection.prepareCall(sql);
-        if (province== null|| province== ""){
+        if (province== null|| province.trim().equals("")){
             province = "%";
         } 
-        
+        if (ville== null|| ville.trim().equals("")){
+            ville = "%";
+        } 
+        if (type== null|| type.trim().equals("")){
+            type = "%";
+        } 
+        if (service== null|| service.trim().equals("")){
+            service = "%";
+        } 
+        System.out.println("Prov: "+province);
+        System.out.println("ville: "+ville);
+        System.out.println("type: "+type);
+        System.out.println("service: "+service);
+        System.out.println("prixMin: "+prixMin);
+        System.out.println("prixMax: "+prixMax);
         statement.setString(1, province);//Province
         statement.setString(2, ville);//Ville
         statement.setString(3, type);//type
@@ -414,32 +398,31 @@ public class Utils {
         statement.setDouble(5, prixMax);//prixMax
         statement.setString(6, service);//service
         statement.registerOutParameter(7, OracleTypes.CURSOR);
-        // execute getDBUSERCursor store procedure
         statement.executeUpdate();
-        // get cursor and cast it to ResultSet
         ResultSet rs = (ResultSet) statement.getObject(7);
-        // loop it like normal
         while (rs.next()) {
             String pays_nom = rs.getString("pays_nom");
             String prov_nom = rs.getString("prov_nom");
+            String ville_nom = rs.getString("ville_nom");
             String app_numero = rs.getString("app_numero");
             String app_numero_civique = rs.getString("app_numero_civique");
+            String app_rue= rs.getString("app_rue");
             String app_code_postal = rs.getString("app_code_postal");
             String type_app_description = rs.getString("type_app_description");
             String serv_description = rs.getString("serv_description");
             String app_statut_disponible = rs.getString("app_statut_disponible");
             double app_prix = rs.getDouble("app_prix");
+            double app_prix_serv = rs.getDouble("serv_prix");
             String app_image1 = rs.getString("app_image1");
             String app_image2 = rs.getString("app_image2");
             String app_image3 = rs.getString("app_image3");
             String app_image4 = rs.getString("app_image4");
             String app_image5 = rs.getString("app_image5");
-            System.out.println("************************************************");
-            System.out.println(pays_nom+", "+prov_nom+", "+", "+app_numero+", "+", "+app_numero_civique+", "+", "+app_code_postal+", "
-            +type_app_description+", "+", "+serv_description+", "+", "+app_statut_disponible+", "+", "+app_prix+", ");
+            Appartement appartement = new Appartement(pays_nom, prov_nom, ville_nom, app_numero, app_numero_civique, app_rue, app_code_postal, type_app_description,
+            serv_description, app_statut_disponible, app_prix, app_prix_serv, app_image1, app_image2, app_image3, app_image4, app_image5);
+            registreApp.ajouterApp(appartement);
         }
+        return registreApp;
     }
-
     
-
 }

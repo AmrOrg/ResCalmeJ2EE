@@ -20,8 +20,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modele.ListeAppartements;
 import modele.ServicesApp;
-import modele.appartement;
+import modele.appartement_old;
 
 /**
  *
@@ -49,51 +50,40 @@ public class srv_InfosAppartement extends HttpServlet {
                 response.getWriter().write(json);
                 break;
             }
-            
-//            case "rechercheListeApp": {
-//                try {
-//                    String province = request.getParameter("province");
-//                    String ville = request.getParameter("ville");
-//                    String type = request.getParameter("type");
-//                    double prixMin = Double.parseDouble(request.getParameter("prixMin"));
-//                    double prixMax = Double.parseDouble(request.getParameter("prixMax"));
-//                    String service = request.getParameter("service");
-//                    Utils.GetInstance().rechercheListApp(province, ville, type, prixMin, prixMax, service);
-//                    //Utils.GetInstance().rechercheListApp(province, ville);
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(srv_InfosAppartement.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-            
+
             case "rechercheListeApp": {
-                String province = request.getParameter("province");
-                String ville = request.getParameter("ville");
-                String type = request.getParameter("type");
-                String prixMin = request.getParameter("prixMin");
-                String prixMax = request.getParameter("prixMax");
-                String service = request.getParameter("service");
+                try {
+                    String province = request.getParameter("province");
+                    String ville = request.getParameter("ville");
+                    String type = request.getParameter("type");
+                    String service = request.getParameter("service");
+                    String prix = request.getParameter("prix");
+                    double prixMin = 0;
+                    double prixMax = 10000000;
+                    String myJSP= "index.jsp";
 
-                ArrayList<appartement> listApps = new ArrayList();
-                
-                listApps = Utils.GetInstance().rechercheListApp(province, ville, type, prixMin, prixMax, service);
-                // Utils.GetInstance().rechercheListApp(province, ville);
-                if (listApps.size() > 0) {
-                    request.setAttribute("listApps", listApps);
-                    //   System.out.println(listApps);
-                    RequestDispatcher disp = request.getRequestDispatcher("Produit.jsp");
+                    if (!prix.trim().equals("")) {
+                        String[] tabPrix = prix.split(" ");
+                        prixMin = Double.parseDouble(tabPrix[0]);
+                        prixMax = Double.parseDouble(tabPrix[2]);
+                    }
+
+                    ListeAppartements registreApp = Utils.GetInstance().rechercheListApp(province, ville, type, prixMin, prixMax, service);
+                    
+                    if (registreApp.size() > 0) {
+                        request.setAttribute("registreApp", registreApp);
+                        request.setAttribute("Message", "EXISTE");
+                        myJSP= "ListeAppartements.jsp";
+                    }else{
+                       request.setAttribute("Message", "VIDE"); 
+                    }
+                    RequestDispatcher disp = request.getRequestDispatcher(myJSP);
                     disp.forward(request, response);
 
-                } else {
-
-                    String msg = "Auqune Data cherecher Autre Fois SVP";
-                      request.setAttribute("msg", msg);
-                    //   System.out.println(listApps);
-                    RequestDispatcher disp = request.getRequestDispatcher("index.jsp");
-                    disp.forward(request, response);
+                } catch (SQLException ex) {
+                    Logger.getLogger(srv_InfosAppartement.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
             }
-
             default:
                 break;
         }

@@ -2,16 +2,12 @@
 DELETE FROM ville;
 DELETE FROM province;
 DELETE FROM pays;
-DELETE FROM adresse;
-DELETE FROM residence;
 DELETE FROM type_appartement;
 DELETE FROM appartement;
 DELETE FROM reparation;
 DELETE FROM locataire;
 DELETE FROM service;
-DELETE FROM bail;
-DELETE FROM bail_service;
-
+DELETE FROM type_service;
 
 --Pays
 INSERT INTO pays (
@@ -19,7 +15,7 @@ INSERT INTO pays (
     pays_nom
 ) VALUES (
     'CA',
-    'Canada'
+    'CANADA'
 );
 
 INSERT INTO pays (
@@ -27,7 +23,7 @@ INSERT INTO pays (
     pays_nom
 ) VALUES (
     'US',
-    'United States of America'
+    'USA'
 );
 
 INSERT INTO pays (
@@ -35,8 +31,9 @@ INSERT INTO pays (
     pays_nom
 ) VALUES (
     'AR',
-    'Argentina'
+    'ARGENTINE'
 );
+
 -- Province
 INSERT INTO PROVINCE VALUES('QC','CA','QUEBEC');
 INSERT INTO PROVINCE VALUES('AB','CA','ALBERTA');
@@ -45,85 +42,17 @@ INSERT INTO PROVINCE VALUES('NB','CA','NOUVEAU-BRUNSWICK');
 INSERT INTO PROVINCE VALUES('NS','CA','NOUVELLE-ÉCOSSE');
 
 --Ville
-INSERT INTO ville values('QC', 'Montreal');
-INSERT INTO ville values('QC', 'Laval');
-INSERT INTO ville values('QC', 'Repentigny');
+INSERT INTO VILLE VALUES('QC', 'MONTREAL');
+INSERT INTO VILLE VALUES('QC', 'LAVAL');
+INSERT INTO VILLE VALUES('QC', 'REPENTIGNY');
 
-INSERT INTO ville values('AB', 'Calgary');
-INSERT INTO ville values('AB', 'Edmonton');
-INSERT INTO ville values('AB', 'Saint Albert');
+INSERT INTO VILLE VALUES('AB', 'CALGARY');
+INSERT INTO VILLE VALUES('AB', 'EDMONTON');
+INSERT INTO VILLE VALUES('AB', 'SAINT ALBERT');
 
-INSERT INTO ville values('BC', 'Okanagan');
-INSERT INTO ville values('BC', 'Cariboo');
-INSERT INTO ville values('BC', 'Chicotin');
--- Adresse Residence --1
-INSERT INTO adresse (
-    adresse_id,
-    pays_id,
-    add_numero_civique,
-    add_rue,
-    add_province,
-    add_ville,
-    add_code_postal
-) VALUES (
-    adresse_id_seq.NEXTVAL,
-    'CA',
-    1800,
-    'Spadina Ave',
-    'Toronto',
-    'Ontario',
-    'M5V 2L7'
-);
--- Adresse Residence --2
-INSERT INTO adresse (
-    adresse_id,
-    pays_id,
-    add_numero_civique,
-    add_rue,
-    add_province,
-    add_ville,
-    add_code_postal
-) VALUES (
-    adresse_id_seq.NEXTVAL,
-    'US',
-    7441,
-    '12 E. Spadina Ave',
-    'New York',
-    'Brooklyn',
-    '1234UCF'
-);
---RESIDENCE 1
-INSERT INTO residence (
-    residence_id,
-    adresse_id,
-    res_nom,
-    res_nombre_app,
-    res_nombre_etages,
-    res_prix_achat
-) VALUES (
-    residence_id_seq.NEXTVAL,
-    1,
-    'Residence du calme',
-    45,
-    12,
-    750000
-);
---RESIDENCE 2
-INSERT INTO residence (
-    residence_id,
-    adresse_id,
-    res_nom,
-    res_nombre_app,
-    res_nombre_etages,
-    res_prix_achat
-) VALUES (
-    residence_id_seq.NEXTVAL,
-    2,
-    'PEACE RESIDENTIAL',
-    55,
-    8,
-    450000
-);
+INSERT INTO VILLE VALUES('BC', 'OKANAGAN');
+INSERT INTO VILLE VALUES('BC', 'CARIBOO');
+INSERT INTO VILLE VALUES('BC', 'CHICOTIN');
 
 --TYPE_APPARTEMENT
 INSERT INTO type_appartement (
@@ -192,27 +121,32 @@ INSERT INTO type_appartement (
     1050
 );
 
-
 --APPARTEMENT
 INSERT INTO appartement (
+    ville_nom,
     appartement_id,
-    residence_id,
     type_appartement_id,
     app_numero,
     app_statut_disponible,
-    app_prix, 
+    app_prix,
+    app_numero_civique,   
+    app_rue,              
+    app_code_postal ,     
     app_image1, 
     app_image2, 
     app_image3, 
     app_image4, 
     app_image5
 ) VALUES (
+    'MONTREAL',
     appartement_id_seq.NEXTVAL,
     1,
-    1,
-    1,
+    10,
     'N',
-    400,
+    750,
+    1800,
+    'Spadina Ave',
+    'M5V 2L7',
     'images/appartments/image1.jpg',
     'images/appartments/image2.jpg',
     'images/appartments/image3.jpg',
@@ -221,24 +155,30 @@ INSERT INTO appartement (
 );
 
 INSERT INTO appartement (
+    ville_nom,
     appartement_id,
-    residence_id,
     type_appartement_id,
     app_numero,
     app_statut_disponible,
     app_prix, 
+    app_numero_civique,   
+    app_rue,              
+    app_code_postal , 
     app_image1, 
     app_image2, 
     app_image3, 
     app_image4, 
     app_image5
 ) VALUES (
+    'MONTREAL',
     appartement_id_seq.NEXTVAL,
-    1,
     2,
-    2,
+    11,
     'N',
-    850,
+    800,
+    8761,
+    'Rue de Marseille',
+    'H1L 1S3',
     'images/appartments/image6.jpg',
     'images/appartments/image7.jpg',
     'images/appartments/image8.jpg',
@@ -247,64 +187,203 @@ INSERT INTO appartement (
 );
 
 INSERT INTO appartement (
+    ville_nom,
     appartement_id,
-    residence_id,
     type_appartement_id,
     app_numero,
     app_statut_disponible,
     app_prix, 
+    app_numero_civique,   
+    app_rue,              
+    app_code_postal , 
     app_image1, 
     app_image2, 
     app_image3, 
     app_image4, 
     app_image5
 ) VALUES (
+    'REPENTIGNY',
     appartement_id_seq.NEXTVAL,
-    1,
-    2,
     3,
+    12,
     'O',
-    400,
+    850,
+    9189,
+    'Rue de Teck',
+    'H1L 1L2',
     'images/appartments/image11.jpg',
     'images/appartments/image12.jpg',
     'images/appartments/image13.jpg',
     'images/appartments/image14.jpg',
     'images/appartments/image15.jpg'
 );
-/*
+
+INSERT INTO appartement (
+    ville_nom,
+    appartement_id,
+    type_appartement_id,
+    app_numero,
+    app_statut_disponible,
+    app_prix,
+    app_numero_civique,   
+    app_rue,              
+    app_code_postal ,  
+    app_image1, 
+    app_image2, 
+    app_image3, 
+    app_image4, 
+    app_image5
+) VALUES (
+    'MONTREAL',
+    appartement_id_seq.NEXTVAL,
+    4,
+    14,
+    'O',
+    650,
+    5160,
+    'Boulevard Décarie',
+    'H3X 2H9',
+    'images/appartments/image11.jpg',
+    'images/appartments/image12.jpg',
+    'images/appartments/image13.jpg',
+    'images/appartments/image14.jpg',
+    'images/appartments/image15.jpg'
+);
+
+INSERT INTO appartement (
+    ville_nom,
+    appartement_id,
+    type_appartement_id,
+    app_numero,
+    app_statut_disponible,
+    app_prix, 
+    app_numero_civique,   
+    app_rue,              
+    app_code_postal , 
+    app_image1, 
+    app_image2, 
+    app_image3, 
+    app_image4, 
+    app_image5
+) VALUES (
+    'LAVAL',
+    appartement_id_seq.NEXTVAL,
+    5,
+    15,
+    'N',
+    780,
+    7701,
+    'Louis-H.-La Fontaine',
+    'H1K 4B9',
+    'images/appartments/image11.jpg',
+    'images/appartments/image12.jpg',
+    'images/appartments/image13.jpg',
+    'images/appartments/image14.jpg',
+    'images/appartments/image15.jpg'
+);
+
+INSERT INTO appartement (
+    ville_nom,
+    appartement_id,
+    type_appartement_id,
+    app_numero,
+    app_statut_disponible,
+    app_prix, 
+    app_numero_civique,   
+    app_rue,              
+    app_code_postal , 
+    app_image1, 
+    app_image2, 
+    app_image3, 
+    app_image4, 
+    app_image5
+) VALUES (
+    'CALGARY',
+    appartement_id_seq.NEXTVAL,
+    4,
+    16,
+    'O',
+    1200,
+    12426 ,
+    'Covntry Hlls WY NE',
+    'T3K 4T1',
+    'images/appartments/image6.jpg',
+    'images/appartments/image7.jpg',
+    'images/appartments/image8.jpg',
+    'images/appartments/image9.jpg',
+    'images/appartments/image10.jpg'
+);
+
+INSERT INTO appartement (
+    ville_nom,
+    appartement_id,
+    type_appartement_id,
+    app_numero,
+    app_statut_disponible,
+    app_prix, 
+    app_numero_civique,   
+    app_rue,              
+    app_code_postal , 
+    app_image1, 
+    app_image2, 
+    app_image3, 
+    app_image4, 
+    app_image5
+) VALUES (
+    'CALGARY',
+    appartement_id_seq.NEXTVAL,
+    5,
+    15,
+    'O',
+    1200,
+    1855 ,
+    'Evergreen Dr SW',
+    'T2Y 5B1',
+    'images/appartments/image14.jpg',
+    'images/appartments/image16.jpg',
+    'images/appartments/image18.jpg',
+    'images/appartments/image19.jpg',
+    'images/appartments/image20.jpg'
+);
+
 -- LOCATAIRE
 INSERT INTO locataire (
-    
     loc_nom,
     loc_prenom,
+    loc_username,
+    loc_password,
     loc_email,
     loc_telephone
 ) VALUES (
-    locataire_id_seq.NEXTVAL,
     'DESPRES',
     'CHRISTIAN',
+    'dchristian',
+    'password',
     'dchristian@gmail.com',
     '5147859823'
 );
 
+-- LOCATAIRE
 INSERT INTO locataire (
-    locataire_id,
     loc_nom,
     loc_prenom,
+    loc_username,
+    loc_password,
     loc_email,
     loc_telephone
 ) VALUES (
-    locataire_id_seq.NEXTVAL,
-    'KING',
-    'STEVEN',
-    'ksteven@gmail.com',
-    '4385621458'
+    'MANNON',
+    'CHLOE',
+    'mchloe',
+    'password',
+    'mchloe@gmail.com',
+    '5148579585'
 );
 
 --REPARATION
 INSERT INTO reparation (
     reparation_id,
-    residence_id,
+    appartement_id,
     reparation_date,
     reparation_description,
     reparation_montant
@@ -318,13 +397,13 @@ INSERT INTO reparation (
 
 INSERT INTO reparation (
     reparation_id,
-    residence_id,
+    appartement_id,
     reparation_date,
     reparation_description,
     reparation_montant
 ) VALUES (
     reparation_id_seq.NEXTVAL,
-    1,
+    2,
     TO_DATE('2017-11-17','YYYY-MM-DD'),
     'Plomberie',
     4500
@@ -332,118 +411,133 @@ INSERT INTO reparation (
 
 INSERT INTO reparation (
     reparation_id,
-    residence_id,
+    appartement_id,
     reparation_date,
     reparation_description,
     reparation_montant
 ) VALUES (
     reparation_id_seq.NEXTVAL,
-    1,
+    2,
     TO_DATE('2017-11-17','YYYY-MM-DD'),
     'Porte',
     1550
 );
 
---SERVICE
-
-INSERT INTO service (
-    service_id,
+-- TYPE_SERVICE
+INSERT INTO TYPE_SERVICE (
+    type_serv_id,
     serv_description,
     serv_prix
 ) VALUES (
-    service_id_seq.NEXTVAL,
+    type_serv_id_seq.NEXTVAL,
     'Stationnement',
     75
 );
 
-INSERT INTO service (
-    service_id,
+INSERT INTO TYPE_SERVICE (
+    type_serv_id,
     serv_description,
     serv_prix
 ) VALUES (
-    service_id_seq.NEXTVAL,
+    type_serv_id_seq.NEXTVAL,
     'Chauffage',
     120
 );
 
-INSERT INTO service (
-    service_id,
+INSERT INTO TYPE_SERVICE (
+    type_serv_id,
     serv_description,
     serv_prix
 ) VALUES (
-    service_id_seq.NEXTVAL,
+    type_serv_id_seq.NEXTVAL,
     'Meuble',
     50
 );
--- BAIL
 
-INSERT INTO bail (
-    bail_id,
-    locataire_id,
-	appartement_id,
-    bail_date,
-    bail_date_debut,
-    bail_date_fin,
-    bail_montant,
-    bail_montant_service
+
+-- SERVICE
+INSERT INTO service (
+    service_id,
+    appartement_id,
+    type_serv_id
 ) VALUES (
-    bail_id_seq.NEXTVAL,
+    service_id_seq.NEXTVAL,
     1,
-	1,
-    TO_DATE('2017-06-29','YYYY-MM-DD'),
-    TO_DATE('2017-07-01','YYYY-MM-DD'),
-    TO_DATE('2018-07-01','YYYY-MM-DD'),
-    650,
-    195
+    1
 );
-
-INSERT INTO bail (
-    bail_id,
-    locataire_id,
-	appartement_id,
-    bail_date,
-    bail_date_debut,
-    bail_date_fin,
-    bail_montant,
-    bail_montant_service
+INSERT INTO service (
+    service_id,
+    appartement_id,
+    type_serv_id
 ) VALUES (
-    bail_id_seq.NEXTVAL,
-    2,
-	2,
-    TO_DATE('2017-05-29','YYYY-MM-DD'),
-    TO_DATE('2017-06-01','YYYY-MM-DD'),
-    TO_DATE('2018-06-01','YYYY-MM-DD'),
-    750,
-    120
+    service_id_seq.NEXTVAL,
+    1,
+    1
 );
 
---BAIL_SERVICE
-INSERT INTO bail_service (
-    bail_id,
+INSERT INTO service (
     service_id,
-    bail_duree
+    appartement_id,
+    type_serv_id
 ) VALUES (
-    1,
-    1,
-    12
+    service_id_seq.NEXTVAL,
+    2,
+    3
 );
-INSERT INTO bail_service (
-    bail_id,
+INSERT INTO service (
     service_id,
-    bail_duree
+    appartement_id,
+    type_serv_id
 ) VALUES (
-    1,
-    2,
-    12
+    service_id_seq.NEXTVAL,
+    3,
+    3
 );
-INSERT INTO bail_service (
-    bail_id,
+INSERT INTO service (
     service_id,
-    bail_duree
+    appartement_id,
+    type_serv_id
 ) VALUES (
-    2,
-    2,
-    12
+    service_id_seq.NEXTVAL,
+    4,
+    3
 );
-*/
+INSERT INTO service (
+    service_id,
+    appartement_id,
+    type_serv_id
+) VALUES (
+    service_id_seq.NEXTVAL,
+    5,
+    1
+);
+INSERT INTO service (
+    service_id,
+    appartement_id,
+    type_serv_id
+) VALUES (
+    service_id_seq.NEXTVAL,
+    6,
+    1
+);
+
+INSERT INTO service (
+    service_id,
+    appartement_id,
+    type_serv_id
+) VALUES (
+    service_id_seq.NEXTVAL,
+    7,
+    1
+);
+INSERT INTO service (
+    service_id,
+    appartement_id,
+    type_serv_id
+) VALUES (
+    service_id_seq.NEXTVAL,
+    7,
+    3
+);
+
 COMMIT;
