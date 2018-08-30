@@ -31,9 +31,7 @@
                     <tr>
                         <td colspan="2" style="text-align:right"><input  class="btn btn-success" type="submit" value="Se Connecter" /></td>
                     </tr>
-
                 </table>
-
             </form>  
         </div>
     </center>

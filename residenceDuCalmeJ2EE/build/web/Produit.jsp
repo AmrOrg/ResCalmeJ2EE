@@ -20,15 +20,12 @@
 
                 <tbody>
 
-                    <c:forEach var="item" items="${listApps}" varStatus="loop">
-
-
+                    <c:forEach var="item" items="${registreApp}" varStatus="loop">
                         <tr>
                             <td> <img src="${item.app_img1}" width="200" height="200" alt="a"/></td>
                             <td> ${item.app_prix}</td>
                             <td>${item.app_status}</td>
                             <td> ${item.app_addr_id}</td>
-
                             <td>
 
                                 <input type="hidden" name="Index" value="${loop.index}" />
