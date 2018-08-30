@@ -15,40 +15,41 @@
     </head>
     <body>
         <%@include file="entetePage.jspf" %>
+        <br><br>
     <center>  
-        <center><h1><u>Add User</u></h1></center>
+       
         <center>
             <div>
                 <form action="srv_Inscription" method="POST">
 
                     <table>
                         <tr>
-                            <td>NOM   </td>
-                            <td><input type="text" class="form-control" name="nom"  size="30" placeholder="Username"/></td>
+                            <td>Nom   </td>
+                            <td><input type="text" class="form-control" name="nom"  size="30" placeholder="Nom"/></td>
                         </tr>
                         <tr>
-                            <td>PRÉNOM  </td>
-                            <td><input type="text" class="form-control" name="prenom"  size="30" placeholder="Username"/></td>
+                            <td>Prénom  </td>
+                            <td><input type="text" class="form-control" name="prenom"  size="30" placeholder="Prénom"/></td>
                         </tr>
                         <tr>
-                            <td>User Name   </td>
-                            <td><input type="text" class="form-control" name="UserName1"  size="30" placeholder="Username"/></td>
+                            <td>Identifiant  </td>
+                            <td><input type="text" class="form-control" name="UserName1"  size="30" placeholder="Identifiant"/></td>
                         </tr>
                         <tr>
-                            <td>Password    </td>
-                            <td><input type="password" class="form-control" name="PWD1" placeholder="Password" size="30" /></td>
+                            <td>Mot de passe    </td>
+                            <td><input type="password" class="form-control" name="PWD1" placeholder="Mot de passe" size="30" /></td>
                         </tr>
 
                         <tr>
-                            <td>Email </td>
+                            <td>Couriel </td>
                             <td><input type="text" class="form-control" name="email1"  size="30" placeholder="xyz@xyz.com"/></td>
                         </tr>
                         <tr>
-                            <td>Telephone </td>
-                            <td><input type="text" class="form-control" name="tel1"  size="30" placeholder="xyz@xyz.com"/></td>
+                            <td>Téléphone </td>
+                            <td><input type="text" class="form-control" name="tel1"  size="30" placeholder="(514)000-0000"/></td>
                         </tr>
                         <tr>
-                            <td colspan="2" style="text-align:center"><input  class="btn btn-success" type="submit" value="Save" /></td>
+                            <td colspan="2" style="text-align:right"><input  class="btn btn-success" type="submit" value="S'inscrire" /></td>
 
                         </tr>
 

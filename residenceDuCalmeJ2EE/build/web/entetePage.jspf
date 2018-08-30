@@ -27,12 +27,10 @@
 
             </c:if>
             <c:if test="${sessionScope.username !=null}">
-
                 <li><a style="margin-right: 80px ;color: darkred; font: bold; font-size: 20px;" href="/Profile.jsp">Bienvenue  ${sessionScope.username}</a></li>
                 <li><a style="margin-right: 80px ;color: darkred; font: bold; font-size: 20px;" href="srv_Login?logout=true">Se déconnecter </a></li>
-
             </c:if>
-            <li><a style="margin-right: 40px;" href="Produit.jsp">Produits</a></li>
+            
             <li><a style="margin-right: 40px;" href="Contacts.jsp">Contacts</a></li>
             <li>
             <form name="maForm" action="srv_ControlLang">

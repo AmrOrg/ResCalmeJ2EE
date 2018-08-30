@@ -15,32 +15,21 @@
 
     <body >
     <%@include file="entetePage.jspf" %>
-
-    <center><h1><u>Se Connecter</u></h1></center>
+    <br><br>
     <center>
         <div>
             <form action="srv_Login?logout=false" method="POST">
-
                 <table>
-
                     <tr>
-                        <td>User Name   </td>
-                        <td><input type="text" class="form-control" name="UserName"  size="30" placeholder="Username" required/></td>
+                        <td>Identifiant</td>
+                        <td><input type="text" class="form-control" name="UserName"  size="30" placeholder="Identifiant" required/></td>
                     </tr>
                     <tr>
-                        <td>Password    </td>
-                        <td><input type="password" class="form-control" name="PWD" placeholder="Password" size="30" required/></td>
+                        <td>Mot de passe</td>
+                        <td><input type="password" class="form-control" name="PWD" placeholder="Mot de passe" size="30" required/></td>  
                     </tr>
                     <tr>
-                        <td>Language    </td>
-                        <td><input type="radio" name="lang" value="Fr" checked="checked" />Francais <br>
-                            <input type="radio" name="lang" value="En"  />English <br>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="text-align:center"><input  class="btn btn-success" type="submit" value="Login" /></td>
-
+                        <td colspan="2" style="text-align:right"><input  class="btn btn-success" type="submit" value="Se Connecter" /></td>
                     </tr>
 
                 </table>
