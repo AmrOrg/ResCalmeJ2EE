@@ -16,6 +16,7 @@ public final class ListeAppartements_jsp extends org.apache.jasper.runtime.HttpJ
     _jspx_dependants.add("/WEB-INF/../entetePage.jspf");
   }
 
+  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_forEach_varStatus_var_items;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_if_test;
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
@@ -25,10 +26,12 @@ public final class ListeAppartements_jsp extends org.apache.jasper.runtime.HttpJ
   }
 
   public void _jspInit() {
+    _jspx_tagPool_c_forEach_varStatus_var_items = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_c_if_test = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
   }
 
   public void _jspDestroy() {
+    _jspx_tagPool_c_forEach_varStatus_var_items.release();
     _jspx_tagPool_c_if_test.release();
   }
 
@@ -124,39 +127,60 @@ public final class ListeAppartements_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("</h1>\r\n");
       out.write("\r\n");
       out.write("    </head>\r\n");
-      out.write("    <body>\r\n");
-      out.write("        <form action=\"srv_checkout\" method=\"POST\">\r\n");
-      out.write("\r\n");
-      out.write("            <div id=\"div_1\" class=\"row\">\r\n");
       out.write("\r\n");
       out.write("\r\n");
-      out.write("                <div id=\"div_1_1 \"class=\"col-sm-6\">\r\n");
       out.write("\r\n");
-      out.write("                    <img src=\"../images/background.jpg\" width=\"950\" height=\"800\" alt=\"background\"/>\r\n");
+      out.write("    <div id=\"div_1\" class=\"row \">\r\n");
       out.write("\r\n");
-      out.write("                </div>\r\n");
-      out.write("                <div id=\"div_1_2\" class=\"col-sm-6\">\r\n");
       out.write("\r\n");
-      out.write("                    <div class=\"row\">\r\n");
-      out.write("                        <div id=\"div_annonce\" >\r\n");
-      out.write("                            <img src=\"../images/images.png\" width=\"500\" height=\"100\" alt=\"images\"/>\r\n");
+      out.write("        <div id=\"div_1_1 \"class=\"col-sm-6 \">\r\n");
       out.write("\r\n");
-      out.write("                            \r\n");
-      out.write("                            \r\n");
-      out.write("                        </div>\r\n");
-      out.write("                    </div>\r\n");
+      out.write("            <img src=\"images/background.jpg\" width=\"950\" height=\"800\" alt=\"background\"/>\r\n");
       out.write("\r\n");
+      out.write("        </div>\r\n");
+      out.write("        <div style=\"background: whitesmoke;margin-top:17px;\" id=\"div_1_2\" class=\"col-sm-6\">\r\n");
+      out.write("\r\n");
+      out.write("            <div class=\"row center\">\r\n");
+      out.write("                <div align=\"center\"  id=\"div_annonce\" class=\"col-sm-12 \" >\r\n");
+      out.write("\r\n");
+      out.write("                    <a href=\"https://www.rbcroyalbank.com/personal.html\"><img src=\"images/RB_RB_FRE.png\" width=\"509\" height=\"100\" alt=\"RB_RB_FRE\"/></a>\r\n");
       out.write("\r\n");
       out.write("                </div>\r\n");
       out.write("\r\n");
+      out.write("            </div>\r\n");
+      out.write("            <div class=\"row center\">\r\n");
+      out.write("                <div align=\"center\" style=\"background:#fff ;margin-top:20px;border-color: red;width: 90%;margin-left: 40px;\" id=\"div_resTitle\" class=\"col-sm-12\" >\r\n");
+      out.write("\r\n");
+      out.write("                    <h2 style=\"color: #cc3300\"> Votre Recherche contient ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${registreApp.size()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write(" </h2>\r\n");
+      out.write("\r\n");
+      out.write("                </div>\r\n");
+      out.write("\r\n");
+      out.write("            </div>\r\n");
+      out.write("\r\n");
+      out.write("            <div class=\"row  pre-scrollable\" style=\"max-height: 650px\" >\r\n");
+      out.write("                <form action=\"srv_checkout\" method=\"POST\">\r\n");
+      out.write("                    ");
+      if (_jspx_meth_c_forEach_0(_jspx_page_context))
+        return;
       out.write("\r\n");
       out.write("\r\n");
-      out.write("            </div>>\r\n");
+      out.write("                </form>     \r\n");
       out.write("\r\n");
       out.write("\r\n");
-      out.write("        </form>         \r\n");
       out.write("\r\n");
-      out.write("    </body>\r\n");
+      out.write("            </div>\r\n");
+      out.write("\r\n");
+      out.write("        </div>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("    </div>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("</html>\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
@@ -230,6 +254,81 @@ public final class ListeAppartements_jsp extends org.apache.jasper.runtime.HttpJ
       return true;
     }
     _jspx_tagPool_c_if_test.reuse(_jspx_th_c_if_1);
+    return false;
+  }
+
+  private boolean _jspx_meth_c_forEach_0(PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  c:forEach
+    org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_0 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_varStatus_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
+    _jspx_th_c_forEach_0.setPageContext(_jspx_page_context);
+    _jspx_th_c_forEach_0.setParent(null);
+    _jspx_th_c_forEach_0.setVar("item");
+    _jspx_th_c_forEach_0.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${registreApp}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+    _jspx_th_c_forEach_0.setVarStatus("loop");
+    int[] _jspx_push_body_count_c_forEach_0 = new int[] { 0 };
+    try {
+      int _jspx_eval_c_forEach_0 = _jspx_th_c_forEach_0.doStartTag();
+      if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+        do {
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("                        <div  style=\"background :white;margin-top:20px;border-color: red;width: 44%;margin-left: 40px;\" id=\"div_resTitle\" class=\"col-sm-3\" >\r\n");
+          out.write("\r\n");
+          out.write("                            <div class=\"row\">\r\n");
+          out.write("\r\n");
+          out.write("                                <div class=\"col-sm-6\" onclick= \"submit()\">\r\n");
+          out.write("                                    <img style=\"margin-left: -15px;\" src=\"");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.app_image1}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\" width=\"200\" height=\"200\" alt=\"1490405228\" />\r\n");
+          out.write("\r\n");
+          out.write("                                </div>\r\n");
+          out.write("                                <div class=\"col-sm-6\" >\r\n");
+          out.write("\r\n");
+          out.write("                                    <h3>");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.app_ville}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</h3>\r\n");
+          out.write("                                    <h3>");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.app_prix}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("</h3>\r\n");
+          out.write("                                    <h5>");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.app_nun_civique}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write(' ');
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${item.app_rue}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write(" </h5>\r\n");
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("                                </div>\r\n");
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("                            </div>\r\n");
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("\r\n");
+          out.write("                        </div>\r\n");
+          out.write("                    ");
+          int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
+          if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+            break;
+        } while (true);
+      }
+      if (_jspx_th_c_forEach_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+        return true;
+      }
+    } catch (Throwable _jspx_exception) {
+      while (_jspx_push_body_count_c_forEach_0[0]-- > 0)
+        out = _jspx_page_context.popBody();
+      _jspx_th_c_forEach_0.doCatch(_jspx_exception);
+    } finally {
+      _jspx_th_c_forEach_0.doFinally();
+      _jspx_tagPool_c_forEach_varStatus_var_items.reuse(_jspx_th_c_forEach_0);
+    }
     return false;
   }
 }
