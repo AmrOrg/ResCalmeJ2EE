@@ -20,9 +20,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modele.Appartement;
 import modele.ListeAppartements;
 import modele.ServicesApp;
-import modele.appartement_old;
 
 /**
  *
@@ -68,12 +68,11 @@ public class srv_InfosAppartement extends HttpServlet {
                         prixMax = Double.parseDouble(tabPrix[2]);
                     }
 
-                    ListeAppartements registreApp = Utils.GetInstance().rechercheListApp(province, ville, type, prixMin, prixMax, service);
-                    
+                    ArrayList<Appartement> registreApp = Utils.GetInstance().rechercheListApp(province, ville, type, prixMin, prixMax, service);
                     if (registreApp.size() > 0) {
                         request.setAttribute("registreApp", registreApp);
                         request.setAttribute("Message", "EXISTE");
-                        myJSP= "ListeAppartements.jsp";
+                        myJSP= "/WEB-INF/ListeAppartements.jsp";
                     }else{
                        request.setAttribute("Message", "VIDE"); 
                     }

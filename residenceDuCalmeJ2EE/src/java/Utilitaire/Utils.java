@@ -368,29 +368,23 @@ public class Utils {
         return x;
     }
 
-    public ListeAppartements rechercheListApp(String province, String ville, String type,  double prixMin, double prixMax, String service) throws SQLException {
-         ListeAppartements registreApp= new ListeAppartements();
-         Connection connection = getConnection();
+    public ArrayList<Appartement> rechercheListApp(String province, String ville, String type, double prixMin, double prixMax, String service) throws SQLException {
+        ArrayList registreApp = new ArrayList<Appartement>();
+        Connection connection = getConnection();
         String sql = "{call retournerListeApp(?, ?, ?,?, ?, ?, ?)}";
         CallableStatement statement = connection.prepareCall(sql);
-        if (province== null|| province.trim().equals("")){
+        if (province == null || province.trim().equals("")) {
             province = "%";
-        } 
-        if (ville== null|| ville.trim().equals("")){
+        }
+        if (ville == null || ville.trim().equals("")) {
             ville = "%";
-        } 
-        if (type== null|| type.trim().equals("")){
+        }
+        if (type == null || type.trim().equals("")) {
             type = "%";
-        } 
-        if (service== null|| service.trim().equals("")){
+        }
+        if (service == null || service.trim().equals("")) {
             service = "%";
-        } 
-        System.out.println("Prov: "+province);
-        System.out.println("ville: "+ville);
-        System.out.println("type: "+type);
-        System.out.println("service: "+service);
-        System.out.println("prixMin: "+prixMin);
-        System.out.println("prixMax: "+prixMax);
+        }
         statement.setString(1, province);//Province
         statement.setString(2, ville);//Ville
         statement.setString(3, type);//type
@@ -406,7 +400,7 @@ public class Utils {
             String ville_nom = rs.getString("ville_nom");
             String app_numero = rs.getString("app_numero");
             String app_numero_civique = rs.getString("app_numero_civique");
-            String app_rue= rs.getString("app_rue");
+            String app_rue = rs.getString("app_rue");
             String app_code_postal = rs.getString("app_code_postal");
             String type_app_description = rs.getString("type_app_description");
             String serv_description = rs.getString("serv_description");
@@ -419,10 +413,11 @@ public class Utils {
             String app_image4 = rs.getString("app_image4");
             String app_image5 = rs.getString("app_image5");
             Appartement appartement = new Appartement(pays_nom, prov_nom, ville_nom, app_numero, app_numero_civique, app_rue, app_code_postal, type_app_description,
-            serv_description, app_statut_disponible, app_prix, app_prix_serv, app_image1, app_image2, app_image3, app_image4, app_image5);
-            registreApp.ajouterApp(appartement);
+                    serv_description, app_statut_disponible, app_prix, app_prix_serv, app_image1, app_image2, app_image3, app_image4, app_image5);
+            registreApp.add(appartement);
+            System.out.println(appartement);
         }
         return registreApp;
     }
-    
+
 }
