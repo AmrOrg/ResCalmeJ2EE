@@ -20,26 +20,22 @@
             <table class="table" border="0" cellspacing="8" cellpadding="9">
                 <tbody>
                     <c:forEach var="item" items="${registreApp}" varStatus="loop">
-                        <tr>
-                            <td> <img src="${item.app_image1}" width="200" height="200" alt="a"/></td>
-                            <td> ${item.app_prix}</td>
-                            <td>${item.app_statut}</td>
-                            <td> ${item.app_rue}</td>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <img src="${item.app_image1}" width="200" height="200" alt="a"/>
+                             </div>
+                             <div class="col-sm-6">
+                                <p>${item.app_rue}</p>
+                                <p style="color:red">${item.app_prix}</p>
+                            </div>
+                        </div>
 
-                            <td>
-
-                                <input type="hidden" name="Index" value="${loop.index}" />
-                                <input type="hidden" name="action" value="add" />
-                                <input type="submit"  style="color: red;"value="Add" name="add" />
-
-                            </td>  
-
-
-                        </tr>
-
+                            
                     </c:forEach>
 
-
+                <%--
+                mES DDSDSDSDSDSDS
+                --%>
 
 
                 </tbody>
