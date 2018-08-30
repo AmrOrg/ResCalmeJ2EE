@@ -20,13 +20,13 @@
 
                 <tbody>
 
-                    <c:forEach var="item" items="${registreApp}" varStatus="loop">
-                        <tr>
-                            <td> <img src="${item.app_img1}" width="200" height="200" alt="a"/></td>
-                            <td> ${item.app_prix}</td>
-                            <td>${item.app_status}</td>
-                            <td> ${item.app_addr_id}</td>
-                            <td>
+                    <%--   <c:forEach var="item" items="${registreApp}" varStatus="loop">
+                           <tr>
+                               <td> <img src="${item.app_img1}" width="200" height="200" alt="a"/></td>
+                               <td> ${item.app_prix}</td>
+                               <td>${item.app_status}</td>
+                               <td> ${item.app_addr_id}</td>
+                               <td>
 
                                 <input type="hidden" name="Index" value="${loop.index}" />
                                 <input type="hidden" name="action" value="add" />
@@ -40,6 +40,47 @@
 
                     </c:forEach>
 
+
+                    --%>
+
+
+                <div class="row">
+                    <div class="col-sm-6">
+
+                        <img src="images/background.jpg" width="950" height="800" alt="background"/>
+
+
+
+                    </div>
+                    <div id="div_listApp" class="col-sm-6">
+
+                        <c:forEach var="item" items="${registreApp}" varStatus="loop">
+                            <div class="row">
+                                <c:if test="${loop.index % 2 ==0}">
+                                    <div class="col-sm-6">
+                                <img src="images/background.jpg" width="100" height="100" alt="background"/>
+
+
+                                    </div>
+                                </div>
+                            </c:if>
+                            <div class="col-sm-6">
+                                <img src="images/background.jpg" width="100" height="100" alt="background"/>
+
+                            </div>
+
+
+
+
+                        </c:forEach>
+
+
+
+                    </div>
+
+
+
+                </div>
 
 
 
