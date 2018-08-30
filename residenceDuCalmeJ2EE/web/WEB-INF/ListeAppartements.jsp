@@ -32,15 +32,9 @@
 
                             
                     </c:forEach>
-
-<<<<<<< HEAD
                 <%--
-                mES DDSDSDSDSDSDS
+                amr
                 --%>
-
-
-=======
->>>>>>> 82b84912010726b40f45bfb7ff8d0ab7287b6cc2
                 </tbody>
             </table>
 
