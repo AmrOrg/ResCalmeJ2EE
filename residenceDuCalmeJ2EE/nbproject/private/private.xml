@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/1795162/Documents/GitHub/ResCalmeJ2EE/residenceDuCalmeJ2EE/src/java/servlets/srv_AppDetails.java</file>
+            <file>file:/C:/Users/1795162/Documents/GitHub/ResCalmeJ2EE/residenceDuCalmeJ2EE/web/Produit.jsp</file>
             <file>file:/C:/Users/1795162/Documents/GitHub/ResCalmeJ2EE/residenceDuCalmeJ2EE/src/java/servlets/srv_InfosAppartement.java</file>
-            <file>file:/C:/Users/1795162/Documents/GitHub/ResCalmeJ2EE/residenceDuCalmeJ2EE/src/java/servlets/srv_Login.java</file>
-            <file>file:/C:/Users/1795162/Documents/GitHub/ResCalmeJ2EE/residenceDuCalmeJ2EE/web/TestSlide.jsp</file>
             <file>file:/C:/Users/1795162/Documents/GitHub/ResCalmeJ2EE/residenceDuCalmeJ2EE/src/java/servlets/srv_RechercheApp.java</file>
+            <file>file:/C:/Users/1795162/Documents/GitHub/ResCalmeJ2EE/residenceDuCalmeJ2EE/src/java/servlets/srv_ControlLang.java</file>
             <file>file:/C:/Users/1795162/Documents/GitHub/ResCalmeJ2EE/residenceDuCalmeJ2EE/web/WEB-INF/ListeAppartements.jsp</file>
+            <file>file:/C:/Users/1795162/Documents/GitHub/ResCalmeJ2EE/residenceDuCalmeJ2EE/web/index.jsp</file>
         </group>
     </open-files>
 </project-private>

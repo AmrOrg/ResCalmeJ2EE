@@ -26,10 +26,10 @@
             <img src="images/background.jpg" width="950" height="800" alt="background"/>
 
         </div>
-        <div style="background: whitesmoke;margin-top:17px;" id="div_1_2" class="col-sm-6">
+        <div style="background: whitesmoke;margin-top:0;" id="div_1_2" class="col-sm-6">
 
             <div class="row center">
-                <div align="center"  id="div_annonce" class="col-sm-12 " >
+                <div align="center" style="margin-top:10px;" id="div_annonce" class="col-sm-12 " >
 
                     <a href="https://www.rbcroyalbank.com/personal.html"><img src="images/RB_RB_FRE.png" width="509" height="100" alt="RB_RB_FRE"/></a>
 
@@ -55,11 +55,10 @@
 
 
                             <div class="col-sm-6"  >
-                                <form id="search-form" action="srv_AppDetails" method="POST" >
+                                <form id="search-form" action="srv_InfosAppartement?action=rechercheAppDetail" method="POST" >
                                     <input type="hidden" name="ind" value="${loop.index}" />
-                                    
+                                
                                     <%--  <img  src="${item.app_image1}" width="200" height="200" alt="1490405228" onClick="document.forms['search-form'].submit()"/> --%>
-
                                     <input style="margin-left: -15px;" type="image" width="200" height="200" src="${item.app_image1}" alt="Submit">
 
                                 </form> 

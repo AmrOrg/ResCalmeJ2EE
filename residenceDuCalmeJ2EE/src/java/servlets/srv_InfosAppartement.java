@@ -34,6 +34,7 @@ public class srv_InfosAppartement extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
+
         switch (action) {
             case "chercherType": {
                 ArrayList<String> ar_app_types = Utils.GetInstance().getAppTypes();
@@ -60,7 +61,7 @@ public class srv_InfosAppartement extends HttpServlet {
                     String prix = request.getParameter("prix");
                     double prixMin = 0;
                     double prixMax = 10000000;
-                    String myJSP= "index.jsp";
+                    String myJSP = "index.jsp";
 
                     if (!prix.trim().equals("")) {
                         String[] tabPrix = prix.split(" ");
@@ -72,9 +73,9 @@ public class srv_InfosAppartement extends HttpServlet {
                     if (registreApp.size() > 0) {
                         request.setAttribute("registreApp", registreApp);
                         request.setAttribute("Message", "EXISTE");
-                        myJSP= "/WEB-INF/ListeAppartements.jsp";
-                    }else{
-                       request.setAttribute("Message", "VIDE"); 
+                        myJSP = "/WEB-INF/ListeAppartements.jsp";
+                    } else {
+                        request.setAttribute("Message", "VIDE");
                     }
                     RequestDispatcher disp = request.getRequestDispatcher(myJSP);
                     disp.forward(request, response);
@@ -83,6 +84,16 @@ public class srv_InfosAppartement extends HttpServlet {
                     Logger.getLogger(srv_InfosAppartement.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            case "rechercheAppDetail": {
+
+                int index = Integer.valueOf(request.getParameter("ind"));
+                System.out.println(index);
+
+                RequestDispatcher disp = request.getRequestDispatcher("TestSlide.jsp");
+                disp.forward(request, response);
+
+            }
+
             default:
                 break;
         }
