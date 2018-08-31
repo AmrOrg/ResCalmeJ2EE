@@ -46,20 +46,25 @@
             </div>
 
             <div class="row  pre-scrollable" style="max-height: 650px" >
+
                 <c:forEach var="item" items="${registreApp}" varStatus="loop">
 
                     <div  style="background :white;margin-top:20px;border-color: red;width: 44%;margin-left: 40px;" id="div_resTitle" class="col-sm-3" >
 
                         <div class="row" >
 
-                            <form name="search-form" action="srv_AppDetails" method="POST">
-                                <div class="col-sm-6" onClick="document.forms['search-form'].submit();">
+
+                            <div class="col-sm-6"  >
+                                <form id="search-form" action="srv_AppDetails" method="POST" >
                                     <input type="hidden" name="ind" value="${loop.index}" />
+                                    
+                                    <%--  <img  src="${item.app_image1}" width="200" height="200" alt="1490405228" onClick="document.forms['search-form'].submit()"/> --%>
 
-                                    <img style="margin-left: -15px;" src="${item.app_image1}" width="200" height="200" alt="1490405228" />
+                                    <input style="margin-left: -15px;" type="image" width="200" height="200" src="${item.app_image1}" alt="Submit">
 
-                                </div>
-                            </form> 
+                                </form> 
+                            </div>
+
                             <div class="col-sm-6" >
 
                                 <h3>${item.app_ville}</h3>
