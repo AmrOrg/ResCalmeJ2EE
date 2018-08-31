@@ -7,10 +7,15 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import static javax.swing.text.html.CSS.getAttribute;
+import modele.Appartement;
 
 /**
  *
@@ -30,18 +35,17 @@ public class srv_AppDetails extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet srv_AppDetails</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet srv_AppDetails at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        int index = Integer.valueOf(request.getParameter("ind"));
+       
+        System.out.println("indexerrrrrrrrrrrrrrrr           " + index);
+
+        // ArrayList<Appartement> list = (ArrayList<Appartement>)request.getAttribute("registreApp");
+
+        //  Appartement app = list.get(indexer);
+        //request.setAttribute("app", app);
+        RequestDispatcher disp = request.getRequestDispatcher("TestSlide.jsp");
+        disp.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

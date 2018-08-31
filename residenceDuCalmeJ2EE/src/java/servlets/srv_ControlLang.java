@@ -32,6 +32,8 @@ public class srv_ControlLang extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        
    String lang = request.getParameter("lang");
         
         HttpSession session = request.getSession();

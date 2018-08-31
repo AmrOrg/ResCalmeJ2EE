@@ -46,28 +46,26 @@
             </div>
 
             <div class="row  pre-scrollable" style="max-height: 650px" >
-                <form name="search-form" action="srv_checkout" method="POST">
-                    <c:forEach var="item" items="${registreApp}" varStatus="loop">
+                <c:forEach var="item" items="${registreApp}" varStatus="loop">
 
-                        <div  style="background :white;margin-top:20px;border-color: red;width: 44%;margin-left: 40px;" id="div_resTitle" class="col-sm-3" >
+                    <div  style="background :white;margin-top:20px;border-color: red;width: 44%;margin-left: 40px;" id="div_resTitle" class="col-sm-3" >
 
-                            <div class="row" >
+                        <div class="row" >
 
+                            <form name="search-form" action="srv_AppDetails" method="POST">
                                 <div class="col-sm-6" onClick="document.forms['search-form'].submit();">
+                                    <input type="hidden" name="ind" value="${loop.index}" />
+
                                     <img style="margin-left: -15px;" src="${item.app_image1}" width="200" height="200" alt="1490405228" />
 
                                 </div>
-                                <div class="col-sm-6" >
+                            </form> 
+                            <div class="col-sm-6" >
 
-                                    <h3>${item.app_ville}</h3>
-                                    <h3>${item.app_prix}</h3>
-                                    <h5>${item.app_nun_civique} ${item.app_rue} </h5>
-
-
-
-                                </div>
-
-
+                                <h3>${item.app_ville}</h3>
+                                <h3>${item.app_prix}</h3>
+                                <h5>${item.app_nun_civique} ${item.app_rue} </h5>
+                                <h5>${loop.index}</h5>
 
 
                             </div>
@@ -76,9 +74,15 @@
 
 
                         </div>
-                    </c:forEach>
 
-                </form>     
+
+
+
+                    </div>
+
+                </c:forEach>
+
+
 
 
 

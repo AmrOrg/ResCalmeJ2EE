@@ -415,7 +415,7 @@ public class Utils {
             Appartement appartement = new Appartement(pays_nom, prov_nom, ville_nom, app_numero, app_numero_civique, app_rue, app_code_postal, type_app_description,
                     serv_description, app_statut_disponible, app_prix, app_prix_serv, app_image1, app_image2, app_image3, app_image4, app_image5);
             registreApp.add(appartement);
-            System.out.println(appartement);
+           // System.out.println(appartement);
         }
         return registreApp;
     }
